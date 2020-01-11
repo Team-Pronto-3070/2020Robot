@@ -9,14 +9,18 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
-
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.revrobotics.ColorSensorV3;
 
 public class Robot extends TimedRobot {
   
   c_Drive drive;
+  Joystick j_joyL, j_joyR;
+  TalonFX t_frontLeft, t_backLeft, t_frontRight, t_backRight;
+  
   /**
    * Change the I2C port below to match the connection of your color sensor
    */
