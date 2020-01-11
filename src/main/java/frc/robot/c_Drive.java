@@ -73,4 +73,8 @@ class c_Drive {
         t_backLeft.set(ControlMode.Follower, i_Pronstants.FL_PORT);
     }
 
+    /*
+    * Write code that takes input from j_right and j_left and sets each side's motor to the input. 
+    * Use [Joystick object].getRawAxis(1) to get a value between -1 and 1 (with 0 being in the middle)
+    */
 }
