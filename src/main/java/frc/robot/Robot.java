@@ -31,7 +31,7 @@ public class Robot extends TimedRobot {
    * parameter. The device will be automatically initialized with default 
    * parameters.
    */
-  private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
+  public final ColorSensorV3 s_colorSensor = new ColorSensorV3(i2cPort);
 
   @Override
   public void teleopPeriodic() {
@@ -45,12 +45,12 @@ public class Robot extends TimedRobot {
      * an object is the more light from the surroundings will bleed into the 
      * measurements and make it difficult to accurately determine its color.
      */
-    Color detectedColor = m_colorSensor.getColor();
+    Color detectedColor = s_colorSensor.getColor();
 
     /**
      * The sensor returns a raw IR value of the infrared light detected.
      */
-    double IR = m_colorSensor.getIR();
+    double IR = s_colorSensor.getIR();
 
     /**
      * Open Smart Dashboard or Shuffleboard to see the color detected by the 
@@ -73,7 +73,7 @@ public class Robot extends TimedRobot {
      * or provide a threshold for when an object is close enough to provide
      * accurate color values.
      */
-    int proximity = m_colorSensor.getProximity();
+    int proximity = s_colorSensor.getProximity();
 
     SmartDashboard.putNumber("Proximity", proximity);
 
