@@ -6,23 +6,23 @@ import edu.wpi.first.wpilibj.Joystick;
 
 
 class c_Drive {
-    Joystick j_joyR, j_joyL;
+    Joystick j_right, j_left;
     TalonFX t_frontLeft, t_backLeft, t_frontRight, t_backRight;
 
     /**
      * Class constructor
-     * @param j_joyR Right joystick object
-     * @param j_joyL Left joystick object
+     * @param j_right Right joystick object
+     * @param j_left Left joystick object
      * @param t_frontLeft Front left motor object
      * @param t_backLeft Back left motor object
      * @param t_frontRight Front right motor object
      * @param t_backRight Back right motor object
      */
 
-    public c_Drive(Joystick j_joyR, Joystick j_joyL, TalonFX t_frontLeft, TalonFX t_backLeft, TalonFX t_frontRight, TalonFX t_backRight){
+    public c_Drive(Joystick j_right, Joystick j_left, TalonFX t_frontLeft, TalonFX t_backLeft, TalonFX t_frontRight, TalonFX t_backRight){
         //Assign global vars to imported instances
-        this.j_joyR = j_joyR;
-        this.j_joyL = j_joyL;
+        this.j_right = j_right;
+        this.j_left = j_left;
         this.t_frontLeft = t_frontLeft;
         this.t_backLeft = t_backLeft;
         this.t_frontRight = t_frontRight;
