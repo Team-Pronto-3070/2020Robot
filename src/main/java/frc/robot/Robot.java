@@ -18,7 +18,7 @@ import com.revrobotics.ColorSensorV3;
 public class Robot extends TimedRobot {
   
   c_Drive drive;
-  Joystick j_joyL, j_joyR;
+  Joystick j_left, j_right;
   TalonFX t_frontLeft, t_backLeft, t_frontRight, t_backRight;
   
   /**
