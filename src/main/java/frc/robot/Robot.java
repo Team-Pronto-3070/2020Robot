@@ -44,11 +44,7 @@ public class Robot extends TimedRobot implements i_Pronstants{
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
 
-<<<<<<< HEAD
-
-=======
     drive = new c_Drive();
->>>>>>> f4efeb36b4b15a2506762a5a1810d49650bb6037
   }
 
   /**
