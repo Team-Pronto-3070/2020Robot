@@ -51,13 +51,13 @@ class c_Drive {
      * Sets both sides to raw percentage
      * @param speed: [-1,1] decimal speed value
      */
-    public void setBothSides(double bothSpeed){
-        t_frontRight.set(ControlMode.PercentOutput, bothSpeed);
-        t_backRight.set(ControlMode.Follower, i_Pronstants.FR_PORT);
+    // public void setBothSides(double bothSpeed){
+    //     t_frontRight.set(ControlMode.PercentOutput, bothSpeed);
+    //     t_backRight.set(ControlMode.Follower, i_Pronstants.FR_PORT);
         
-        t_frontLeft.set(ControlMode.PercentOutput, bothSpeed);
-        t_backLeft.set(ControlMode.Follower, i_Pronstants.FL_PORT);
-    }
+    //     t_frontLeft.set(ControlMode.PercentOutput, bothSpeed);
+    //     t_backLeft.set(ControlMode.Follower, i_Pronstants.FL_PORT);
+    // }
 
     /**
      * Sets both sides to independent speed values of domain [-1,1]
@@ -65,17 +65,31 @@ class c_Drive {
      * @param rightSpeed Right side percentage
      */
 
-    public void setBothSides(double leftSpeed, double rightSpeed){
-        t_frontRight.set(ControlMode.PercentOutput, leftSpeed);
-        t_backRight.set(ControlMode.Follower, i_Pronstants.FR_PORT);
+    // public void setBothSides(double leftSpeed, double rightSpeed){
+    //     t_frontRight.set(ControlMode.PercentOutput, rightSpeed);
+    //     t_backRight.set(ControlMode.Follower, i_Pronstants.FR_PORT);
         
-        t_frontLeft.set(ControlMode.PercentOutput, rightSpeed);
-        t_backLeft.set(ControlMode.Follower, i_Pronstants.FL_PORT);
-    }
+    //     t_frontLeft.set(ControlMode.PercentOutput, leftSpeed);
+    //     t_backLeft.set(ControlMode.Follower, i_Pronstants.FL_PORT);
+        
+    // }
 
     
     /*
     * Write code that takes input from j_right and j_left and sets each side's motor to the input. 
     * Use [Joystick object].getRawAxis(1) to get a value between -1 and 1 (with 0 being in the middle)
     */
+public void setBothSides(){
+
+    t_frontRight.set(ControlMode.PercentOutput, j_right.getRawAxis(1));
+    t_backRight.set(ControlMode.Follower, i_Pronstants.FR_PORT);
+    
+    t_frontLeft.set(ControlMode.PercentOutput, j_left.getRawAxis(1));
+    t_backLeft.set(ControlMode.Follower, i_Pronstants.FL_PORT);
+    
+} 
+
+
+
+
 }
