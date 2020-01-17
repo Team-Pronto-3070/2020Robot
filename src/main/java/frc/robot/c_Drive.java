@@ -2,31 +2,30 @@ package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 
 
-class c_Drive {
+class c_Drive implements i_Pronstants{
     Joystick j_right, j_left;
     TalonFX t_frontLeft, t_backLeft, t_frontRight, t_backRight;
+    Encoder e_left, e_right;
 
     /**
      * Class constructor
-     * @param j_right Right joystick object
-     * @param j_left Left joystick object
-     * @param t_frontLeft Front left motor object
-     * @param t_backLeft Back left motor object
-     * @param t_frontRight Front right motor object
-     * @param t_backRight Back right motor object
      */
 
-    public c_Drive(Joystick j_right, Joystick j_left, TalonFX t_frontLeft, TalonFX t_backLeft, TalonFX t_frontRight, TalonFX t_backRight){
+    public c_Drive(){
         //Assign global vars to imported instances
-        this.j_right = j_right;
-        this.j_left = j_left;
-        this.t_frontLeft = t_frontLeft;
-        this.t_backLeft = t_backLeft;
-        this.t_frontRight = t_frontRight;
-        this.t_backRight = t_backRight;
+        j_right = new Joystick(JOYR_PORT);
+        j_left = new Joystick(JOYL_PORT);
+
+        t_frontLeft = new TalonFX(FL_PORT);
+        t_frontRight = new TalonFX(FR_PORT);
+        t_backLeft = new TalonFX(BL_PORT);
+        t_backRight = new TalonFX(BR_PORT);
+
+        e_left = new Encoder(ENC_L_A, ENC_L_B);
     }
 
     /**
@@ -72,3 +71,4 @@ class c_Drive {
         t_frontLeft.set(ControlMode.PercentOutput, rightSpeed);
         t_backLeft.set(ControlMode.Follower, i_Pronstants.FL_PORT);
     }
+}
