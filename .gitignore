@@ -14,6 +14,9 @@
 *.gch
 *.pch
 
+#Personal Access Token
+*.pat
+
 # Compiled Dynamic libraries
 *.so
 *.dylib
