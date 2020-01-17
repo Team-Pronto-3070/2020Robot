@@ -23,7 +23,7 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
-  SendableChooser<String> initPos = SendableChooser<String>();
+  SendableChooser<String> initPos = new SendableChooser<String>();
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -32,10 +32,10 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
 
-    initPos.addOption("Left", "R");
+    initPos.addOption("Left", "L");
     initPos.addOption("Middle", "M");
     initPos.addOption("Preferred", "P");
-    initPos.addOption("Right", "L");
+    initPos.addOption("Right", "R");
 
     SmartDashboard.putData(initPos);
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
