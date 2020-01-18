@@ -6,11 +6,12 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 
 
-class c_Drive implements i_Pronstants{
+class c_Drive {
     Joystick j_right, j_left;
     TalonFX t_frontLeft, t_backLeft, t_frontRight, t_backRight;
     Encoder e_left, e_right;
 
+    
     /**
      * Class constructor
      */
