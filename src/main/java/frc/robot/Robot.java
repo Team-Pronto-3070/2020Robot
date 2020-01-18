@@ -40,10 +40,10 @@ public class Robot extends TimedRobot{
 
   ADIS16448_IMU gyro;
 
-  /**
-   * This function is run when the robot is first started up and should be used for any
-   * initialization code.
-   */
+  private final I2C.Port i2cPort = I2C.Port.kOnboard;
+
+  public final ColorSensorV3 s_colorSensor = new ColorSensorV3(i2cPort);
+
   @Override
   public void robotInit() {
     robotMap = new RobotMap();
@@ -60,8 +60,6 @@ public class Robot extends TimedRobot{
     drive = new c_Drive();
 
     gyro = new ADIS16448_IMU();
-    private final I2C.Port i2cPort = I2C.Port.kOnboard;
-    public final ColorSensorV3 s_colorSensor = new ColorSensorV3(i2cPort);
   }
 
   /**
