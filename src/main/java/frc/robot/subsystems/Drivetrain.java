@@ -38,7 +38,7 @@ public class Drivetrain extends SubsystemBase implements i_Pronstants{
     }
 
     public void tankDrive(double bothSpeed){
-        //do tank dtrive thing 
+        //do tank drive thing 
         t_frontRight.set(ControlMode.PercentOutput, bothSpeed);
         t_backRight.set(ControlMode.Follower, i_Pronstants.FR_PORT);
         
@@ -46,6 +46,23 @@ public class Drivetrain extends SubsystemBase implements i_Pronstants{
         t_backLeft.set(ControlMode.Follower, i_Pronstants.FL_PORT);
     }
 
+    public void autoTurn(double angle){
+        double currentAngle = 0; // gyro.get 
+        //move one side one way and the other side the other way
+        if(angle > currentAngle){
+            t_frontRight.set(ControlMode.PercentOutput, -.5);
+            t_backRight.set(ControlMode.Follower, i_Pronstants.FR_PORT);
+        
+            t_frontLeft.set(ControlMode.PercentOutput, .5);
+            t_backLeft.set(ControlMode.Follower, i_Pronstants.FL_PORT);
+        }else if(angle < currentAngle){
+            t_frontRight.set(ControlMode.PercentOutput, .5);
+            t_backRight.set(ControlMode.Follower, i_Pronstants.FR_PORT);
+            
+            t_frontLeft.set(ControlMode.PercentOutput, -.5);
+            t_backLeft.set(ControlMode.Follower, i_Pronstants.FL_PORT);
+        }
+    }
     public void initDefaultCommand(){
         setDefaultCommand(driveCommand);
     }
