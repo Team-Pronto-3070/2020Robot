@@ -12,12 +12,12 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.ADIS16448_IMU;
 import frc.robot.RobotMap;
 import frc.robot.commands.DriveCommand;
 
-public class Drivetrain extends SubsystemBase {
+public class Drivetrain extends Subsystem {
     //init talons
     Joystick j_right, j_left;
     TalonFX t_frontLeft, t_backLeft, t_frontRight, t_backRight;
@@ -69,7 +69,7 @@ public class Drivetrain extends SubsystemBase {
         }
     }
     public void initDefaultCommand(){
-     // setDefaultCommand(new DriveCommand());
+     setDefaultCommand(new DriveCommand());
     }
 
 }
