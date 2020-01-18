@@ -8,6 +8,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
@@ -21,6 +23,7 @@ public class Robot extends TimedRobot implements i_Pronstants{
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
+  SendableChooser<String> initPos = new SendableChooser<String>();
 
   c_Drive drive;
 
@@ -30,6 +33,13 @@ public class Robot extends TimedRobot implements i_Pronstants{
    */
   @Override
   public void robotInit() {
+
+    initPos.addOption("Left", "L");
+    initPos.addOption("Middle", "M");
+    initPos.addOption("Preferred", "P");
+    initPos.addOption("Right", "R");
+
+    SmartDashboard.putData(initPos);
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
