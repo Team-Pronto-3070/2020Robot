@@ -7,13 +7,13 @@
 
 package frc.robot.subsystems;
 
+import com.analog.adis16448.frc.ADIS16448_IMU;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.ADIS16448_IMU;
 import frc.robot.RobotMap;
 import frc.robot.commands.DriveCommand;
 
@@ -23,10 +23,10 @@ public class Drivetrain extends Subsystem {
     TalonFX t_frontLeft, t_backLeft, t_frontRight, t_backRight;
     Encoder e_left, e_right;
     DriveCommand driveCommand;
-    ADIS16448_IMU imu;
+    //ADIS16448_IMU imu;
 
     public Drivetrain(){
-        imu = new ADIS16448_IMU();
+        //imu = new ADIS16448_IMU();
         j_right = new Joystick(RobotMap.JOYR_PORT);
         j_left = new Joystick(RobotMap.JOYL_PORT);
 
@@ -52,7 +52,7 @@ public class Drivetrain extends Subsystem {
     }
 
     public void autoTurn(double angle){
-        double currentAngle = imu.getAngle(); // gyro.get 
+        double currentAngle = 0; // gyro.get 
         //move one side one way and the other side the other way
         if(angle > currentAngle){
             t_frontRight.set(ControlMode.PercentOutput, -.5);
