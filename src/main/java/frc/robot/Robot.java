@@ -111,6 +111,28 @@ public class Robot extends TimedRobot{
   @Override
   public void autonomousPeriodic() {
     SmartDashboard.putNumber("gyro.getAngle()", gyro.getAngle());
+
+    Color detectedColor = s_colorSensor.getColor();
+
+    /**
+     * The sensor returns a raw IR value of the infrared light detected.
+     */
+    double IR = s_colorSensor.getIR();
+
+    /**
+     * Open Smart Dashboard or Shuffleboard to see the color detected by the 
+     * sensor.
+     */
+    SmartDashboard.putNumber("Red", detectedColor.red * 100);
+    SmartDashboard.putNumber("Green", detectedColor.green * 100);
+    SmartDashboard.putNumber("Blue", detectedColor.blue * 100);
+    SmartDashboard.putNumber("IR", IR);
+    SmartDashboard.putNumber("Total", (detectedColor.red + detectedColor.green + detectedColor.blue) * 100);
+
+    int proximity = s_colorSensor.getProximity();
+
+    SmartDashboard.putNumber("Proximity", proximity);
+
   }
 
   @Override
