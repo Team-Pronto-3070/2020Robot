@@ -14,12 +14,14 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.i_Pronstants;
+import frc.robot.commands.*;
 
 public class Drivetrain extends SubsystemBase implements i_Pronstants{
     //init talons
     Joystick j_right, j_left;
     TalonFX t_frontLeft, t_backLeft, t_frontRight, t_backRight;
     Encoder e_left, e_right;
+    DriveCommand driveCommand;
 
     public Drivetrain(){
         j_right = new Joystick(JOYR_PORT);
@@ -64,7 +66,7 @@ public class Drivetrain extends SubsystemBase implements i_Pronstants{
         }
     }
     public void initDefaultCommand(){
-        setDefaultCommand(driveCommand);
+        setDefaultCommand(new DriveCommand());
     }
 
 }
