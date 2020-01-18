@@ -13,8 +13,9 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.ADIS16448_IMU;
 import frc.robot.i_Pronstants;
-import frc.robot.commands.*;
+import frc.robot.commands.DriveCommand;
 
 public class Drivetrain extends SubsystemBase implements i_Pronstants{
     //init talons
@@ -22,8 +23,10 @@ public class Drivetrain extends SubsystemBase implements i_Pronstants{
     TalonFX t_frontLeft, t_backLeft, t_frontRight, t_backRight;
     Encoder e_left, e_right;
     DriveCommand driveCommand;
+    ADIS16448_IMU imu;
 
     public Drivetrain(){
+        imu = new ADIS16448_IMU();
         j_right = new Joystick(JOYR_PORT);
         j_left = new Joystick(JOYL_PORT);
 
@@ -49,7 +52,7 @@ public class Drivetrain extends SubsystemBase implements i_Pronstants{
     }
 
     public void autoTurn(double angle){
-        double currentAngle = 0; // gyro.get 
+        double currentAngle = imu.getAngle(); // gyro.get 
         //move one side one way and the other side the other way
         if(angle > currentAngle){
             t_frontRight.set(ControlMode.PercentOutput, -.5);
