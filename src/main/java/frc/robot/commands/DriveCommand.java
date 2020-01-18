@@ -12,7 +12,7 @@ public class DriveCommand extends Command{
 
     public DriveCommand(){
         
-      // requires(Robot.drivetrain);
+      requires(Robot.drivetrain);
         
     }
     //drive(Drivetrain :: tankDrive(joyL.getRaw) )
