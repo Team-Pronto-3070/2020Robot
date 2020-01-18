@@ -16,6 +16,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.Drivetrain;
+import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.util.Color;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.revrobotics.ColorSensorV3;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -104,7 +110,7 @@ public class Robot extends TimedRobot{
    */
   @Override
   public void autonomousPeriodic() {
-    (gyro.getAngle());
+    SmartDashboard.putNumber("gyro.getAngle()", gyro.getAngle());
   }
 
   @Override
