@@ -7,6 +7,9 @@
 
 package frc.robot;
 
+import com.revrobotics.ColorSensorV3;
+
+import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -51,6 +54,8 @@ public class Robot extends TimedRobot{
     drive = new c_Drive();
 
     gyro = new ADIS16448_IMU();
+    private final I2C.Port i2cPort = I2C.Port.kOnboard;
+    public final ColorSensorV3 s_colorSensor = new ColorSensorV3(i2cPort);
   }
 
   /**
