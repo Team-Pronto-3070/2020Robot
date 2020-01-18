@@ -20,9 +20,9 @@ import frc.robot.subsystems.Drivetrain;
  * the package after creating this project, you must also update the build.gradle file in the
  * project.
  */
-public class Robot extends TimedRobot implements i_Pronstants{
+public class Robot extends TimedRobot{
   private Command m_autonomousCommand;
-
+  RobotMap robotMap;
   private RobotContainer m_robotContainer;
   SendableChooser<String> initPos = new SendableChooser<String>();
   public static final Drivetrain drivetrain = new Drivetrain();
@@ -35,7 +35,7 @@ public class Robot extends TimedRobot implements i_Pronstants{
    */
   @Override
   public void robotInit() {
-
+    robotMap = new RobotMap();
     initPos.addOption("Left", "L");
     initPos.addOption("Middle", "M");
     initPos.addOption("Preferred", "P");
