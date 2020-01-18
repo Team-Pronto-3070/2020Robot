@@ -29,6 +29,8 @@ public class Robot extends TimedRobot{
 
   c_Drive drive;
 
+  ADIS16448_IMU gyro;
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -47,6 +49,8 @@ public class Robot extends TimedRobot{
     m_robotContainer = new RobotContainer();
 
     drive = new c_Drive();
+
+    gyro = new ADIS16448_IMU();
   }
 
   /**
@@ -87,6 +91,7 @@ public class Robot extends TimedRobot{
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
+    gyro.reset();
   }
 
   /**
@@ -94,6 +99,7 @@ public class Robot extends TimedRobot{
    */
   @Override
   public void autonomousPeriodic() {
+    (gyro.getAngle());
   }
 
   @Override
