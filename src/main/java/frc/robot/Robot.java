@@ -38,11 +38,7 @@ public class Robot extends TimedRobot{
 
   //c_Drive drive;
 
-  ADIS16448_IMU gyro;
 
-  private final I2C.Port i2cPort = I2C.Port.kOnboard;
-
-  public final ColorSensorV3 s_colorSensor = new ColorSensorV3(i2cPort);
 
   @Override
   public void robotInit() {
@@ -59,7 +55,6 @@ public class Robot extends TimedRobot{
 
 //    drive = new c_Drive();
 
-    gyro = new ADIS16448_IMU();
   }
 
   /**
