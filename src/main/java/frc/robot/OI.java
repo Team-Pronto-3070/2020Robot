@@ -68,7 +68,7 @@ class OI {
     public TalonSRX getTalSRXInstance(RobotMap.SRX_MOTOR motor){
         switch (motor) {
             case WINCH:
-                return ts_WINCH;
+                return ts_WINCH; b
             case TELE:
                 return ts_CLIMB_TELESCOPER;
             case HOPPER:
