@@ -19,16 +19,16 @@ import frc.robot.commands.DriveCommand;
 
 public class Drivetrain extends Subsystem {
     //init talons
-    Joystick j_right, j_left;
+    //Joystick j_right, j_left;
     TalonFX t_frontLeft, t_backLeft, t_frontRight, t_backRight;
     Encoder e_left, e_right;
     DriveCommand driveCommand;
     //ADIS16448_IMU imu;
+    
 
     public Drivetrain(){
         //imu = new ADIS16448_IMU();
-        j_right = new Joystick(RobotMap.JOYR_PORT);
-        j_left = new Joystick(RobotMap.JOYL_PORT);
+        
 
         t_frontLeft = new TalonFX(RobotMap.FL_PORT);
         t_frontRight = new TalonFX(RobotMap.FR_PORT);

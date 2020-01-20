@@ -10,23 +10,18 @@ import frc.robot.RobotMap;
 class OI {
     TalonFX tf_FL, tf_FR, tf_BL, tf_BR;
     TalonSRX ts_WOF, ts_WINCH, ts_CLIMB_TELESCOPER, ts_HOPPER, ts_BELT1, ts_BELT2;
-    Joystick j_LEFT, j_RIGHT;
+    
     ColorSensorV3 s_colorSensor;
     ADIS16448_IMU gyro;
-
+    Joystick j_LEFT, j_RIGHT;
 
     public OI(){
-        tf_FL = new TalonFX(RobotMap.FL_PORT);
-        tf_FR = new TalonFX(RobotMap.FR_PORT);
-        tf_BL = new TalonFX(RobotMap.BL_PORT);
-        tf_BR = new TalonFX(RobotMap.BR_PORT);
-
-        ts_WOF = new TalonSRX(RobotMap.T_WOF_PORT);
-        ts_WINCH = new TalonSRX(RobotMap.T_WINCH_PORT);
-        ts_HOPPER = new TalonSRX(RobotMap.T_HOPPER_PORT);
-        ts_CLIMB_TELESCOPER = new TalonSRX(RobotMap.T_TELE_PORT);
-        ts_BELT1 = new TalonSRX(RobotMap.T_BELT1_PORT);
-        ts_BELT2 = new TalonSRX(RobotMap.T_BELT2_PORT);
+        // ts_WOF = new TalonSRX(RobotMap.T_WOF_PORT);
+        // ts_WINCH = new TalonSRX(RobotMap.T_WINCH_PORT);
+        // ts_HOPPER = new TalonSRX(RobotMap.T_HOPPER_PORT);
+        // ts_CLIMB_TELESCOPER = new TalonSRX(RobotMap.T_TELE_PORT);
+        // ts_BELT1 = new TalonSRX(RobotMap.T_BELT1_PORT);
+        // ts_BELT2 = new TalonSRX(RobotMap.T_BELT2_PORT);
 
         j_LEFT = new Joystick(RobotMap.JOYL_PORT);
         j_RIGHT = new Joystick(RobotMap.JOYR_PORT);
@@ -68,7 +63,7 @@ class OI {
     public TalonSRX getTalSRXInstance(RobotMap.SRX_MOTOR motor){
         switch (motor) {
             case WINCH:
-                return ts_WINCH; b
+                return ts_WINCH;
             case TELE:
                 return ts_CLIMB_TELESCOPER;
             case HOPPER:

@@ -34,6 +34,7 @@ public class Robot extends TimedRobot{
   SendableChooser<String> initPos = new SendableChooser<String>();
   public static final Drivetrain drivetrain = new Drivetrain();
 
+  public static OI m_oi;  
   DriveCommand driveCommand; 
 
   //c_Drive drive;
@@ -42,6 +43,8 @@ public class Robot extends TimedRobot{
 
   @Override
   public void robotInit() {
+    m_oi = new OI();
+
     robotMap = new RobotMap();
     initPos.addOption("Left", "L");
     initPos.addOption("Middle", "M");
@@ -115,29 +118,34 @@ public class Robot extends TimedRobot{
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    SmartDashboard.putNumber("gyro.getAngle()", OI.gyro.getAngle());
+    //SmartDashboard.putNumber("gyro.getAngle()", OI.gyro.getAngle());
 
-    Color detectedColor = OI.s_colorSensor.getColor();
+    //Color detectedColor = OI.s_colorSensor.getColor();
 
     /**
      * The sensor returns a raw IR value of the infrared light detected.
      */
-    double IR = OI.s_colorSensor.getIR();
+    //double IR = OI.s_colorSensor.getIR();
 
     /**
      * Open Smart Dashboard or Shuffleboard to see the color detected by the 
      * sensor.
-     */
+     
     SmartDashboard.putNumber("Red", detectedColor.red * 100);
     SmartDashboard.putNumber("Green", detectedColor.green * 100);
     SmartDashboard.putNumber("Blue", detectedColor.blue * 100);
     SmartDashboard.putNumber("IR", IR);
     SmartDashboard.putNumber("Total", (detectedColor.red + detectedColor.green + detectedColor.blue) * 100);
-
+    
     int proximity = s_colorSensor.getProximity();
 
     SmartDashboard.putNumber("Proximity", proximity);
     OI.gyro.reset();
+    
+    */
+    SmartDashboard.putNumber("Joystick L", drivetrain.j_left.getRawAxis(1));
+
+    
   }
 
   /**
@@ -146,7 +154,7 @@ public class Robot extends TimedRobot{
   @Override
   public void teleopPeriodic() {
     
-    driveCommand.execute(); 
+    //driveCommand.execute(); 
 
   }
 
