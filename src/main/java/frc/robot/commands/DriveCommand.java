@@ -20,8 +20,24 @@ public class DriveCommand extends Command{
 
     }
 
+    public void execute(){
+      Robot.drivetrain.tankDrive();
+    }
+
     protected boolean isFinished(){
         return false;
+    }
+
+    protected void end(){
+
+    }
+
+    protected void initalize(){
+
+    }
+
+    protected void interrupted(){
+
     }
 
 }

@@ -42,12 +42,12 @@ public class Drivetrain extends Subsystem {
 
     }
 
-    public void tankDrive(double bothSpeed){
+    public void tankDrive(){
         //do tank drive thing 
-        t_frontRight.set(ControlMode.PercentOutput, bothSpeed);
+        t_frontRight.set(ControlMode.PercentOutput, j_right.getRawAxis(1)/2);
         t_backRight.set(ControlMode.Follower, RobotMap.FR_PORT);
         
-        t_frontLeft.set(ControlMode.PercentOutput, bothSpeed);
+        t_frontLeft.set(ControlMode.PercentOutput, j_left.getRawAxis(1)/2);
         t_backLeft.set(ControlMode.Follower, RobotMap.FL_PORT);
     }
 

@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj.util.Color;
+import frc.robot.commands.*;
 // import com.revrobotics.ColorSensorV3;
 
 /**
@@ -33,7 +34,9 @@ public class Robot extends TimedRobot{
   SendableChooser<String> initPos = new SendableChooser<String>();
   public static final Drivetrain drivetrain = new Drivetrain();
 
-  c_Drive drive;
+  DriveCommand driveCommand; 
+
+  //c_Drive drive;
 
   ADIS16448_IMU gyro;
 
@@ -54,7 +57,7 @@ public class Robot extends TimedRobot{
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
 
-    drive = new c_Drive();
+//    drive = new c_Drive();
 
     gyro = new ADIS16448_IMU();
   }
@@ -117,15 +120,6 @@ public class Robot extends TimedRobot{
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    gyro.reset();
-  }
-
-  /**
-   * This function is called periodically during operator control.
-   */
-  @Override
-  public void teleopPeriodic() {
-    
     SmartDashboard.putNumber("gyro.getAngle()", gyro.getAngle());
 
     Color detectedColor = s_colorSensor.getColor();
@@ -148,6 +142,16 @@ public class Robot extends TimedRobot{
     int proximity = s_colorSensor.getProximity();
 
     SmartDashboard.putNumber("Proximity", proximity);
+    gyro.reset();
+  }
+
+  /**
+   * This function is called periodically during operator control.
+   */
+  @Override
+  public void teleopPeriodic() {
+    
+    driveCommand.execute(); 
 
   }
 
