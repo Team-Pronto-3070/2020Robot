@@ -115,14 +115,14 @@ public class Robot extends TimedRobot{
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    SmartDashboard.putNumber("gyro.getAngle()", gyro.getAngle());
+    SmartDashboard.putNumber("gyro.getAngle()", OI.gyro.getAngle());
 
-    Color detectedColor = s_colorSensor.getColor();
+    Color detectedColor = OI.s_colorSensor.getColor();
 
     /**
      * The sensor returns a raw IR value of the infrared light detected.
      */
-    double IR = s_colorSensor.getIR();
+    double IR = OI.s_colorSensor.getIR();
 
     /**
      * Open Smart Dashboard or Shuffleboard to see the color detected by the 
@@ -137,7 +137,7 @@ public class Robot extends TimedRobot{
     int proximity = s_colorSensor.getProximity();
 
     SmartDashboard.putNumber("Proximity", proximity);
-    gyro.reset();
+    OI.gyro.reset();
   }
 
   /**
