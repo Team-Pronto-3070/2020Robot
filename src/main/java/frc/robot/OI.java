@@ -7,21 +7,15 @@ import com.revrobotics.ColorSensorV3;
 import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.RobotMap;
 
-class OI {
+public class OI {
     TalonFX tf_FL, tf_FR, tf_BL, tf_BR;
-    TalonSRX ts_WOF, ts_WINCH, ts_CLIMB_TELESCOPER, ts_HOPPER, ts_BELT1, ts_BELT2;
+    public TalonSRX ts_WOF, ts_WINCH, ts_CLIMB_TELESCOPER, ts_HOPPER, ts_BELT1, ts_BELT2;
     
     ColorSensorV3 s_colorSensor;
     ADIS16448_IMU gyro;
-    Joystick j_LEFT, j_RIGHT;
+    public Joystick j_LEFT, j_RIGHT;
 
     public OI(){
-        // ts_WOF = new TalonSRX(RobotMap.T_WOF_PORT);
-        // ts_WINCH = new TalonSRX(RobotMap.T_WINCH_PORT);
-        // ts_HOPPER = new TalonSRX(RobotMap.T_HOPPER_PORT);
-        // ts_CLIMB_TELESCOPER = new TalonSRX(RobotMap.T_TELE_PORT);
-        // ts_BELT1 = new TalonSRX(RobotMap.T_BELT1_PORT);
-        // ts_BELT2 = new TalonSRX(RobotMap.T_BELT2_PORT);
 
         j_LEFT = new Joystick(RobotMap.JOYL_PORT);
         j_RIGHT = new Joystick(RobotMap.JOYR_PORT);

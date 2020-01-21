@@ -1,19 +1,19 @@
 package frc.robot.commands; 
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.subsystems.*;
 import frc.robot.RobotMap;
 
 
-public class DriveCommand extends Command{
+public class DriveCommand extends CommandBase{
 
-    
+    private final Drivetrain drive;
 
-    public DriveCommand(){
-        
-      requires(Robot.drivetrain);
-        
+    public DriveCommand(Drivetrain dt){
+      drive = dt;
+      addRequirements(dt);
+      
     }
     //drive(Drivetrain :: tankDrive(joyL.getRaw) )
     public void drive(){
@@ -21,11 +21,11 @@ public class DriveCommand extends Command{
     }
 
     public void execute(){
-      Robot.drivetrain.tankDrive();
+      drive.tankDrive(Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.LEFT, 1), Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.RIGHT, 1));
     }
 
-    protected boolean isFinished(){
-        return false;
+    public boolean isFinished() {
+     return false;
     }
 
     protected void end(){
