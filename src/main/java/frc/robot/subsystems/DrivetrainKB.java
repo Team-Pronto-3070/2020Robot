@@ -12,7 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 
-public class DrivetrainKB extends Drivetrain {
+public class DrivetrainKB extends Drivetrain{
     TalonSRX t_frontLeft, t_backLeft, t_frontRight, t_backRight;
     
 

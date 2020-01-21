@@ -9,7 +9,6 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
-
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
@@ -19,10 +18,10 @@ public class Drivetrain extends SubsystemBase {
     
 
     public Drivetrain(){
-        t_frontLeft = new TalonFX(RobotMap.FL_PORT);
-        t_frontRight = new TalonFX(RobotMap.FR_PORT);
-        t_backLeft = new TalonFX(RobotMap.BL_PORT);
-        t_backRight = new TalonFX(RobotMap.BR_PORT);
+        t_frontLeft = new TalonFX(RobotMap.T_REY_PORT);
+        t_frontRight = new TalonFX(RobotMap.T_OBIWAN_PORT);
+        t_backLeft = new TalonFX(RobotMap.T_ASHOKA_PORT);
+        t_backRight = new TalonFX(RobotMap.T_ANAKIN_PORT);
     }
 
     public void periodic(){
@@ -34,10 +33,10 @@ public class Drivetrain extends SubsystemBase {
         //do tank drive thing 
 
         t_frontRight.set(ControlMode.PercentOutput, rightSpeed/2);
-        t_backRight.set(ControlMode.Follower, RobotMap.FR_PORT);
+        t_backRight.set(ControlMode.Follower, RobotMap.T_OBIWAN_PORT);
         
         t_frontLeft.set(ControlMode.PercentOutput, Robot.m_oi.j_LEFT.getRawAxis(1)/2);
-        t_backLeft.set(ControlMode.Follower, RobotMap.FL_PORT);
+        t_backLeft.set(ControlMode.Follower, RobotMap.T_REY_PORT);
 
         Robot.m_oi.ts_WOF.set(ControlMode.PercentOutput, .5);
     }
