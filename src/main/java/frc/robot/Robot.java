@@ -10,10 +10,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.commands.*;
-import frc.robot.subsystems.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,7 +21,7 @@ import frc.robot.subsystems.*;
  * project.
  */
 public class Robot extends TimedRobot{
-  private Command m_autonomousCommand;
+  private CommandBase m_autonomousCommand;
   RobotMap robotMap;
   public static RobotContainer m_robotContainer;
   SendableChooser<String> initPos = new SendableChooser<String>();
@@ -48,7 +46,7 @@ public class Robot extends TimedRobot{
     SmartDashboard.putData(initPos);
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
-    m_robotContainer = new RobotContainer();
+    m_robotContainer = new RobotContainer(RobotMap.KITBOT);
     
     //m_robotContainer.m_driveCommandKB.start();
 

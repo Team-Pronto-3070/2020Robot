@@ -39,37 +39,4 @@ public class OI {
             return j_RIGHT.getRawButton(button);
     }
 
-    public TalonFX getTalFXInstance(RobotMap.FX_MOTOR motor){
-        switch (motor) {
-        case FRONTLEFT:
-            return tf_FL;
-        case FRONTRIGHT:
-            return tf_FR;
-        case BACKLEFT:
-            return tf_BL;
-        case BACKRIGHT:
-            return tf_BR;
-        default:
-            return null;
-        }
-    }
-
-    public TalonSRX getTalSRXInstance(RobotMap.SRX_MOTOR motor){
-        switch (motor) {
-            case WINCH:
-                return ts_WINCH;
-            case TELE:
-                return ts_CLIMB_TELESCOPER;
-            case HOPPER:
-                return ts_HOPPER;
-            case BELT_ONE:
-                return ts_BELT1;
-            case BELT_TWO:
-                return ts_BELT2;
-            case WOF:
-                return ts_WOF;
-            default:
-                return null;
-        }
-    }
 }

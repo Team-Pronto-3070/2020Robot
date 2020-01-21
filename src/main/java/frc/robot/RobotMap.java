@@ -28,17 +28,10 @@ public class RobotMap {
     public static final int T_BELT1_PORT = T_REVAN_PORT;
     public static final int T_BELT2_PORT = T_BASTILA_PORT;
 
+	public static final boolean KITBOT = false;
+
     public enum JOYSIDE {
         LEFT, RIGHT
     };
 
-    public enum FX_MOTOR {
-        FRONTLEFT, FRONTRIGHT,
-        BACKLEFT, BACKRIGHT
-    };
-
-    public enum SRX_MOTOR {
-        WINCH, TELE, HOPPER,
-        BELT_ONE, BELT_TWO, WOF
-    };
 }

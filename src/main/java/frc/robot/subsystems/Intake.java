@@ -1,5 +1,7 @@
 package frc.robot.subsystems;
 
-class Intake {
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
+class Intake extends SubsystemBase {
     
 }

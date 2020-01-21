@@ -10,7 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
-import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -20,17 +20,22 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  public final Drivetrain drivetrain = new DrivetrainKB(); 
+  public final Drivetrain drivetrain;
   //public final DrivetrainKB drivetrainKB = new DrivetrainKB();
 
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-  private final DriveCommand m_driveCommand = new DriveCommand(drivetrain);
+  private final CommandBase m_autoCommand = new AutoCommand();
+  private final DriveCommand m_driveCommand;
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
-  public RobotContainer() {
+  public RobotContainer(boolean kitbot) {
+    if(kitbot)
+      drivetrain = new DrivetrainKB(); 
+    else
+      drivetrain = new Drivetrain();
+    
+    m_driveCommand = new DriveCommand(drivetrain);
     // Configure the button bindings
     configureButtonBindings();
     drivetrain.setDefaultCommand(m_driveCommand);
@@ -51,7 +56,7 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  public Command getAutonomousCommand() {
+  public CommandBase getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     return m_autoCommand;
   }
