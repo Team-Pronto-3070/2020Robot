@@ -17,4 +17,9 @@ class Climber extends SubsystemBase{
     public void goUp(){
         
     }
+
+    public void goDown(){
+
+    }
+
 }
