@@ -49,7 +49,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
 
-    Robot.m_oi.j_LEFT.bu
+    Robot.m_oi.j_LEFT.butt
 
   }
 
