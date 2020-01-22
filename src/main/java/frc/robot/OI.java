@@ -2,19 +2,30 @@ package frc.robot;
 
 import com.analog.adis16448.frc.ADIS16448_IMU;
 import com.revrobotics.ColorSensorV3;
+
 import edu.wpi.first.wpilibj.Joystick;
-import frc.robot.RobotMap;
+import edu.wpi.first.wpilibj.buttons.Button;
 
 public class OI {
     
     ColorSensorV3 s_colorSensor;
     ADIS16448_IMU gyro;
     public Joystick j_LEFT, j_RIGHT;
+    Button button1;
 
     public OI(){
 
         j_LEFT = new Joystick(RobotMap.JOYL_PORT);
         j_RIGHT = new Joystick(RobotMap.JOYR_PORT);
+        button1 = new Button(){
+            
+        
+            @Override
+            public boolean get() {
+                // TODO Auto-generated method stub
+                return false;
+            }
+        };
 
         s_colorSensor = new ColorSensorV3(RobotMap.i2cPort);
 
