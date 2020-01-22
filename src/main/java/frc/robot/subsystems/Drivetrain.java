@@ -18,10 +18,10 @@ public class Drivetrain extends SubsystemBase {
     
 
     public Drivetrain(){
-        t_frontLeft = new TalonFX(RobotMap.T_REY_PORT);
-        t_frontRight = new TalonFX(RobotMap.T_OBIWAN_PORT);
-        t_backLeft = new TalonFX(RobotMap.T_ASHOKA_PORT);
-        t_backRight = new TalonFX(RobotMap.T_ANAKIN_PORT);
+        t_frontLeft = new TalonFX(RobotMap.FL_PORT);
+        t_frontRight = new TalonFX(RobotMap.FR_PORT);
+        t_backLeft = new TalonFX(RobotMap.BL_PORT);
+        t_backRight = new TalonFX(RobotMap.BR_PORT);
     }
 
     public void periodic(){
@@ -37,8 +37,6 @@ public class Drivetrain extends SubsystemBase {
         
         t_frontLeft.set(ControlMode.PercentOutput, Robot.m_oi.j_LEFT.getRawAxis(1)/2);
         t_backLeft.set(ControlMode.Follower, RobotMap.T_REY_PORT);
-
-        Robot.m_oi.ts_WOF.set(ControlMode.PercentOutput, .5);
     }
 
 }

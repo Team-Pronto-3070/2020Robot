@@ -36,8 +36,6 @@ public class DrivetrainKB extends Drivetrain{
         
         t_frontLeft.set(ControlMode.PercentOutput, Robot.m_oi.j_LEFT.getRawAxis(1)/2);
         t_backLeft.set(ControlMode.Follower, RobotMap.T_REY_PORT);
-
-        Robot.m_oi.ts_WOF.set(ControlMode.PercentOutput, .5);
     }
 
 }

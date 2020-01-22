@@ -8,8 +8,6 @@ import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.RobotMap;
 
 public class OI {
-    TalonFX tf_FL, tf_FR, tf_BL, tf_BR;
-    public TalonSRX ts_WOF, ts_WINCH, ts_CLIMB_TELESCOPER, ts_HOPPER, ts_BELT1, ts_BELT2;
     
     ColorSensorV3 s_colorSensor;
     ADIS16448_IMU gyro;
@@ -28,7 +26,7 @@ public class OI {
     public double getJoyAxis(RobotMap.JOYSIDE side, int axis){
         if(side == RobotMap.JOYSIDE.LEFT)
             return j_LEFT.getRawAxis(axis);
-        else   
+        else
             return j_RIGHT.getRawAxis(axis);
     }
 

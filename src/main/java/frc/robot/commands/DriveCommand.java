@@ -13,7 +13,6 @@ public class DriveCommand extends CommandBase{
     public DriveCommand(Drivetrain dt){
       drive = dt;
       addRequirements(dt);
-      
     }
     //drive(Drivetrain :: tankDrive(joyL.getRaw) )
     public void drive(){
