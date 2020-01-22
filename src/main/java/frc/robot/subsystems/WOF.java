@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -19,7 +20,11 @@ class WOF extends SubsystemBase {
     }
 
     public boolean rotateToRotations(int rotations) {
+        Color initColor = Robot.m_oi.getColor();
 
+        t_WOF.set(ControlMode.PercentOutput, 1);
+
+        
     }
 
     public void putColorOnShuffleboard(){
