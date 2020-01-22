@@ -23,8 +23,8 @@ public class RobotContainer {
   public final Drivetrain drivetrain;
   //public final DrivetrainKB drivetrainKB = new DrivetrainKB();
 
-  private final CommandBase m_autoCommand = new AutoCommand();
-  private final DriveCommand m_driveCommand;
+  public final CommandBase m_autoCommand = new AutoCommand();
+  public final DriveCommand m_driveCommand;
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.

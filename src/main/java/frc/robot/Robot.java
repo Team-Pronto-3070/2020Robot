@@ -21,7 +21,6 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  * project.
  */
 public class Robot extends TimedRobot{
-  private CommandBase m_autonomousCommand;
   RobotMap robotMap;
   public static RobotContainer m_robotContainer;
   SendableChooser<String> initPos = new SendableChooser<String>();
@@ -88,11 +87,10 @@ public class Robot extends TimedRobot{
    */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.schedule();
+    if (m_robotContainer.getAutonomousCommand() != null) {
+      m_robotContainer.m_autoCommand.schedule();
     }
     
   }
@@ -111,8 +109,8 @@ public class Robot extends TimedRobot{
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
+    if (m_robotContainer.m_autoCommand != null) {
+      m_robotContainer.m_autoCommand.cancel();
     }
     //SmartDashboard.putNumber("gyro.getAngle()", OI.gyro.getAngle());
 
@@ -140,8 +138,9 @@ public class Robot extends TimedRobot{
     
     */
    
-
-    
+    if (m_robotContainer.m_driveCommand != null) {
+      m_robotContainer.m_driveCommand.schedule();
+    }
   }
 
   /**
@@ -149,9 +148,7 @@ public class Robot extends TimedRobot{
    */
   @Override
   public void teleopPeriodic() {
-    
-    //driveCommand.execute(); 
-
+    CommandScheduler.getInstance().run();
   }
 
   @Override

@@ -33,5 +33,7 @@ public class RobotMap {
     public enum JOYSIDE {
         LEFT, RIGHT
     };
-    
+
+    public static final double TELE_LIFT_SPEED = 1;
+    public static final double WINCH_LIFT_SPEED = 1;
 }

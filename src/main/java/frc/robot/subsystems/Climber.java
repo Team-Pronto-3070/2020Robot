@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
@@ -15,7 +16,7 @@ class Climber extends SubsystemBase{
     }
 
     public void goUp(){
-        
+        t_Winch.set(ControlMode.PercentOutput, RobotMap.WINCH_LIFT_SPEED);
     }
 
     public void goDown(){
