@@ -36,4 +36,6 @@ public class RobotMap {
 
     public static final double TELE_LIFT_SPEED = 1;
     public static final double WINCH_LIFT_SPEED = 1;
+
+    public static final int NO_OF_WOF_ROTS = 4;
 }

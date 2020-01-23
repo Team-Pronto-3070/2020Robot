@@ -21,10 +21,12 @@ class WOF extends SubsystemBase {
 
     public boolean rotateToRotations(int rotations) {
         Color initColor = Robot.m_oi.getColor();
+        int rots = 0;
 
-        t_WOF.set(ControlMode.PercentOutput, 1);
-
-        
+        while(rots < RobotMap.NO_OF_WOF_ROTS){
+            t_WOF.set(ControlMode.PercentOutput, 1);
+        }
+        return true;
     }
 
     public void putColorOnShuffleboard(){
