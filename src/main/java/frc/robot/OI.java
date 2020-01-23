@@ -5,27 +5,21 @@ import com.revrobotics.ColorSensorV3;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class OI {
     
     ColorSensorV3 s_colorSensor;
     ADIS16448_IMU gyro;
     public Joystick j_LEFT, j_RIGHT;
-    Button button1;
+    JoystickButton butt1;
+    
 
     public OI(){
 
         j_LEFT = new Joystick(RobotMap.JOYL_PORT);
         j_RIGHT = new Joystick(RobotMap.JOYR_PORT);
-        button1 = new Button(){
-            
-        
-            @Override
-            public boolean get() {
-                // TODO Auto-generated method stub
-                return false;
-            }
-        };
+        butt1 = new JoystickButton(j_LEFT, 2); //TODO: Adjust these values to actual values
 
         s_colorSensor = new ColorSensorV3(RobotMap.i2cPort);
 

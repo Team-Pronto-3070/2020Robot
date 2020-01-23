@@ -26,7 +26,8 @@ public class Robot extends TimedRobot{
   SendableChooser<String> initPos = new SendableChooser<String>();
 
   
-  public static OI m_oi;  
+  public static OI m_oi;
+  ADIS16448_IMU imu;  
 
   //c_Drive drive;
 
@@ -35,6 +36,7 @@ public class Robot extends TimedRobot{
   @Override
   public void robotInit() {
     m_oi = new OI();
+    imu = new ADIS16448_IMU();
 
     robotMap = new RobotMap();
     initPos.addOption("Left", "L");
@@ -43,6 +45,7 @@ public class Robot extends TimedRobot{
     initPos.addOption("Right", "R");
 
     SmartDashboard.putData(initPos);
+    SmartDashboard.putNumber("Gyro val", imu.getAngle());
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer(RobotMap.KITBOT);
