@@ -32,7 +32,7 @@ class Climber extends SubsystemBase{
 
     //Stops both motors.
     public void stop(){
-        t_TeleArm.set(ControlMode.PercentOutput,0)
+        t_TeleArm.set(ControlMode.PercentOutput,0);
     }
 
 }
