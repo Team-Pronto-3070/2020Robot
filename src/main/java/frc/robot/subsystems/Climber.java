@@ -27,12 +27,13 @@ class Climber extends SubsystemBase{
     //Retracts arm and winch. They do not need to be synced.
     public void goDown(){
         t_TeleArm.set(ControlMode.PercentOutput, -1);
-
+        t_Winch.set(ControlMode.PercentOutput,-1);
     }
 
     //Stops both motors.
     public void stop(){
         t_TeleArm.set(ControlMode.PercentOutput,0);
+        t_Winch.set(ControlMode.PercentOutput,0);
     }
 
 }
