@@ -6,6 +6,7 @@ import com.revrobotics.ColorSensorV3;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.util.Color;
 
 public class OI {
     
@@ -38,6 +39,18 @@ public class OI {
             return j_LEFT.getRawButton(button);
         else
             return j_RIGHT.getRawButton(button);
+    }
+
+    public Color getColor(){
+        return s_colorSensor.getColor();
+    }
+
+    public int getIR(){
+        return s_colorSensor.getIR();
+    }
+
+    public int getProximity(){
+        return s_colorSensor.getProximity();
     }
 
 }
