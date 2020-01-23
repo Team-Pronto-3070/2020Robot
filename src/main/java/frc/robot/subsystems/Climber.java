@@ -26,7 +26,7 @@ class Climber extends SubsystemBase{
 
     //Retracts arm and winch. They do not need to be synced.
     public void goDown(){
-        t_TeleArm.set(ControlMode.PercentOutput, RobotMap.TELE_LIFT_SPEED);
+        t_TeleArm.set(ControlMode.PercentOutput, RobotMap.-1);
 
     }
 
