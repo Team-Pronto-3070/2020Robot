@@ -24,7 +24,7 @@ public class OI {
 
         s_colorSensor = new ColorSensorV3(RobotMap.i2cPort);
 
-        gyro = new ADIS16448_IMU();
+        gyro = new ADIS16448_IMU(); //TODO: Convert to BNO055
     }
 
     public double getJoyAxis(RobotMap.JOYSIDE side, int axis){
