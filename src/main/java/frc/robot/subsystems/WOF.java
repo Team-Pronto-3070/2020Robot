@@ -27,7 +27,8 @@ class WOF extends SubsystemBase {
             t_WOF.set(ControlMode.PercentOutput, 1);
             if(Robot.m_oi.getColor() == initColor)
                 rots++;
-        }
+        } 
+        t_WOF.set(ControlMode.PercentOutput, 0);
         return true;
     }
 
