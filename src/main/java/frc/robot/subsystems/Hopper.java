@@ -4,6 +4,8 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import frc.robot.RobotMap;
+
 class Hopper extends SubsystemBase {
     
     TalonSRX t_Hopper;
