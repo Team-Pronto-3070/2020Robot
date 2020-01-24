@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 /**
@@ -26,6 +27,7 @@ public class Robot extends TimedRobot{
 
   
   public static OI m_oi;
+  ADIS16448_IMU imu;  
 
   //c_Drive drive;
 
@@ -34,6 +36,7 @@ public class Robot extends TimedRobot{
   @Override
   public void robotInit() {
     m_oi = new OI();
+    imu = new ADIS16448_IMU();
 
     robotMap = new RobotMap();
     initPos.addOption("Left", "L");
@@ -42,6 +45,7 @@ public class Robot extends TimedRobot{
     initPos.addOption("Right", "R");
 
     SmartDashboard.putData(initPos);
+    SmartDashboard.putNumber("Gyro val", imu.getAngle());
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer(RobotMap.KITBOT);

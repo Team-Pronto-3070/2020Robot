@@ -26,10 +26,15 @@ class WOF extends SubsystemBase {
         while(rotations < RobotMap.NO_OF_WOF_ROTS * 2){
             t_WOF.set(ControlMode.PercentOutput, 1);
             if(Robot.m_oi.getColor() == initColor)
+<<<<<<< HEAD
                 this.rotations++;
         } 
 
         t_WOF.set(ControlMode.PercentOutput, 0);
+=======
+                rots++;
+        }
+>>>>>>> parent of a45bf91... Un-implement gyro
         return true;
     }
 
