@@ -18,7 +18,7 @@ class WOF extends SubsystemBase {
 
         t_WOF = new TalonSRX(RobotMap.T_WOF_PORT);
     }
-
+//shrexplain literally averything below this
     public boolean rotateToRotations(int rotations) {
         Color initColor = Robot.m_oi.getColor();
         int rots = 0;
