@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -27,7 +28,6 @@ public class Robot extends TimedRobot{
 
   
   public static OI m_oi;
-  ADIS16448_IMU imu;  
 
   //c_Drive drive;
 
@@ -36,7 +36,6 @@ public class Robot extends TimedRobot{
   @Override
   public void robotInit() {
     m_oi = new OI();
-    imu = new ADIS16448_IMU();
 
     robotMap = new RobotMap();
     initPos.addOption("Left", "L");
@@ -45,7 +44,7 @@ public class Robot extends TimedRobot{
     initPos.addOption("Right", "R");
 
     SmartDashboard.putData(initPos);
-    SmartDashboard.putNumber("Gyro val", imu.getAngle());
+    SmartDashboard.putNumber("Gyro val", m_oi.gyro.getAngle());
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer(RobotMap.KITBOT);
@@ -115,31 +114,6 @@ public class Robot extends TimedRobot{
     if (m_robotContainer.m_autoCommand != null) {
       m_robotContainer.m_autoCommand.cancel();
     }
-    //SmartDashboard.putNumber("gyro.getAngle()", OI.gyro.getAngle());
-
-    //Color detectedColor = OI.s_colorSensor.getColor();
-
-    /**
-     * The sensor returns a raw IR value of the infrared light detected.
-     */
-    //double IR = OI.s_colorSensor.getIR();
-
-    /**
-     * Open Smart Dashboard or Shuffleboard to see the color detected by the 
-     * sensor.
-     
-    SmartDashboard.putNumber("Red", detectedColor.red * 100);
-    SmartDashboard.putNumber("Green", detectedColor.green * 100);
-    SmartDashboard.putNumber("Blue", detectedColor.blue * 100);
-    SmartDashboard.putNumber("IR", IR);
-    SmartDashboard.putNumber("Total", (detectedColor.red + detectedColor.green + detectedColor.blue) * 100);
-    
-    int proximity = s_colorSensor.getProximity();
-
-    SmartDashboard.putNumber("Proximity", proximity);
-    OI.gyro.reset();
-    
-    */
    
     if (m_robotContainer.m_driveCommand != null) {
       m_robotContainer.m_driveCommand.schedule();

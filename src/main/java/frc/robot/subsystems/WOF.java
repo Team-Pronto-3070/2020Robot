@@ -3,11 +3,11 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.*;
+import java.awt.Color;
 
 class WOF extends SubsystemBase {
     TalonSRX t_WOF;
@@ -20,6 +20,20 @@ class WOF extends SubsystemBase {
 
         t_WOF = new TalonSRX(RobotMap.T_WOF_PORT);
     }
+
+    public RobotMap.ColorType getColor() {
+        // Determine what color sensor value is closest to
+        // return closest color
+        // Green, blue, red, yellow, UNNOWN
+
+        Color clr = Robot.m_oi.getColor();
+
+        float[] HSB = clr.RGBtoHSB(clr.getRed(), clr.getGreen(), clr.getBlue(), null);
+
+        
+    }
+
+   
 
     public boolean rotateNoOfRotations(int rotations) {
         initColor = Robot.m_oi.getColor();
@@ -34,14 +48,20 @@ class WOF extends SubsystemBase {
         return true;
     }
 
+    public void periodic()
+    {
+        // write RGB, and HSV value from color sensor to dashboard
+        // Write result enum value to dashboard
+    }
+
     public void putColorOnShuffleboard(){
     Color detectedColor = Robot.m_oi.getColor();
 
-    SmartDashboard.putNumber("Red", detectedColor.red * 100);
-    SmartDashboard.putNumber("Green", detectedColor.green * 100);
-    SmartDashboard.putNumber("Blue", detectedColor.blue * 100);
+    SmartDashboard.putNumber("Red", detectedColor.getRed());
+    SmartDashboard.putNumber("Green", detectedColor.getGreen());
+    SmartDashboard.putNumber("Blue", detectedColor.getBlue());
     SmartDashboard.putNumber("IR", Robot.m_oi.getIR());
-    SmartDashboard.putNumber("Total", (detectedColor.red + detectedColor.green + detectedColor.blue) * 100);
+    SmartDashboard.putNumber("Total", detectedColor.getRed() + detectedColor.getGreen() + detectedColor.getBlue());
     SmartDashboard.putNumber("Proximity", Robot.m_oi.getProximity());
     }
 

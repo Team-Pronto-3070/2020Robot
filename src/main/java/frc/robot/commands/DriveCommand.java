@@ -20,7 +20,7 @@ public class DriveCommand extends CommandBase{
     }
 
     public void execute(){
-      drive.tankDrive(Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.LEFT, 1), Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.RIGHT, 1));
+      drive.tankDrive(Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Left, 1), Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Right, 1));
     }
 
     public boolean isFinished() {

@@ -16,18 +16,18 @@ class Hopper extends SubsystemBase {
         
     }
 
-    public void goUp(){
+    public void in(){
         t_Hopper.set(ControlMode.PercentOutput, RobotMap.HOPPER_LIFT_SPEED);
        
     }
 
-    public void in(){
+    public void out(){
         t_Hopper.set(ControlMode.PercentOutput, -1);
        
     }
 
-    public void out(){
-        t_Hopper.set(ControlMode.PercentOutput,1);
+    public void stop(){
+        t_Hopper.set(ControlMode.PercentOutput,0);
         
     }
 

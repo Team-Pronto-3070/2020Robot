@@ -31,9 +31,19 @@ public class RobotMap {
 	public static final boolean KITBOT = false;
 
     public enum JOYSIDE {
-        LEFT, RIGHT
+        Left, Right
     };
 
     public static final double TELE_LIFT_SPEED = 1;
     public static final double WINCH_LIFT_SPEED = 1;
+
+    public enum ColorType {
+        Blue, Red, Yellow, Green, UNKNOWN
+    };
+
+    public static final float[] RED_HSB = {255, 0, 0};
+    public static final float[] GREEN_HSB = {0, 255, 0};
+    public static final float[] BLUE_HSB = {0, 255, 255};
+    public static final float[] YELLOW_HSB = {255, 255, 0};
+
 }

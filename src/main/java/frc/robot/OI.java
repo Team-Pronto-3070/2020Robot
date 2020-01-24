@@ -5,7 +5,7 @@ import com.revrobotics.ColorSensorV3;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.util.Color;
+import java.awt.Color;
 
 public class OI {
     
@@ -27,21 +27,21 @@ public class OI {
     }
 
     public double getJoyAxis(RobotMap.JOYSIDE side, int axis){
-        if(side == RobotMap.JOYSIDE.LEFT)
+        if(side == RobotMap.JOYSIDE.Left)
             return j_LEFT.getRawAxis(axis);
         else
             return j_RIGHT.getRawAxis(axis);
     }
 
     public boolean getJoyButton(RobotMap.JOYSIDE side, int button){
-        if(side == RobotMap.JOYSIDE.LEFT)
+        if(side == RobotMap.JOYSIDE.Left)
             return j_LEFT.getRawButton(button);
         else
             return j_RIGHT.getRawButton(button);
     }
 
     public Color getColor(){
-        return s_colorSensor.getColor();
+        return new Color(s_colorSensor.getRed(), s_colorSensor.getGreen(), s_colorSensor.getBlue());
     }
 
     public int getIR(){
