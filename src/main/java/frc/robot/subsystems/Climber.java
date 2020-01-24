@@ -7,31 +7,29 @@ import frc.robot.RobotMap;
 
 class Climber extends SubsystemBase{
 
-    TalonSRX t_Winch;
-    TalonSRX t_TeleArm;
+    TalonSRX t_winch;
+    TalonSRX t_teleArm;
     
     public Climber(){
-        t_Winch = new TalonSRX(RobotMap.T_WINCH_PORT);
-        t_TeleArm = new TalonSRX(RobotMap.T_TELE_PORT);
-    
-    
+        t_winch = new TalonSRX(RobotMap.T_WINCH_PORT);
+        t_teleArm = new TalonSRX(RobotMap.T_TELE_PORT);    
     }
 
     public void goUp(){
-        t_Winch.set(ControlMode.PercentOutput, RobotMap.WINCH_LIFT_SPEED);
-        t_TeleArm.set(ControlMode.PercentOutput, RobotMap.TELE_LIFT_SPEED);
+        t_winch.set(ControlMode.PercentOutput, RobotMap.WINCH_LIFT_SPEED);
+        t_teleArm.set(ControlMode.PercentOutput, RobotMap.TELE_LIFT_SPEED);
     }
 
     //Retracts arm and winch. They do not need to be synced.
     public void goDown(){
-        t_TeleArm.set(ControlMode.PercentOutput, -1);
-        t_Winch.set(ControlMode.PercentOutput,-1);
+        t_teleArm.set(ControlMode.PercentOutput, -1);
+        t_winch.set(ControlMode.PercentOutput,-1);
     }
 
     //Stops both motors.
     public void stop(){
-        t_TeleArm.set(ControlMode.PercentOutput,0);
-        t_Winch.set(ControlMode.PercentOutput,0);
+        t_teleArm.set(ControlMode.PercentOutput,0);
+        t_winch.set(ControlMode.PercentOutput,0);
     }
 
 }

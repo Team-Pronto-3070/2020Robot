@@ -12,6 +12,8 @@ import frc.robot.commands.*;
 
 class WOF extends SubsystemBase {
     TalonSRX t_WOF;
+    Color initColor;
+    int rots = 0;
 
     public WOF(){
         setDefaultCommand(new ControlPanelStageOne());
@@ -20,8 +22,7 @@ class WOF extends SubsystemBase {
     }
 
     public boolean rotateToRotations(int rotations) {
-        Color initColor = Robot.m_oi.getColor();
-        int rots = 0;
+        initColor = Robot.m_oi.getColor();
 
         while(rots < RobotMap.NO_OF_WOF_ROTS){
             t_WOF.set(ControlMode.PercentOutput, 1);
@@ -42,5 +43,9 @@ class WOF extends SubsystemBase {
     SmartDashboard.putNumber("Total", (detectedColor.red + detectedColor.green + detectedColor.blue) * 100);
 
     SmartDashboard.putNumber("Proximity", Robot.m_oi.getProximity());
+    }
+
+    public void stop(){
+        t_WOF.set(ControlMode.PercentOutput, 0);
     }
 }
