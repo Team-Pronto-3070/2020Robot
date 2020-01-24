@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.analog.adis16448.frc.ADIS16448_IMU;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -15,13 +16,15 @@ import frc.robot.RobotMap;
 
 public class Drivetrain extends SubsystemBase {
     TalonFX t_frontLeft, t_backLeft, t_frontRight, t_backRight;
-    
+    ADIS16448_IMU gyro;
 
     public Drivetrain(){
         t_frontLeft = new TalonFX(RobotMap.FL_PORT);
         t_frontRight = new TalonFX(RobotMap.FR_PORT);
         t_backLeft = new TalonFX(RobotMap.BL_PORT);
         t_backRight = new TalonFX(RobotMap.BR_PORT);
+        
+        gyro = new ADIS16448_IMU();
     }
 
     public void periodic(){

@@ -1,6 +1,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.util.Color;
+import com.revrobotics.ColorMatch;
 
 public class RobotMap {
     public static final int FL_PORT = 1;
@@ -36,14 +38,15 @@ public class RobotMap {
 
     public static final double TELE_LIFT_SPEED = 1;
     public static final double WINCH_LIFT_SPEED = 1;
+    public static final double HOPPER_LIFT_SPEED = 1;
 
     public enum ColorType {
         Blue, Red, Yellow, Green, UNKNOWN
     };
 
-    public static final float[] RED_HSB = {255, 0, 0};
-    public static final float[] GREEN_HSB = {0, 255, 0};
-    public static final float[] BLUE_HSB = {0, 255, 255};
-    public static final float[] YELLOW_HSB = {255, 255, 0};
+    public static final Color kBlueTarget = ColorMatch.makeColor(0.143, 0.427, 0.429);
+    public static final Color kGreenTarget = ColorMatch.makeColor(0.197, 0.561, 0.240);
+    public static final Color kRedTarget = ColorMatch.makeColor(0.561, 0.232, 0.114);
+    public static final Color kYellowTarget = ColorMatch.makeColor(0.361, 0.524, 0.113);
 
 }
