@@ -12,8 +12,9 @@ import frc.robot.commands.*;
 class WOF extends SubsystemBase {
     TalonSRX t_WOF;
     Color initColor;
-    int rotations = 0;
+    int passes = 0; //# of completed passes of single color. * 2 = # of full rotations
 
+    //Constructor
     public WOF(){
         setDefaultCommand(new ControlPanelStageOne());
 
@@ -23,10 +24,10 @@ class WOF extends SubsystemBase {
     public boolean rotateNoOfRotations(int rotations) {
         initColor = Robot.m_oi.getColor();
 
-        while(rotations < RobotMap.NO_OF_WOF_ROTS * 2){
+        while(passes < rotations * 2){
             t_WOF.set(ControlMode.PercentOutput, 1);
             if(Robot.m_oi.getColor() == initColor)
-                this.rotations++;
+                passes++;
         } 
 
         t_WOF.set(ControlMode.PercentOutput, 0);

@@ -4,7 +4,6 @@ import com.analog.adis16448.frc.ADIS16448_IMU;
 import com.revrobotics.ColorSensorV3;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.util.Color;
 
