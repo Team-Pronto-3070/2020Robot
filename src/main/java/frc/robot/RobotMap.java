@@ -55,10 +55,14 @@ public class RobotMap {
     public static final double RIGHT_START_TURN_ANGLE = 59.7;
     public static final double MIDDLE_START_TURN_ANGLE = 27.4;
 
-    public static final double RIGHT_DISTANCE = 14.6;
-    public static final double LEFT_DISTANCE = 10.8;
-    public static final double MIDDLE_DISTANCE = 10.6;
-    public static final double PREFFERED_DISTANCE = 9;
+    public static final double RIGHT_DISTANCE = 175.2;
+    public static final double LEFT_DISTANCE = 129.6;
+    public static final double MIDDLE_DISTANCE =127.2;
+    public static final double PREFFERED_DISTANCE = 108;
 
-    public static final double WHEEL_ROTATION = 0;
+    public static final double WHEEL_ROTATION_RIGHT = 7;
+    public static final double WHEEL_ROTATION_LEFT = 5.2;
+    public static final double WHEEL_ROTATION_MIDDLE = 5.1;
+    public static final double WHEEL_ROTATION_PREFFERED = 4.3;
+
 }
