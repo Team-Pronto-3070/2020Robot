@@ -50,5 +50,23 @@ public class RobotMap {
     public static final Color kGreenTarget = ColorMatch.makeColor(0.197, 0.561, 0.240);
     public static final Color kRedTarget = ColorMatch.makeColor(0.561, 0.232, 0.114);
     public static final Color kYellowTarget = ColorMatch.makeColor(0.361, 0.524, 0.113);
+   
+    public static final double LEFT_START_TURN_ANGLE = 57;
+    public static final double RIGHT_START_TURN_ANGLE = 59.7;
+    public static final double MIDDLE_START_TURN_ANGLE = 27.4;
 
+    //unit is inches
+    public static final double RIGHT_DISTANCE = 231.6;
+    public static final double LEFT_DISTANCE = 129.1;
+    public static final double MIDDLE_DISTANCE =127;
+    public static final double PREFFERED_DISTANCE = 108;
+
+    public static final double WHEEL_ROTATION_RIGHT = 9.23;
+    public static final double WHEEL_ROTATION_LEFT = 5.14;
+    public static final double WHEEL_ROTATION_MIDDLE = 5.06;
+    public static final double WHEEL_ROTATION_PREFFERED = 4.3;
+
+    public enum AngleSide {
+        Current, Opposite
+    };
 }
