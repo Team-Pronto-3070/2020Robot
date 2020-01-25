@@ -56,4 +56,47 @@ public class Drivetrain extends SubsystemBase {
         t_backLeft.set(ControlMode.Follower, RobotMap.FL_PORT);
     }
 
+    public boolean turnToAngle(double angle){
+        RobotMap.AngleSide side;
+        
+        side = angleSubtract(angle, getAngle()) < 90 ? RobotMap.AngleSide.Current : RobotMap.AngleSide.Opposite;
+        }
+    }
+
+    public double angleSubtract(double angle1, double angle2){
+        double result;
+
+        if(angle1 - angle2 < 0)
+            result = 360 + (angle1 - angle2);
+        else if (angle1 - angle2 > 0)
+            result = angle1 - angle2;
+        else 
+            result = 0;
+
+        return result;
+    }
+
+    public double angleAdd(double angle1, double angle2){
+        double result;
+
+        if(angle1 + angle2 < 0)
+            result = 360 + (angle1 - angle2);
+        else if (angle1 + angle2 > 360)
+            result = (angle1 + angle2) - (360 * fitsInto(angle1 + angle2, 360));
+        else 
+            result = 0;
+            
+        return result;
+    }
+
+    public int fitsInto(double value, double divisor){
+        int numberOfTimes = 0;
+
+        for(int i = 0; i * divisor < value; i++){
+            numberOfTimes = i;
+        }
+
+        return numberOfTimes;
+    }
+
 }

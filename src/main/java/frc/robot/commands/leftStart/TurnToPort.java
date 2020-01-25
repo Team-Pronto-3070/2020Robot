@@ -15,7 +15,7 @@ public class TurnToPort extends CommandBase {
     }
 
     public void execute(){
-        if(drive.turntoAngle(RobotMap.LEFT_START_TURN_ANGLE))
+        if(drive.turnToAngle(RobotMap.LEFT_START_TURN_ANGLE))
             drive.stop();
         else   
             drive.turnToAngle(RobotMap.LEFT_START_TURN_ANGLE);

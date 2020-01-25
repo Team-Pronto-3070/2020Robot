@@ -54,4 +54,8 @@ public class RobotMap {
     public static final double LEFT_START_TURN_ANGLE = 0;
     public static final double RIGHT_START_TURN_ANGLE = 0;
     public static final double MIDDLE_START_TURN_ANGLE = 0;
+
+    public enum AngleSide {
+        Current, Opposite
+    };
 }
