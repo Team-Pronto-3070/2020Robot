@@ -8,15 +8,17 @@ import frc.robot.RobotMap;
 
 public class DriveCommand extends CommandBase{
 
-    private final Drivetrain drive;
+    
+//do we need to pass subsystems in the constructor or can we call the static one 
+   // private Drivetrain drive;
 
-    public DriveCommand(Drivetrain dt){
-      drive = dt;
-      addRequirements(dt);
+    public DriveCommand(){
+    //  drive = dt;
+      addRequirements(Robot.drive);
     }
     //drive(Drivetrain :: tankDrive(joyL.getRaw) )
     public void execute(){
-      drive.tankDrive(Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Left, 1), Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Right, 1));
+      Robot.drive.tankDrive(Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Left, 1), Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Right, 1));
     }
 
     public boolean isFinished() {

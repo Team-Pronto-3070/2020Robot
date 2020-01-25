@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.WOF;
 
 
 /**
@@ -25,8 +27,10 @@ public class Robot extends TimedRobot{
   public static RobotContainer m_robotContainer;
   SendableChooser<String> initPos = new SendableChooser<String>();
 
-  
+  public static Drivetrain drive = null;
+  public static WOF wof = null;
   public static OI m_oi;
+  
 
   //c_Drive drive;
 
@@ -34,6 +38,10 @@ public class Robot extends TimedRobot{
 
   @Override
   public void robotInit() {
+
+    drive = new Drivetrain();
+    wof = new WOF();
+
     m_oi = new OI();
 
     robotMap = new RobotMap();
@@ -42,6 +50,9 @@ public class Robot extends TimedRobot{
     initPos.addOption("Preferred", "P");
     initPos.addOption("Right", "R");
 
+    wof.putColorOnShuffleboard();
+
+   
     SmartDashboard.putData(initPos);
     SmartDashboard.putNumber("Gyro val", m_oi.gyro.getAngle());
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our

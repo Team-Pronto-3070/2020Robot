@@ -21,6 +21,9 @@ public class Drivetrain extends SubsystemBase {
     ADIS16448_IMU gyro;
 
     public Drivetrain(){
+
+       // setDefaultCommand(DriveCommand(this));
+
         t_frontLeft = new TalonFX(RobotMap.FL_PORT);
         t_frontRight = new TalonFX(RobotMap.FR_PORT);
         t_backLeft = new TalonFX(RobotMap.BL_PORT);

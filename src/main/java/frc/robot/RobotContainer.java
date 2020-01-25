@@ -23,26 +23,33 @@ import frc.robot.subsystems.DrivetrainKB;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  public final Drivetrain drivetrain;
+ 
+
   //public final DrivetrainKB drivetrainKB = new DrivetrainKB();
 
   public final CommandBase m_autoCommand;
   public final DriveCommand m_driveCommand;
+  //public Drivetrain 
+
+  DriveCommand c_drive;
+
+
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer(boolean kitbot) {
     if(kitbot)
-      drivetrain = new DrivetrainKB(); 
+      Robot.drive = new DrivetrainKB(); 
     else
-      drivetrain = new Drivetrain();
+      Robot.drive = new Drivetrain();
     
-    m_driveCommand = new DriveCommand(drivetrain);
-    m_autoCommand = new DriveCommand(drivetrain);
+    m_driveCommand = new DriveCommand();
+    m_autoCommand = new DriveCommand();
     // Configure the button bindings
     configureButtonBindings();
-    drivetrain.setDefaultCommand(m_driveCommand);
+    Robot.drive.setDefaultCommand(m_driveCommand);
+    Robot.wof.setDefaultCommand(m_autoCommand);
   }
 
   /**
@@ -64,8 +71,16 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public CommandBase getAutonomousCommand() {
+   // m_autoCommand = ;
     // An ExampleCommand will run in autonomous
     return m_autoCommand;
+  }
+
+  public CommandBase getTeleopCommand(){
+
+    // m_driveCommand = c_drive;
+
+    return m_driveCommand;
   }
 }
 

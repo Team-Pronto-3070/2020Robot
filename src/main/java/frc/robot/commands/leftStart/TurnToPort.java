@@ -19,7 +19,8 @@ public class TurnToPort extends CommandBase {
       }
   
       public boolean isFinished() {
-       if(drive.)
+      // if(drive.)
+      return false;
       }
   
       protected void end(){
