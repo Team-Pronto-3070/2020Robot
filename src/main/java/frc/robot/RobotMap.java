@@ -51,7 +51,7 @@ public class RobotMap {
     public static final Color kRedTarget = ColorMatch.makeColor(0.561, 0.232, 0.114);
     public static final Color kYellowTarget = ColorMatch.makeColor(0.361, 0.524, 0.113);
     
-    public static final double LEFT_START_TURN_ANGLE = 0;
-    public static final double RIGHT_START_TURN_ANGLE = 0;
-    public static final double MIDDLE_START_TURN_ANGLE = 0;
+    public static final double LEFT_START_TURN_ANGLE = 57;
+    public static final double RIGHT_START_TURN_ANGLE = 59.7;
+    public static final double MIDDLE_START_TURN_ANGLE = 27.4;
 }
