@@ -15,10 +15,6 @@ public class DriveCommand extends CommandBase{
       addRequirements(dt);
     }
     //drive(Drivetrain :: tankDrive(joyL.getRaw) )
-    public void drive(){
-
-    }
-
     public void execute(){
       drive.tankDrive(Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Left, 1), Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Right, 1));
     }

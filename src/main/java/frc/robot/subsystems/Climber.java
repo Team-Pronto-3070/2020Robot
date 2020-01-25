@@ -5,6 +5,8 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
+//TODO: Comment up
+
 class Climber extends SubsystemBase{
 
     TalonSRX t_winch;
@@ -20,13 +22,11 @@ class Climber extends SubsystemBase{
         t_teleArm.set(ControlMode.PercentOutput, RobotMap.TELE_LIFT_SPEED);
     }
 
-    //Retracts arm and winch. They do not need to be synced.
     public void goDown(){
         t_teleArm.set(ControlMode.PercentOutput, -1);
         t_winch.set(ControlMode.PercentOutput,-1);
     }
 
-    //Stops both motors.
     public void stop(){
         t_teleArm.set(ControlMode.PercentOutput,0);
         t_winch.set(ControlMode.PercentOutput,0);
