@@ -27,6 +27,8 @@ public class RobotContainer {
 
   //public final DrivetrainKB drivetrainKB = new DrivetrainKB();
 
+//IMPLEMENT COMMAND GROUPS
+
   public final CommandBase m_autoCommand;
   public final DriveCommand m_driveCommand;
   //public Drivetrain 

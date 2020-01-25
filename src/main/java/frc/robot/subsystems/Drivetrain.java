@@ -59,9 +59,9 @@ public class Drivetrain extends SubsystemBase {
         t_backLeft.set(ControlMode.Follower, RobotMap.FL_PORT);
     }
 
-    public boolean turnToAngle(double angle){
-        
-    }
+     public boolean turnToAngle(double angle){
+        return false;
+     }
 
     
     public int fitsInto(double value, double divisor){
