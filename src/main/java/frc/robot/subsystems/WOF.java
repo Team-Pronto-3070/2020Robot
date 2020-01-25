@@ -21,7 +21,7 @@ class WOF extends SubsystemBase {
     ColorSensorV3 s_colorSensor;
 
     private final ColorMatch m_colorMatcher = new ColorMatch();
-
+    
     
 
     //Constructor
