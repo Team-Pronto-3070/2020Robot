@@ -54,4 +54,10 @@ public class RobotMap {
     public static final double LEFT_START_TURN_ANGLE = 57;
     public static final double RIGHT_START_TURN_ANGLE = 59.7;
     public static final double MIDDLE_START_TURN_ANGLE = 27.4;
+
+    public static final double RIGHT_DISTANCE = 14.6;
+    public static final double LEFT_DISTANCE = 10.8;
+    public static final double MIDDLE_DISTANCE = 10.6;
+    public static final double PREFFERED_DISTANCE = 9;
+
 }
