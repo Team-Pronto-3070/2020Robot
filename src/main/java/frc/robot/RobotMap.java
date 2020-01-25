@@ -60,4 +60,7 @@ public class RobotMap {
     public static final double MIDDLE_DISTANCE = 10.6;
     public static final double PREFFERED_DISTANCE = 9;
 
+    public enum AngleSide {
+        Current, Opposite
+    };
 }
