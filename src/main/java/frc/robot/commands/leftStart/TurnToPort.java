@@ -15,11 +15,17 @@ public class TurnToPort extends CommandBase {
     }
 
     public void execute(){
-        drive.tankDrive(Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Left, 1), Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Right, 1));
+        if(drive.turntoAngle(RobotMap.LEFT_START_TURN_ANGLE))
+            drive.stop();
+        else   
+            drive.turnToAngle(RobotMap.LEFT_START_TURN_ANGLE);
       }
   
       public boolean isFinished() {
-       if(drive.)
+        if(drive.getAngle() >= RobotMap.LEFT_START_TURN_ANGLE)
+            return true;
+       else 
+            return false;
       }
   
       protected void end(){

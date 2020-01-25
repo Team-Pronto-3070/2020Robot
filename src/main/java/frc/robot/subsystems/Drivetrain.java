@@ -38,14 +38,22 @@ public class Drivetrain extends SubsystemBase {
         //do tank drive thing 
 
         t_frontRight.set(ControlMode.PercentOutput, rightSpeed/2);
-        t_backRight.set(ControlMode.Follower, RobotMap.T_OBIWAN_PORT);
+        t_backRight.set(ControlMode.Follower, RobotMap.FR_PORT);
         
         t_frontLeft.set(ControlMode.PercentOutput, Robot.m_oi.j_LEFT.getRawAxis(1)/2);
-        t_backLeft.set(ControlMode.Follower, RobotMap.T_REY_PORT);
+        t_backLeft.set(ControlMode.Follower, RobotMap.FL_PORT);
     }
 
     public double getAngle(){
         return gyro.getAngle();
+    }
+
+    public void stop(){
+        t_frontRight.set(ControlMode.PercentOutput, 0);
+        t_backRight.set(ControlMode.Follower, RobotMap.FR_PORT);
+        
+        t_frontLeft.set(ControlMode.PercentOutput, 0);
+        t_backLeft.set(ControlMode.Follower, RobotMap.FL_PORT);
     }
 
 }
