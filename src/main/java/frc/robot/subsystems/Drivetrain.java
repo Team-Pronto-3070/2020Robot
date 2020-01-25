@@ -57,6 +57,13 @@ public class Drivetrain extends SubsystemBase {
     }
 
     public boolean turnToAngle(double angle){
+        double optimalPath = Math.min(Math.abs(angle - getAngle()), Math.abs(360-(angle - getAngle())));
+        RobotMap.PathDirection pathDir;
+
+        if(optimalPath ==  Math.abs(angle - getAngle()))
+            pathDir = RobotMap.PathDirection.Direct;
+        else
+            pathDir = RobotMap.PathDirection.Opposite;
         
     }
 

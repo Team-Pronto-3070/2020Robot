@@ -66,7 +66,8 @@ public class RobotMap {
     public static final double WHEEL_ROTATION_MIDDLE = 5.06;
     public static final double WHEEL_ROTATION_PREFFERED = 4.3;
 
-    public enum AngleSide {
-        Current, Opposite
+    public enum PathDirection {
+        Direct, Opposite
     };
+
 }
