@@ -2,18 +2,20 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.revrobotics.ColorMatch;
+import com.revrobotics.ColorMatchResult;
+import com.revrobotics.ColorSensorV3;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.commands.*;
-import com.revrobotics.ColorSensorV3;
-import com.revrobotics.ColorMatchResult;
-import com.revrobotics.ColorMatch;
+import frc.robot.commands.ControlPanelStageOne;
 
 //TODO: Comment up
 
-class WOF extends SubsystemBase {
+public class WOF extends SubsystemBase {
     TalonSRX t_WOF;
     Color clr;
     int passes = 0; //# of completed passes of single color. * 2 = # of full rotations
@@ -26,7 +28,7 @@ class WOF extends SubsystemBase {
 
     //Constructor
     public WOF(){
-        setDefaultCommand(new ControlPanelStageOne());
+       
 
         t_WOF = new TalonSRX(RobotMap.T_WOF_PORT);
         
@@ -41,15 +43,35 @@ class WOF extends SubsystemBase {
     }
 
     public void putColorOnShuffleboard(){
-    SmartDashboard.putNumber("Red", s_colorSensor.getRed());
-    SmartDashboard.putNumber("Green", s_colorSensor.getGreen());
-    SmartDashboard.putNumber("Blue", s_colorSensor.getBlue());
-    SmartDashboard.putNumber("IR", s_colorSensor.getIR());
-    SmartDashboard.putNumber("Proximity", s_colorSensor.getProximity());
+
+        boolean booleanBlue = false;
+        boolean booleanRed = false;
+        boolean booleanYellow = false;
+        boolean booleanGreen = false;
+
+        SmartDashboard.putBoolean("isBlue", booleanBlue);
+        SmartDashboard.putBoolean("isGreen", booleanGreen);
+        SmartDashboard.putBoolean("isRed", booleanRed);
+        SmartDashboard.putBoolean("isYellow", booleanYellow);
+
+        if(getClosestColor() == RobotMap.ColorType.Blue){
+            booleanBlue = true;
+        }else if(getClosestColor() == RobotMap.ColorType.Green){
+            booleanGreen = true;
+        }else if(getClosestColor() == RobotMap.ColorType.Red){
+            booleanRed = true;
+        }else if(getClosestColor() == RobotMap.ColorType.Yellow){
+            booleanYellow = true;
+        }   
+
     }
 
     public void stop(){
         t_WOF.set(ControlMode.PercentOutput, 0);
+    }
+
+    public void go(){
+        t_WOF.set(ControlMode.PercentOutput, .6);
     }
 
     public Color getSensorColor(){
