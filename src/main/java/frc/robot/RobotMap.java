@@ -42,6 +42,8 @@ public class RobotMap {
     public static final double WINCH_LIFT_SPEED = 1;
     public static final double HOPPER_LIFT_SPEED = 1;
 
+    public static final double INPUT_SCALER = .5;
+
     public enum ColorType {
         Blue, Red, Yellow, Green, UNKNOWN
     };
@@ -70,4 +72,6 @@ public class RobotMap {
         Direct, Opposite
     };
 
+    public static final double ROTATION_SPEED = .5;
+    public static final double ROTATION_TOLERANCE = 3;
 }
