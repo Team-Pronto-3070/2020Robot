@@ -9,8 +9,9 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.commands.DriveAuto;
 import frc.robot.commands.DriveCommand;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.DrivetrainKB;
@@ -31,6 +32,8 @@ public class RobotContainer {
 
   public final CommandBase m_autoCommand;
   public final DriveCommand m_driveCommand;
+  
+  public SendableChooser<String> initPos = new SendableChooser<String>();
   //public Drivetrain 
 
   /**
@@ -48,6 +51,13 @@ public class RobotContainer {
     configureButtonBindings();
     Robot.drive.setDefaultCommand(m_driveCommand);
     Robot.wof.setDefaultCommand(m_autoCommand);
+
+    initPos.addOption("Left", "L");
+    initPos.addOption("Middle", "M");
+    initPos.addOption("Preferred", "P");
+    initPos.addOption("Right", "R");
+
+    SmartDashboard.putData(initPos);
   }
 
   /**
@@ -79,6 +89,20 @@ public class RobotContainer {
     return m_driveCommand;
   }
 
+  public RobotMap.StartingPosition getStartingPosition(){
+    RobotMap.StartingPosition startPos = RobotMap.StartingPosition.Preffered;
+    switch (initPos.getSelected()) {
+      case "R":
+        return RobotMap.StartingPosition.Right;
+      case "M":
+        return RobotMap.StartingPosition.Middle;
+      case "L":
+        return RobotMap.StartingPosition.Left;
+      case "P":
+        return RobotMap.StartingPosition.Preffered;
+    }
+    return startPos;
+  }
   
 }
 

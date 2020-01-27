@@ -8,7 +8,6 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.Drivetrain;
@@ -25,7 +24,6 @@ import frc.robot.subsystems.WOF;
 public class Robot extends TimedRobot{
   RobotMap robotMap;
   public static RobotContainer m_robotContainer;
-  public SendableChooser<String> initPos = new SendableChooser<String>();
 
   public static Drivetrain drive = null;
   public static WOF wof = null;
@@ -45,15 +43,10 @@ public class Robot extends TimedRobot{
     m_oi = new OI();
 
     robotMap = new RobotMap();
-    initPos.addOption("Left", "L");
-    initPos.addOption("Middle", "M");
-    initPos.addOption("Preferred", "P");
-    initPos.addOption("Right", "R");
 
     wof.putColorOnShuffleboard();
 
    
-    SmartDashboard.putData(initPos);
     SmartDashboard.putNumber("Gyro val", m_oi.gyro.getAngle());
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
@@ -146,19 +139,6 @@ public class Robot extends TimedRobot{
   @Override
   public void testPeriodic() {
   }
-
-  public RobotMap.StartingPosition getStartingPosition(){
-    RobotMap.StartingPosition startPos = RobotMap.StartingPosition.Preffered;
-    switch (initPos.getSelected()) {
-      case "R":
-        return RobotMap.StartingPosition.Right;
-      case "M":
-        return RobotMap.StartingPosition.Middle;
-      case "L":
-        return RobotMap.StartingPosition.Left;
-      case "P":
-        return RobotMap.StartingPosition.Preffered;
-    }
-    return startPos;
-  }
 }
+
+  
