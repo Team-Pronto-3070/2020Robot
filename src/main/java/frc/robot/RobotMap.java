@@ -74,4 +74,10 @@ public class RobotMap {
 
     public static final double ROTATION_SPEED = .5;
     public static final double ROTATION_TOLERANCE = 3;
+
+    public enum StartingPosition {
+        Left, Right, Middle, Preffered
+    };
+
+    
 }

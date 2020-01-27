@@ -33,10 +33,6 @@ public class RobotContainer {
   public final DriveCommand m_driveCommand;
   //public Drivetrain 
 
-  DriveCommand c_drive;
-
-
-
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -73,8 +69,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public CommandBase getAutonomousCommand() {
-   // m_autoCommand = ;
-    // An ExampleCommand will run in autonomous
     return m_autoCommand;
   }
 
@@ -84,6 +78,8 @@ public class RobotContainer {
 
     return m_driveCommand;
   }
+
+  
 }
 
 

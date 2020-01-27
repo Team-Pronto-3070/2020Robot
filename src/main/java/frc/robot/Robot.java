@@ -25,7 +25,7 @@ import frc.robot.subsystems.WOF;
 public class Robot extends TimedRobot{
   RobotMap robotMap;
   public static RobotContainer m_robotContainer;
-  SendableChooser<String> initPos = new SendableChooser<String>();
+  public SendableChooser<String> initPos = new SendableChooser<String>();
 
   public static Drivetrain drive = null;
   public static WOF wof = null;
@@ -59,10 +59,6 @@ public class Robot extends TimedRobot{
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer(RobotMap.KITBOT);
     
-    //m_robotContainer.m_driveCommandKB.start();
-
-//    drive = new c_Drive();
-
   }
 
   /**
@@ -149,5 +145,20 @@ public class Robot extends TimedRobot{
    */
   @Override
   public void testPeriodic() {
+  }
+
+  public RobotMap.StartingPosition getStartingPosition(){
+    RobotMap.StartingPosition startPos = RobotMap.StartingPosition.Preffered;
+    switch (initPos.getSelected()) {
+      case "R":
+        return RobotMap.StartingPosition.Right;
+      case "M":
+        return RobotMap.StartingPosition.Middle;
+      case "L":
+        return RobotMap.StartingPosition.Left;
+      case "P":
+        return RobotMap.StartingPosition.Preffered;
+    }
+    return startPos;
   }
 }
