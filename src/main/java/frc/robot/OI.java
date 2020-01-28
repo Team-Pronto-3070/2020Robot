@@ -1,6 +1,5 @@
 package frc.robot;
 
-import com.analog.adis16448.frc.ADIS16448_IMU;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
