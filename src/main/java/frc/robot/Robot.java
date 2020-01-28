@@ -47,7 +47,7 @@ public class Robot extends TimedRobot{
     wof.putColorOnShuffleboard();
 
    
-    SmartDashboard.putNumber("Gyro val", m_oi.gyro.getAngle());
+    //SmartDashboard.putNumber("Gyro val", .gyro.getAngle());
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer(RobotMap.KITBOT);

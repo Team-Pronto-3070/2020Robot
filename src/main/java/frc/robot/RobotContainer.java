@@ -30,9 +30,10 @@ public class RobotContainer {
 
 //IMPLEMENT COMMAND GROUPS
 
-  public final CommandBase m_autoCommand;
-  public final DriveCommand m_driveCommand;
+  public CommandBase m_autoCommand;
+  public DriveCommand m_driveCommand;
   
+  DriveCommand c_Drive;
   public SendableChooser<String> initPos = new SendableChooser<String>();
   //public Drivetrain 
 
@@ -47,6 +48,8 @@ public class RobotContainer {
     
     m_driveCommand = new DriveCommand();
     m_autoCommand = new DriveCommand();
+
+    c_Drive = new DriveCommand();
     // Configure the button bindings
     configureButtonBindings();
     Robot.drive.setDefaultCommand(m_driveCommand);
@@ -84,7 +87,7 @@ public class RobotContainer {
 
   public CommandBase getTeleopCommand(){
 
-    // m_driveCommand = c_drive;
+    m_driveCommand = c_Drive;
 
     return m_driveCommand;
   }

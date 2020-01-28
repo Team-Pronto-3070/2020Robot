@@ -17,12 +17,12 @@ public class RobotMap {
 
     public static final I2C.Port i2cPort = I2C.Port.kOnboard;
 
-    public static final int T_REY_PORT = 1;
-    public static final int T_OBIWAN_PORT = 2;
-    public static final int T_ASHOKA_PORT = 3;
-    public static final int T_ANAKIN_PORT = 4;
-    public static final int T_REVAN_PORT = 5;
-    public static final int T_BASTILA_PORT = 6;
+    public static final int T_REY_PORT = 5;
+    public static final int T_OBIWAN_PORT = 6;
+    public static final int T_ASHOKA_PORT = 7;
+    public static final int T_ANAKIN_PORT = 8;
+    public static final int T_REVAN_PORT = 9;
+    public static final int T_BASTILA_PORT = 10;
 
     //Set each function-named talon port to each named definition
     public static final int T_WOF_PORT = T_REY_PORT;
