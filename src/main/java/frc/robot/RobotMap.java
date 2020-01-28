@@ -79,5 +79,5 @@ public class RobotMap {
         Left, Right, Middle, Preffered
     };
 
-    
+    public static final double DEADZONE = .2;
 }

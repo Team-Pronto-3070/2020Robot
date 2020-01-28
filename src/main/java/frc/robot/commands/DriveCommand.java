@@ -17,7 +17,9 @@ public class DriveCommand extends CommandBase{
     }
     //drive(Drivetrain :: tankDrive(joyL.getRaw) )
     public void execute(){
-      Robot.drive.tankDrive(Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Left, 1), Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Right, 1));
+      double left = Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Left, 1) > RobotMap.DEADZONE ? Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Left, 1) : 0;
+      double right = Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Right, 1) > RobotMap.DEADZONE ? Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Right, 1) : 0;
+      Robot.drive.tankDrive(left, right);
     }
 
     public boolean isFinished() {
