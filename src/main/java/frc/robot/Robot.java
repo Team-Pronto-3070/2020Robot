@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.DrivetrainKB;
 import frc.robot.subsystems.WOF;
 
 
@@ -25,6 +26,7 @@ public class Robot extends TimedRobot{
   public static RobotContainer m_robotContainer;
 
   public static Drivetrain drive = null;
+  public static DrivetrainKB driveKB  = null;
   public static WOF wof = null;
   public static OI m_oi;
   
@@ -37,9 +39,10 @@ public class Robot extends TimedRobot{
   public void robotInit() {
 
     drive = new Drivetrain();
+    driveKB  = new DrivetrainKB();
     wof = new WOF();
 
-    m_oi = new OI();
+   
 
     robotMap = new RobotMap();
 
@@ -51,6 +54,7 @@ public class Robot extends TimedRobot{
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer(RobotMap.KITBOT);
     
+    m_oi = new OI();
   }
 
   /**

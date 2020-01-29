@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.commands.DriveAuto;
 import frc.robot.commands.DriveCommand;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.DrivetrainKB;
@@ -33,7 +34,8 @@ public class RobotContainer {
   public CommandBase m_autoCommand;
   public DriveCommand m_driveCommand;
   
-  DriveCommand c_Drive;
+  DriveCommand c_Drive = null;
+  DriveAuto driveAuto = null;
   public SendableChooser<String> initPos = new SendableChooser<String>();
   //public Drivetrain 
 
@@ -50,10 +52,11 @@ public class RobotContainer {
     m_autoCommand = new DriveCommand();
 
     c_Drive = new DriveCommand();
+    driveAuto = new DriveAuto(Robot.drive);
     // Configure the button bindings
     configureButtonBindings();
     Robot.drive.setDefaultCommand(m_driveCommand);
-    Robot.wof.setDefaultCommand(m_autoCommand);
+    //Robot.wof.setDefaultCommand(m_autoCommand);
 
     initPos.addOption("Left", "L");
     initPos.addOption("Middle", "M");
@@ -82,6 +85,8 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public CommandBase getAutonomousCommand() {
+
+    m_autoCommand = driveAuto;
     return m_autoCommand;
   }
 

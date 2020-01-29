@@ -14,12 +14,35 @@ public class DriveCommand extends CommandBase{
     public DriveCommand(){
     //  drive = dt;
       addRequirements(Robot.drive);
+      addRequirements(Robot.driveKB);
     }
     //drive(Drivetrain :: tankDrive(joyL.getRaw) )
     public void execute(){
-      double left = Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Left, 1) > RobotMap.DEADZONE ? Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Left, 1) : 0;
-      double right = Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Right, 1) > RobotMap.DEADZONE ? Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Right, 1) : 0;
-      Robot.drive.tankDrive(left, right);
+      double left = 0;
+      double right = 0;
+      double modifier = 0;
+
+      left = (left + Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Left, 1) ) / modifier;// averages the previous value and the current joystick value
+      right = (right + Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Right, 1) ) / modifier;
+  
+          if(Math.abs(Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Left, 1)) > RobotMap.DEADZONE){
+            Robot.drive.leftDrive(Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Left, 1));
+          }else{
+            Robot.drive.leftDrive(0);
+          }
+     
+          if(Math.abs(Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Right, 1)) > RobotMap.DEADZONE){
+            Robot.drive.rightDrive(-Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Right, 1));
+          }else{
+            Robot.drive.rightDrive(0);
+          }
+         
+
+    
+
+      // left = Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Left, 1) > RobotMap.DEADZONE ? Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Left, 1) : -Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Left, 1);
+      // right = Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Right, 1) > RobotMap.DEADZONE ? Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Right, 1) : -Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Right, 1);
+     // Robot.drive.tankDrive(-left, right);
     }
 
     public boolean isFinished() {
