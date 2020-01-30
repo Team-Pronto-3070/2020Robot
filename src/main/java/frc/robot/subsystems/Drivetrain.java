@@ -37,14 +37,8 @@ public class Drivetrain extends SubsystemBase {
     }
 
     public void tankDrive(double leftSpeed, double rightSpeed){
-        System.out.println("HEY you're in tank");
-        //do tank drive thing 
-
-        t_frontRight.set(ControlMode.PercentOutput, rightSpeed * RobotMap.INPUT_SCALER);
-        t_backRight.set(ControlMode.Follower, RobotMap.FR_PORT);
-        
-        t_frontLeft.set(ControlMode.PercentOutput, leftSpeed * RobotMap.INPUT_SCALER);
-        t_backLeft.set(ControlMode.Follower, RobotMap.FL_PORT);
+        rightDrive(rightSpeed);
+        leftDrive(leftSpeed);
     }
 
     public void leftDrive(double leftSpeed){
@@ -56,8 +50,6 @@ public class Drivetrain extends SubsystemBase {
     public void rightDrive(double rightSpeed){
         t_frontRight.set(ControlMode.PercentOutput, rightSpeed * RobotMap.INPUT_SCALER);
         t_backRight.set(ControlMode.Follower, RobotMap.FR_PORT);
-
-
     }
 
     public double getAngle(){
@@ -75,8 +67,8 @@ public class Drivetrain extends SubsystemBase {
     public boolean turnToAngle(double angle){
         double optimalPath = Math.min(Math.abs(angle - getAngle()), Math.abs(360-(angle - getAngle()))); 
         /**Returns shortest path, with first arg being the direct path, and the second being the opposite path. 
-        * This is to account for situations like 30*->270*, where simply increasing or decreasing your angle
-        * until it hits the desired angle is not the shortest possible path. 
+        *  This is to account for situations like 30*->270*, where simply increasing or decreasing your angle
+        *  until it hits the desired angle is not the shortest possible path. 
         */
         RobotMap.PathDirection pathDir; //Var for storing the path direction that will be chosen. 
 
