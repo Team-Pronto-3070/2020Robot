@@ -1,4 +1,4 @@
-package frc.robot.commands.leftStart;
+package frc.robot.commands.LeftStart;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotMap;
