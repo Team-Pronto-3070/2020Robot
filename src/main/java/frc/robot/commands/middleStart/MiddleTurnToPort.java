@@ -14,14 +14,14 @@ public class MiddleTurnToPort extends CommandBase {
     }
 
     public void execute(){
-        if(drive.turnToAngle(RobotMap.Middle_START_TURN_ANGLE))
+        if(drive.turnToAngle(RobotMap.MIDDLE_START_TURN_ANGLE))
             drive.stop();
         else   
-            drive.turnToAngle(RobotMap.Middle_START_TURN_ANGLE);
+            drive.turnToAngle(RobotMap.MIDDLE_START_TURN_ANGLE);
     }
   
       public boolean isFinished() {
-        return drive.turnToAngle(RobotMap.Middle_START_TURN_ANGLE);
+        return drive.turnToAngle(RobotMap.MIDDLE_START_TURN_ANGLE);
     }
   
       protected void end(){
