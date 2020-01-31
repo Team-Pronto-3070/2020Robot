@@ -17,7 +17,7 @@ public class DriveCommand extends CommandBase{
       addRequirements(Robot.drive);
       addRequirements(Robot.driveKB);
     }
-    //drive(Drivetrain :: tankDrive(joyL.getRaw) )
+
     public void execute(){
       double left = 0;
       double right = 0;
@@ -59,7 +59,7 @@ public class DriveCommand extends CommandBase{
     }
 
     protected void interrupted(){
-
+      Robot.drive.stop();
     }
 
 }

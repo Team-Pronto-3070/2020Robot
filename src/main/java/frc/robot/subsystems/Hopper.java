@@ -9,13 +9,12 @@ import frc.robot.RobotMap;
 
 //TODO: Comment up
 
-class Hopper extends SubsystemBase {
+public class Hopper extends SubsystemBase {
     
     TalonSRX t_Hopper;
     
     public Hopper(){
         t_Hopper = new TalonSRX(RobotMap.T_HOPPER_PORT);
-        
     }
 
     public void in(){
