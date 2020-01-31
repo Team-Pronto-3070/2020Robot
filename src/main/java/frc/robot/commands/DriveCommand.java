@@ -3,6 +3,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.RobotMap.JOYSIDE;
 
 
 public class DriveCommand extends CommandBase{
@@ -20,10 +21,10 @@ public class DriveCommand extends CommandBase{
     public void execute(){
       double left = 0;
       double right = 0;
-      double modifier = 0;
+      //double modifier = Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Left, 2);
 
-      left = (left + Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Left, 1) ) / modifier;// averages the previous value and the current joystick value
-      right = (right + Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Right, 1) ) / modifier;
+      left = (left + Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Left, 1) * .75 ) ;// averages the previous value and the current joystick value
+      right = (right + Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Right, 1) * .75); //full speed ahead
   
           if(Math.abs(Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Left, 1)) > RobotMap.DEADZONE){
             Robot.drive.leftDrive(Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Left, 1));
