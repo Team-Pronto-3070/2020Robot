@@ -15,7 +15,7 @@ public class DriveCommand extends CommandBase{
     public DriveCommand(){
     //  drive = dt;
       addRequirements(Robot.drive);
-      addRequirements(Robot.driveKB);
+    
     }
 
     public void execute(){
