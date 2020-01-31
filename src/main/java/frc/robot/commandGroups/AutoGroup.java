@@ -4,10 +4,10 @@ import frc.robot.commands.*;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.commands.leftStart.*;
-// import frc.robot.commands.middleStart.*;
-// import frc.robot.commands.rightStart.*;
-// import frc.robot.commands.preferredStart.*;
+import frc.robot.commands.LeftStart.*;
+import frc.robot.commands.MiddleStart.*;
+import frc.robot.commands.RightStart.*;
+import frc.robot.commands.PreferredStart.*;
 import frc.robot.subsystems.*;
 
 public class AutoGroup extends SequentialCommandGroup{
@@ -18,8 +18,11 @@ public class AutoGroup extends SequentialCommandGroup{
                 addCommands(new LeftTurnToPort(dt), new LeftApproachPort(dt), new LeftTurnIntoPort(dt), new AutoUnloadHopper(hop));
             break;
             case Right:
-               // addCommands(new RightTurnToPort(dt), new RightApproachPort(dt), new RightTurnIntoPort(dt), new AutoUnloadHopper(hop));
-            break;
+                addCommands(new RightTurnToPort(dt), new RightApproachPort(dt), new RightTurnIntoPort(dt), new AutoUnloadHopper(hop));
+                break;
+            case Middle:
+                addCommands(new MiddleTurnToPort(dt), new MiddleApproachPort(dt), new MiddleTurnIntoPort(dt), new AutoUnloadHopper(hop));
+                break;
         }
     }
 }
