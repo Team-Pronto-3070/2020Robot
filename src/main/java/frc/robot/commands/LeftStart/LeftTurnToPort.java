@@ -18,14 +18,11 @@ public class LeftTurnToPort extends CommandBase {
             drive.stop();
         else   
             drive.turnToAngle(RobotMap.LEFT_START_TURN_ANGLE);
-      }
+    }
   
       public boolean isFinished() {
-        if(drive.getAngle() >= RobotMap.LEFT_START_TURN_ANGLE)
-            return true;
-       else 
-            return false;
-      }
+        return drive.turnToAngle(RobotMap.LEFT_START_TURN_ANGLE);
+    }
   
       protected void end(){
   
