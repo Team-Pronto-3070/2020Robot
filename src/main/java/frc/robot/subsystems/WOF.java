@@ -18,6 +18,13 @@ public class WOF extends SubsystemBase {
     Color clr;
     int passes = 0; //# of completed passes of single color. * 2 = # of full rotations
 
+    boolean booleanBlue = false;
+    boolean booleanGreen = false;
+    boolean booleanRed = false;
+    boolean booleanYellow = false;
+
+
+
     ColorSensorV3 s_colorSensor;
 
     private final ColorMatch m_colorMatcher = new ColorMatch();
@@ -42,10 +49,10 @@ public class WOF extends SubsystemBase {
 
     public void putColorOnShuffleboard(){
 
-        boolean booleanBlue = false;
-        boolean booleanRed = false;
-        boolean booleanYellow = false;
-        boolean booleanGreen = false;
+        booleanBlue = false;
+        booleanRed = false;
+        booleanYellow = false;
+        booleanGreen = false;
 
         SmartDashboard.putBoolean("isBlue", booleanBlue);
         SmartDashboard.putBoolean("isGreen", booleanGreen);
