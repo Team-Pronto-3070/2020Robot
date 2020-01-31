@@ -41,20 +41,16 @@ public class Robot extends TimedRobot{
     drive = new Drivetrain();
     driveKB  = new DrivetrainKB();
     wof = new WOF();
-
-   
+    m_oi = new OI();
 
     robotMap = new RobotMap();
 
     wof.putColorOnShuffleboard();
-
    
     //SmartDashboard.putNumber("Gyro val", .gyro.getAngle());
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer(RobotMap.KITBOT);
-    
-    m_oi = new OI();
   }
 
   /**
@@ -113,10 +109,6 @@ public class Robot extends TimedRobot{
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    if (m_robotContainer.m_autoCommand != null) {
-      m_robotContainer.m_autoCommand.cancel();
-    }
-   
     if (m_robotContainer.m_driveCommand != null) {
       m_robotContainer.m_driveCommand.schedule();
     }
