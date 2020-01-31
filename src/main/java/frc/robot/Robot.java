@@ -26,8 +26,7 @@ public class Robot extends TimedRobot{
   RobotMap robotMap;
   public static RobotContainer m_robotContainer;
 
-  public static Drivetrain drive = null;
-  public static DrivetrainKB driveKB  = null;
+  public static Drivetrain drive;
   public static WOF wof = null;
   public static OI m_oi;
   
@@ -38,16 +37,15 @@ public class Robot extends TimedRobot{
 
   @Override
   public void robotInit() {
-
-    drive = new Drivetrain();
-    driveKB  = new DrivetrainKB();
     wof = new WOF();
     m_oi = new OI();
 
     robotMap = new RobotMap();
 
     //SmartDashboard.putBoolean("isBlue", wof.booleanBlue);
-    wof.putColorOnShuffleboard();
+    
+
+   
    
     //SmartDashboard.putNumber("Gyro val", .gyro.getAngle());
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our

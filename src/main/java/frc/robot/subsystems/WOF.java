@@ -45,20 +45,23 @@ public class WOF extends SubsystemBase {
     {
         // write RGB, and HSV value from color sensor to dashboard
         // Write result enum value to dashboard
-    }
-
-    public void putColorOnShuffleboard(){
+        SmartDashboard.putBoolean("isBlue", booleanBlue);
+        SmartDashboard.putBoolean("isGreen", booleanGreen);
+        SmartDashboard.putBoolean("isRed", booleanRed);
+        SmartDashboard.putBoolean("isYellow", booleanYellow);
 
         booleanBlue = false;
         booleanRed = false;
         booleanYellow = false;
         booleanGreen = false;
 
-        SmartDashboard.putBoolean("isBlue", booleanBlue);
-        SmartDashboard.putBoolean("isGreen", booleanGreen);
-        SmartDashboard.putBoolean("isRed", booleanRed);
-        SmartDashboard.putBoolean("isYellow", booleanYellow);
+       
 
+     
+
+    }
+
+    public void setDashColor(){
         if(getClosestColor() == RobotMap.ColorType.Blue){
             booleanBlue = true;
         }else if(getClosestColor() == RobotMap.ColorType.Green){
@@ -67,8 +70,7 @@ public class WOF extends SubsystemBase {
             booleanRed = true;
         }else if(getClosestColor() == RobotMap.ColorType.Yellow){
             booleanYellow = true;
-        }   
-
+        }  
     }
 
     public void stop(){
