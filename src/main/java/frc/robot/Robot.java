@@ -43,14 +43,12 @@ public class Robot extends TimedRobot{
     robotMap = new RobotMap();
 
     //SmartDashboard.putBoolean("isBlue", wof.booleanBlue);
-    
-
-   
-   
     //SmartDashboard.putNumber("Gyro val", .gyro.getAngle());
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer(RobotMap.KITBOT);
+
+    drive = m_robotContainer.getDrive();
   }
 
   /**
