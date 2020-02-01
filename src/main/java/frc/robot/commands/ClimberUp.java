@@ -417,14 +417,4 @@ public class ClimberUp extends CommandBase {
 
 
 
-
-
-
-
-
-
-
-
-
-
-//For the memes
+//For the memes, https://www.youtube.com/watch?v=dQw4w9WgXcQ
