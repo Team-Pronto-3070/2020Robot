@@ -7,7 +7,7 @@ import frc.robot.RobotMap;
 
 //TODO: Comment up
 
-class Climber extends SubsystemBase{
+public class Climber extends SubsystemBase{
 
     TalonSRX t_winch;
     TalonSRX t_teleArm;
@@ -21,12 +21,12 @@ class Climber extends SubsystemBase{
         t_winch.set(ControlMode.PercentOutput, RobotMap.WINCH_LIFT_SPEED);
         t_teleArm.set(ControlMode.PercentOutput, RobotMap.TELE_LIFT_SPEED);
     }
-
-    public void goDown(){
-        t_teleArm.set(ControlMode.PercentOutput, -1);
-        t_winch.set(ControlMode.PercentOutput,-1);
+    public void teleArmDown(){
+        t_teleArm.set (ControlMode.PercentOutput, -1);
     }
-
+    public void winchDown(){
+        t_winch.set (ControlMode.PercentOutput, -1);
+    }
     public void stop(){
         t_teleArm.set(ControlMode.PercentOutput,0);
         t_winch.set(ControlMode.PercentOutput,0);
