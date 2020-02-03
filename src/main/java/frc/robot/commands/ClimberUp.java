@@ -66,17 +66,17 @@ public class ClimberUp extends CommandBase {
 
 
 
-
-
-
-
-
-
-
-
-
-
 //Keep going
+
+
+
+
+
+
+
+
+
+
 
 
 
