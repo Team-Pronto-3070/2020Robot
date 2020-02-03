@@ -52,6 +52,10 @@ public class Drivetrain extends SubsystemBase {
         t_backRight.set(ControlMode.Follower, RobotMap.FR_PORT);
     }
 
+    public void driveDistance(double distance){
+        
+    }
+
     public double getAngle(){
         return gyro.getAngle();
     }
