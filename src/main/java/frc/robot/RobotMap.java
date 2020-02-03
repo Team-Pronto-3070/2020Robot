@@ -69,7 +69,7 @@ public class RobotMap {
     public static final double WHEEL_ROTATION_PREFFERED = 4.3;
 
     public enum PathDirection {
-        Direct, Opposite
+        Direct, Reverse
     };
 
     public static final double ROTATION_SPEED = .5;

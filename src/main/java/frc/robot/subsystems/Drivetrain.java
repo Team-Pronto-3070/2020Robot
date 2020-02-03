@@ -18,7 +18,7 @@ import frc.robot.RobotMap;
 public class Drivetrain extends SubsystemBase {
     TalonFX t_frontLeft, t_backLeft, t_frontRight, t_backRight;
     ADIS16448_IMU gyro;
-    double initAngle;
+    double initAngle, initDistance;
 
     public Drivetrain(){
 
@@ -82,10 +82,10 @@ public class Drivetrain extends SubsystemBase {
             if(optimalPath ==  Math.abs(angle - getAngle())) //If the optimal path is the logical way(CCW to gain, CW to lose angle)
                 pathDir = RobotMap.PathDirection.Direct;    //Then set it to direct
             else //If it isn't (CW to gain, CCW to lost) then set it to opposite
-                pathDir = RobotMap.PathDirection.Opposite;
+                pathDir = RobotMap.PathDirection.Reverse;
             
             initAngle = getAngle(); //Sets initial angle, since it can't check getAngle() while moving
-            if(!areWeThereYet(pathDir, angle)){ //If we are not there yet
+            if(!areWeThereYetAngle(pathDir, angle)){ //If we are not there yet
                 switch (pathDir) { //Case machine for direction. Opposite outputs from each input
                     case Direct:
                         if(angle < initAngle) //If we need to lose angle
@@ -93,7 +93,7 @@ public class Drivetrain extends SubsystemBase {
                         else //If we need to gain it
                             tankDrive(-RobotMap.ROTATION_SPEED, RobotMap.ROTATION_SPEED); //Rotate CCW
                     break;
-                    case Opposite: //Opposite outputs from direct
+                    case Reverse: //Opposite outputs from direct
                         if(angle < initAngle) //If we need to lost angle
                             tankDrive(-RobotMap.ROTATION_SPEED, RobotMap.ROTATION_SPEED); //Rotate CCW
                         else //If we need to gain it, 
@@ -103,11 +103,11 @@ public class Drivetrain extends SubsystemBase {
             } else { //Once complete, stop turning. 
                 stop();
             }
-            return areWeThereYet(pathDir, angle);
+            return areWeThereYetAngle(pathDir, angle);
         }
     }
 
-    public boolean areWeThereYet(RobotMap.PathDirection dir, double angleWanted){
+    public boolean areWeThereYetAngle(RobotMap.PathDirection dir, double angleWanted){
         boolean thereYet = false; //Stores whether or not we're there yet
         switch (dir) {
             case Direct: //If we are going the direct way
@@ -117,7 +117,7 @@ public class Drivetrain extends SubsystemBase {
                     thereYet = getAngle() >= angleWanted; //Return whether or not we have crossed over the barrier. 
             break;
 
-            case Opposite: //Same as direct, just in the opposite direction
+            case Reverse: //Same as direct, just in the opposite direction
                 if(angleWanted < initAngle)
                     thereYet = getAngle() >= angleWanted;
                 else
@@ -125,5 +125,9 @@ public class Drivetrain extends SubsystemBase {
             break;
         }
         return thereYet; //Return whether or not the robot has crossed the threshold.
+    }
+
+        public boolean areWeThereYet(RobotMap.PathDirection dir, double distance){
+
     }
 }
