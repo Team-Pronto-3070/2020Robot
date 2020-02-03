@@ -37,16 +37,16 @@ public class RobotContainer {
   DriveCommand c_Drive = null;
   DriveAuto driveAuto = null;
   public SendableChooser<String> initPos = new SendableChooser<String>();
-  //public Drivetrain 
+  private Drivetrain drive;
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer(boolean kitbot) {
     if(kitbot)
-      Robot.drive = new DrivetrainKB(); 
+      drive = new DrivetrainKB(); 
     else
-      Robot.drive = new Drivetrain();
+      drive = new Drivetrain();
     
     m_driveCommand = new DriveCommand();
     m_autoCommand = new DriveCommand();
@@ -64,6 +64,10 @@ public class RobotContainer {
     initPos.addOption("Right", "R");
 
     SmartDashboard.putData(initPos);
+  }
+
+  public Drivetrain getDT(){
+    return drive;
   }
 
   /**

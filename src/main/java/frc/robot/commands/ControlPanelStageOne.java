@@ -22,6 +22,7 @@ public class ControlPanelStageOne extends CommandBase {
         Robot.wof.go();
         int numRot = 3;
         if(numRot > 0){
+            Robot.wof.setDashColor();
             if(currentColor == Robot.wof.getClosestColor()){
                 numRot--;
             }

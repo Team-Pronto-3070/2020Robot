@@ -17,7 +17,7 @@ import frc.robot.RobotMap;
 
 public class Drivetrain extends SubsystemBase {
     TalonFX t_frontLeft, t_backLeft, t_frontRight, t_backRight;
-    // ADIS16448_IMU gyro;
+    ADIS16448_IMU gyro;
     double initAngle;
 
     public Drivetrain(){
@@ -29,7 +29,7 @@ public class Drivetrain extends SubsystemBase {
         t_backLeft = new TalonFX(RobotMap.BL_PORT);
         t_backRight = new TalonFX(RobotMap.BR_PORT);
         
-        // gyro = new ADIS16448_IMU();
+        gyro = new ADIS16448_IMU();
     }
 
     public void periodic(){
@@ -52,8 +52,12 @@ public class Drivetrain extends SubsystemBase {
         t_backRight.set(ControlMode.Follower, RobotMap.FR_PORT);
     }
 
+    public void driveDistance(double distance){
+        
+    }
+
     public double getAngle(){
-        return 4; //gyro.getAngle();
+        return gyro.getAngle();
     }
 
     public void stop(){
