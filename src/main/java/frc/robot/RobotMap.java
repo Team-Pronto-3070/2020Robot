@@ -72,12 +72,50 @@ public class RobotMap {
         Direct, Reverse
     };
 
-    public static final double ROTATION_SPEED = .5;
+    public static final double AUTO_SPEED = .5;
     public static final double ROTATION_TOLERANCE = 3;
 
     public enum StartingPosition {
         Left, Right, Middle, Preffered
     };
 
+    public enum GearboxPosition {
+        Hi, Lo
+    };
+
     public static final double DEADZONE = .2;
+
+    private static GearboxPosition GB_STATUS = GearboxPosition.Lo;
+    public static final double LO_GEARBOX_RATIO = 1;
+    public static final double HI_GEARBOX_RATIO = 1;
+
+    public static final int WHEEL_DIAMETER_INCHES = 8; //Wheel diameter in inches
+    public static final double WHEEL_CIRCUMFRENCE_INCHES = 2 * WHEEL_DIAMETER_INCHES * Math.PI; //Wheel circumfrence in inches
+
+    public enum MotorPosition {
+        FL, FR, BL, BR, AVG
+    };
+
+    public static double getGearboxRatio(){
+        if(GB_STATUS == GearboxPosition.Hi)
+            return HI_GEARBOX_RATIO;
+        else
+            return LO_GEARBOX_RATIO;
+    }
+
+    public static GearboxPosition toggleGearboxPosition(){
+        switch(GB_STATUS) { 
+            case Hi:
+                GB_STATUS = GearboxPosition.Lo;
+                break;
+            case Lo:
+                GB_STATUS = GearboxPosition.Hi;
+                break;
+        }
+        return GB_STATUS;
+    }
+
+    public static double getRevs(double inches){
+        return getGearboxRatio() * WHEEL_CIRCUMFRENCE_INCHES * inches;
+    }
 }
