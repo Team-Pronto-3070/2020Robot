@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Hopper;
 import frc.robot.subsystems.WOF;
 
 
@@ -25,6 +26,7 @@ public class Robot extends TimedRobot{
   public static RobotContainer m_robotContainer;
 
   public static Drivetrain drive;
+  public static Hopper hop;
   public static WOF wof = null;
   public static OI m_oi;
   
