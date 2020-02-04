@@ -97,6 +97,21 @@ public class RobotMap {
     public static final double NEUTRAL_DEADBAND = .1;
     public static final int PID_TURN = 0;
 
+    public static final double P = 1;
+    public static final double I = 1;
+    public static final double D = 1;
+    public static final double F = 1;
+    public static final double MAX_SPEEED = 6380;
+
+    public static final int PID_DISTANCE = 0;
+    public static final int PID_TURNING = 1;
+
+    public static final int PID_TURNING_IZONE = 1;
+    public static final double PID_TURNING_PEAK_OUTPUT = 1;
+
+    public static final int PID_DISTANCE_IZONE = 1;
+    public static final double PID_DISTANCE_PEAK_OUTPUT = 1;
+
     public enum MotorPosition {
         FL, FR, BL, BR, AVG
     };
