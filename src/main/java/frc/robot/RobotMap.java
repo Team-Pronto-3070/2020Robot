@@ -92,6 +92,11 @@ public class RobotMap {
     public static final int WHEEL_DIAMETER_INCHES = 8; //Wheel diameter in inches
     public static final double WHEEL_CIRCUMFRENCE_INCHES = 2 * WHEEL_DIAMETER_INCHES * Math.PI; //Wheel circumfrence in inches
 
+    public static final int TIMEOUT_MS = 500;
+    public static final int PID_PRIMARY = 1;
+    public static final double NEUTRAL_DEADBAND = .1;
+    public static final int PID_TURN = 0;
+
     public enum MotorPosition {
         FL, FR, BL, BR, AVG
     };
