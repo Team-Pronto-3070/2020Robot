@@ -128,7 +128,7 @@ public class Drivetrain extends SubsystemBase {
             case Reverse: //Same as direct, just in the opposite direction
                 if(angleWanted < initAngle)
                     doneAngle = true;
-                }else
+                else
                     doneAngle = false;
             break;
         }
