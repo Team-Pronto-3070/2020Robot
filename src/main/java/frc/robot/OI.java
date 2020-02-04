@@ -9,14 +9,14 @@ public class OI {
     
     
     public Joystick j_LEFT, j_RIGHT;
-    JoystickButton butt1;
+    JoystickButton hopButt;
     
 
     public OI(){
 
         j_LEFT = new Joystick(RobotMap.JOYL_PORT);
         j_RIGHT = new Joystick(RobotMap.JOYR_PORT);
-        butt1 = new JoystickButton(j_LEFT, 2); //TODO: Adjust these values to actual values
+        hopButt = new JoystickButton(j_LEFT, 2); //TODO: Adjust these values to actual values
         
     }
 

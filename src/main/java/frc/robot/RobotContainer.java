@@ -9,9 +9,11 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.commandGroups.TeleGroup;
 import frc.robot.commands.DriveAuto;
 import frc.robot.commands.DriveCommand;
 import frc.robot.subsystems.Drivetrain;
@@ -34,7 +36,7 @@ public class RobotContainer {
   public CommandBase m_autoCommand;
   public DriveCommand m_driveCommand;
   
-  DriveCommand c_Drive = null;
+  CommandGroup TeleGroup = null;
   DriveAuto driveAuto = null;
   public SendableChooser<String> initPos = new SendableChooser<String>();
   private Drivetrain drive;
@@ -48,10 +50,10 @@ public class RobotContainer {
     else
       drive = new Drivetrain();
     
-    m_driveCommand = new DriveCommand();
+    m_driveCommand = new CommandGroup();
     m_autoCommand = new DriveCommand();
 
-    c_Drive = new DriveCommand();
+    TeleGroup = new CommandGroup();
     driveAuto = new DriveAuto(Robot.drive);
     // Configure the button bindings
     configureButtonBindings();
@@ -78,7 +80,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
 
-   // Robot.m_oi.butt1.toggleWhenPressed(m_driveCommand);
+   Robot.m_oi.hopButt.toggleWhenPressed(m_driveCommand);
 
   }
 
@@ -96,7 +98,7 @@ public class RobotContainer {
 
   public CommandBase getTeleopCommand(){
 
-    m_driveCommand = c_Drive;
+    m_driveCommand = TeleGroup;
 
     return m_driveCommand;
   }
