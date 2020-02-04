@@ -28,6 +28,8 @@ public class Drivetrain extends SubsystemBase {
     double initAngle, initDistance;
     boolean doneAngle = false; //Stores whether or not we're there yet
     boolean doneDistance = false;
+    boolean _firstCall = false;
+	boolean _state = false;
 
     public Drivetrain(){
 
@@ -39,6 +41,9 @@ public class Drivetrain extends SubsystemBase {
         t_backRight = new TalonFX(RobotMap.BR_PORT);
         
         gyro = new ADIS16448_IMU();
+
+        configLeftMotors(RobotMap.P, RobotMap.I, RobotMap.D);
+        configLeftMotors(RobotMap.P, RobotMap.I, RobotMap.D);
     }
 
     public void periodic(){
@@ -136,31 +141,20 @@ public class Drivetrain extends SubsystemBase {
     }    
 
     public boolean driveDistance(double distance) {
+        int direction = 0;
         if(doneDistance) {
-            initDistance = getEncoder(RobotMap.MotorPosition.AVG);
+            initDistance = getFLEncoder();
             doneDistance = false;
+        } else {
+            
         }
     }
 
-    public double getEncoder(RobotMap.MotorPosition pos){
-        double count = 0;
-        switch(pos){
-            case FL:
-
-            case FR:
-
-            case BL:
-
-            case BR:
-
-            case AVG:
-
-        }
-
-        return count;
+    public double getFLEncoder(){
+        return t_frontLeft.getSelectedSensorPosition();
     }
 
-    public void configMotors(double P, double I, double D){
+    public void configLeftMotors(double P, double I, double D){
         /* Disable all motor controllers */
 		tankDrive(0,0);
 
@@ -182,7 +176,7 @@ public class Drivetrain extends SubsystemBase {
 		/* Configure the Remote Talon's selected sensor as a remote sensor for the right Talon */
 		t_frontLeft.configRemoteFeedbackFilter(t_backLeft.getDeviceID(),					// Device ID of Source
 												RemoteSensorSource.TalonSRX_SelectedSensor,	// Remote Feedback Source
-												0,							// Source number [0, 1]
+												0,				                 			// Source number [0, 1]
 												RobotMap.TIMEOUT_MS);						// Configuration Timeout
 		
 		
@@ -241,20 +235,20 @@ public class Drivetrain extends SubsystemBase {
 		t_frontLeft.configPeakOutputReverse(-1.0, RobotMap.TIMEOUT_MS);
 
 		/* FPID Gains for distance servo */
-		t_frontLeft.config_kP(RobotMap.kSlot_Distanc, RobotMap.kGains_Distanc.kP, RobotMap.TIMEOUT_MS);
-		t_frontLeft.config_kI(RobotMap.kSlot_Distanc, RobotMap.kGains_Distanc.kI, RobotMap.TIMEOUT_MS);
-		t_frontLeft.config_kD(RobotMap.kSlot_Distanc, RobotMap.kGains_Distanc.kD, RobotMap.TIMEOUT_MS);
-		t_frontLeft.config_kF(RobotMap.kSlot_Distanc, RobotMap.kGains_Distanc.kF, RobotMap.TIMEOUT_MS);
-		t_frontLeft.config_IntegralZone(RobotMap.kSlot_Distanc, RobotMap.kGains_Distanc.kIzone, RobotMap.TIMEOUT_MS);
-		t_frontLeft.configClosedLoopPeakOutput(RobotMap.kSlot_Distanc, RobotMap.kGains_Distanc.kPeakOutput, RobotMap.TIMEOUT_MS);
+		t_frontLeft.config_kP(RobotMap.PID_DISTANCE, RobotMap.P, RobotMap.TIMEOUT_MS);
+		t_frontLeft.config_kI(RobotMap.PID_DISTANCE, RobotMap.I, RobotMap.TIMEOUT_MS);
+		t_frontLeft.config_kD(RobotMap.PID_DISTANCE, RobotMap.D, RobotMap.TIMEOUT_MS);
+		t_frontLeft.config_kF(RobotMap.PID_DISTANCE, RobotMap.F, RobotMap.TIMEOUT_MS);
+		t_frontLeft.config_IntegralZone(RobotMap.PID_DISTANCE, RobotMap.PID_DISTANCE_IZONE, RobotMap.TIMEOUT_MS);
+		t_frontLeft.configClosedLoopPeakOutput(RobotMap.PID_DISTANCE, RobotMap.PID_DISTANCE_PEAK_OUTPUT , RobotMap.TIMEOUT_MS);
 
 		/* FPID Gains for turn servo */
-		t_frontLeft.config_kP(RobotMap.kSlot_Turning, RobotMap.kGains_Turning.kP, RobotMap.TIMEOUT_MS);
-		t_frontLeft.config_kI(RobotMap.kSlot_Turning, RobotMap.kGains_Turning.kI, RobotMap.TIMEOUT_MS);
-		t_frontLeft.config_kD(RobotMap.kSlot_Turning, RobotMap.kGains_Turning.kD, RobotMap.TIMEOUT_MS);
-		t_frontLeft.config_kF(RobotMap.kSlot_Turning, RobotMap.kGains_Turning.kF, RobotMap.TIMEOUT_MS);
-		t_frontLeft.config_IntegralZone(RobotMap.kSlot_Turning, RobotMap.kGains_Turning.kIzone, RobotMap.TIMEOUT_MS);
-		t_frontLeft.configClosedLoopPeakOutput(RobotMap.kSlot_Turning, RobotMap.kGains_Turning.kPeakOutput, RobotMap.TIMEOUT_MS);
+		t_frontLeft.config_kP(RobotMap.PID_TURNING, RobotMap.P, RobotMap.TIMEOUT_MS);
+		t_frontLeft.config_kI(RobotMap.PID_TURNING, RobotMap.I, RobotMap.TIMEOUT_MS);
+		t_frontLeft.config_kD(RobotMap.PID_TURNING, RobotMap.D, RobotMap.TIMEOUT_MS);
+		t_frontLeft.config_kF(RobotMap.PID_TURNING, RobotMap.F, RobotMap.TIMEOUT_MS);
+		t_frontLeft.config_IntegralZone(RobotMap.PID_TURNING, RobotMap.PID_TURNING_IZONE, RobotMap.TIMEOUT_MS);
+		t_frontLeft.configClosedLoopPeakOutput(RobotMap.PID_TURNING, RobotMap.PID_TURNING_PEAK_OUTPUT, RobotMap.TIMEOUT_MS);
 		
 		/**
 		 * 1ms per loop.  PID loop can be slowed down if need be.
@@ -280,4 +274,144 @@ public class Drivetrain extends SubsystemBase {
 		t_frontLeft.setStatusFramePeriod(StatusFrameEnhanced.Status_10_Targets, 10);
 		zeroSensors();
     }
+
+    public void configRightMotors(double P, double I, double D){
+        /* Disable all motor controllers */
+		tankDrive(0,0);
+
+		/* Factory Default all hardware to prevent unexpected behavior */
+		t_frontRight.configFactoryDefault();
+		t_backRight.configFactoryDefault();
+		
+		/* Set Neutral Mode */
+		t_backRight.setNeutralMode(NeutralMode.Brake);
+		t_frontRight.setNeutralMode(NeutralMode.Brake);
+		
+		/** Feedback Sensor Configuration */
+		
+		/* Configure the left Talon's selected sensor as local QuadEncoder */
+		t_backRight.configSelectedFeedbackSensor(	FeedbackDevice.IntegratedSensor,				// Local Feedback Source
+													RobotMap.PID_PRIMARY,					// PID Slot for Source [0, 1]
+													RobotMap.TIMEOUT_MS);					// Configuration Timeout
+
+		/* Configure the Remote Talon's selected sensor as a remote sensor for the right Talon */
+		t_frontRight.configRemoteFeedbackFilter(t_backRight.getDeviceID(),					// Device ID of Source
+												RemoteSensorSource.TalonSRX_SelectedSensor,	// Remote Feedback Source
+												0,				                 			// Source number [0, 1]
+												RobotMap.TIMEOUT_MS);						// Configuration Timeout
+		
+		
+		/* Setup Sum signal to be used for Distance */
+		t_frontRight.configSensorTerm(SensorTerm.Diff0, FeedbackDevice.RemoteSensor0, RobotMap.TIMEOUT_MS);				// Feedback Device of Remote Talon
+		t_frontRight.configSensorTerm(SensorTerm.Diff1, FeedbackDevice.IntegratedSensor, RobotMap.TIMEOUT_MS);	// Quadrature Encoder of current Talon
+		
+		/* Configure Sum [Sum of both QuadEncoders] to be used for Primary PID Index */
+		t_frontRight.configSelectedFeedbackSensor(	FeedbackDevice.SensorDifference, 
+													RobotMap.PID_PRIMARY,
+													RobotMap.TIMEOUT_MS);
+		
+		/* Scale Feedback by 0.5 to half the sum of Distance */ //not working--do this within the setpoint
+		t_frontRight.configSelectedFeedbackCoefficient(	1, 						// Coefficient
+														RobotMap.PID_PRIMARY,		// PID Slot of Source 
+														RobotMap.TIMEOUT_MS);		// Configuration Timeout
+		
+		/* Configure Remote 1 [Pigeon IMU's Yaw] to be used for Auxiliary PID Index */
+		t_frontRight.configSelectedFeedbackSensor(	FeedbackDevice.RemoteSensor1,
+													RobotMap.PID_TURN,
+													RobotMap.TIMEOUT_MS);
+		
+		/* Scale the Feedback Sensor using a coefficient */
+		t_frontRight.configSelectedFeedbackCoefficient(	1,
+														RobotMap.PID_TURN,
+														RobotMap.TIMEOUT_MS);
+		
+		/* Configure output and sensor direction */
+        t_backRight.setInverted(false);
+        t_backRight.setSensorPhase(false);
+        t_frontRight.setInverted(false);
+        t_frontRight.setSensorPhase(false);
+		
+		/* Set status frame periods to ensure we don't have stale data */
+		t_frontRight.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 20, RobotMap.TIMEOUT_MS);
+		t_frontRight.setStatusFramePeriod(StatusFrame.Status_13_Base_PIDF0, 20, RobotMap.TIMEOUT_MS);
+		t_frontRight.setStatusFramePeriod(StatusFrame.Status_14_Turn_PIDF1, 20, RobotMap.TIMEOUT_MS);
+		t_frontRight.setStatusFramePeriod(StatusFrame.Status_10_Targets, 20, RobotMap.TIMEOUT_MS);
+		t_backRight.setStatusFramePeriod(StatusFrame.Status_2_Feedback0, 5, RobotMap.TIMEOUT_MS);
+
+		/* Configure neutral deadband */
+		t_frontRight.configNeutralDeadband(RobotMap.NEUTRAL_DEADBAND, RobotMap.TIMEOUT_MS);
+		t_backRight.configNeutralDeadband(RobotMap.NEUTRAL_DEADBAND, RobotMap.TIMEOUT_MS);
+		
+		/* Motion Magic Configurations */
+		t_frontRight.configMotionAcceleration(2000, RobotMap.TIMEOUT_MS);
+		t_frontRight.configMotionCruiseVelocity(2000, RobotMap.TIMEOUT_MS);
+
+		/**
+		 * Max out the peak output (for all modes).  
+		 * However you can limit the output of a given PID object with configClosedLoopPeakOutput().
+		 */
+		t_backRight.configPeakOutputForward(+1.0, RobotMap.TIMEOUT_MS);
+		t_backRight.configPeakOutputReverse(-1.0, RobotMap.TIMEOUT_MS);
+		t_frontRight.configPeakOutputForward(+1.0, RobotMap.TIMEOUT_MS);
+		t_frontRight.configPeakOutputReverse(-1.0, RobotMap.TIMEOUT_MS);
+
+		/* FPID Gains for distance servo */
+		t_frontRight.config_kP(RobotMap.PID_DISTANCE, RobotMap.P, RobotMap.TIMEOUT_MS);
+		t_frontRight.config_kI(RobotMap.PID_DISTANCE, RobotMap.I, RobotMap.TIMEOUT_MS);
+		t_frontRight.config_kD(RobotMap.PID_DISTANCE, RobotMap.D, RobotMap.TIMEOUT_MS);
+		t_frontRight.config_kF(RobotMap.PID_DISTANCE, RobotMap.F, RobotMap.TIMEOUT_MS);
+		t_frontRight.config_IntegralZone(RobotMap.PID_DISTANCE, RobotMap.PID_DISTANCE_IZONE, RobotMap.TIMEOUT_MS);
+		t_frontRight.configClosedLoopPeakOutput(RobotMap.PID_DISTANCE, RobotMap.PID_DISTANCE_PEAK_OUTPUT , RobotMap.TIMEOUT_MS);
+
+		/* FPID Gains for turn servo */
+		t_frontRight.config_kP(RobotMap.PID_TURNING, RobotMap.P, RobotMap.TIMEOUT_MS);
+		t_frontRight.config_kI(RobotMap.PID_TURNING, RobotMap.I, RobotMap.TIMEOUT_MS);
+		t_frontRight.config_kD(RobotMap.PID_TURNING, RobotMap.D, RobotMap.TIMEOUT_MS);
+		t_frontRight.config_kF(RobotMap.PID_TURNING, RobotMap.F, RobotMap.TIMEOUT_MS);
+		t_frontRight.config_IntegralZone(RobotMap.PID_TURNING, RobotMap.PID_TURNING_IZONE, RobotMap.TIMEOUT_MS);
+		t_frontRight.configClosedLoopPeakOutput(RobotMap.PID_TURNING, RobotMap.PID_TURNING_PEAK_OUTPUT, RobotMap.TIMEOUT_MS);
+		
+		/**
+		 * 1ms per loop.  PID loop can be slowed down if need be.
+		 * For example,
+		 * - if sensor updates are too slow
+		 * - sensor deltas are very small per update, so derivative error never gets large enough to be useful.
+		 * - sensor movement is very slow causing the derivative error to be near zero.
+		 */
+		int closedLoopTimeMs = 1;
+		t_frontRight.configClosedLoopPeriod(0, closedLoopTimeMs, RobotMap.TIMEOUT_MS);
+		t_frontRight.configClosedLoopPeriod(1, closedLoopTimeMs, RobotMap.TIMEOUT_MS);
+
+		/**
+		 * configAuxPIDPolarity(boolean invert, int timeoutMs)
+		 * false means talon's local output is PID0 + PID1, and other side Talon is PID0 - PID1
+		 * true means talon's local output is PID0 - PID1, and other side Talon is PID0 + PID1
+		 */
+		t_frontRight.configAuxPIDPolarity(false, RobotMap.TIMEOUT_MS);
+
+		/* Initialize */
+		_firstCall = true;
+		_state = false;
+		t_frontRight.setStatusFramePeriod(StatusFrameEnhanced.Status_10_Targets, 10);
+		zeroSensors();
+    }
+
+    /** Zero all sensors, both Talons and Pigeon */
+	void zeroSensors() {
+        t_frontLeft.getSensorCollection().setIntegratedSensorPosition(0, RobotMap.TIMEOUT_MS);
+        t_backLeft.getSensorCollection().setIntegratedSensorPosition(0, RobotMap.TIMEOUT_MS);
+        t_frontRight.getSensorCollection().setIntegratedSensorPosition(0, RobotMap.TIMEOUT_MS);
+        t_backRight.getSensorCollection().setIntegratedSensorPosition(0, RobotMap.TIMEOUT_MS);
+		gyro.reset();
+		System.out.println("[Integrated Encoders + Pigeon] All sensors are zeroed.\n");
+	}
+	
+	/** Zero QuadEncoders, used to reset position when initializing Motion Magic */
+	void zeroDistance(){
+        t_frontLeft.getSensorCollection().setIntegratedSensorPosition(0, RobotMap.TIMEOUT_MS);
+        t_backLeft.getSensorCollection().setIntegratedSensorPosition(0, RobotMap.TIMEOUT_MS);
+        t_frontRight.getSensorCollection().setIntegratedSensorPosition(0, RobotMap.TIMEOUT_MS);
+        t_backRight.getSensorCollection().setIntegratedSensorPosition(0, RobotMap.TIMEOUT_MS);
+		System.out.println("[Integrated Encoders] All encoders are zeroed.\n");
+	}
 }
