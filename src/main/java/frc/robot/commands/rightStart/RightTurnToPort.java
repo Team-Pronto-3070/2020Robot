@@ -1,6 +1,7 @@
 package frc.robot.commands.RightStart;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.Drivetrain;
 
@@ -8,9 +9,9 @@ public class RightTurnToPort extends CommandBase {
 
     private Drivetrain drive;
     
-    public RightTurnToPort(Drivetrain dt){
-        drive = dt;
-        addRequirements(dt);
+    public RightTurnToPort(){
+        drive = Robot.drive;
+        addRequirements(drive);
     }
 
     public void execute(){

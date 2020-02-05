@@ -16,7 +16,7 @@ public class TeleGroup extends ParallelCommandGroup {
 
     public TeleGroup(Drivetrain dt, Hopper hop, Climber climb, Intake in, WOF wof){
     
-            addCommands( new DriveCommand(), new ClimberUp(climb), new IntakeBall(in),  );
+          //  addCommands( new DriveCommand(), new ClimberUp(climb), new IntakeBall(in),  );
         
 
     }

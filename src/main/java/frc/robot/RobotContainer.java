@@ -50,8 +50,8 @@ public class RobotContainer {
     else
       drive = new Drivetrain();
     
-    m_driveCommand = new DriveCommand();
-    m_autoCommand = new DriveCommand();
+    m_driveCommand = new DriveCommand(Robot.drive);
+    m_autoCommand = new DriveCommand(Robot.drive);
 
    // final TeleGroup teleGroup = new TeleGroup(Robot.drive, Robot.hop, Robot.climb, Robot.intake, Robot.hop);//climb, in, hop
 
@@ -72,9 +72,9 @@ public class RobotContainer {
     SmartDashboard.putData(initPos);
   }
 
-  public Drivetrain getDT(){
-    return drive;
-  }
+  // public Drivetrain getDT(){
+  //   return drive;
+  // }
 
   /**
    * Use this method to define your button->command mappings.  Buttons can be created by

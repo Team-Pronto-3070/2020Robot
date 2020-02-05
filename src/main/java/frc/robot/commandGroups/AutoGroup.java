@@ -18,7 +18,7 @@ public class AutoGroup extends SequentialCommandGroup{
                 addCommands(new LeftTurnToPort(dt), new LeftApproachPort(dt), new LeftTurnIntoPort(dt), new AutoUnloadHopper(hop));
             break;
             case Right:
-                addCommands(new RightTurnToPort(dt), new RightApproachPort(dt), new RightTurnIntoPort(dt), new AutoUnloadHopper(hop));
+                addCommands(new RightTurnToPort(), new RightApproachPort(), new RightTurnIntoPort(), new AutoUnloadHopper(hop));
                 break;
             case Middle:
                 addCommands(new MiddleTurnToPort(dt), new MiddleApproachPort(dt), new MiddleTurnIntoPort(dt), new AutoUnloadHopper(hop));
