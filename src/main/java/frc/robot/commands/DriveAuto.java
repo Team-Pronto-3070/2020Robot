@@ -1,15 +1,16 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 import frc.robot.subsystems.Drivetrain;
 
 
 public class DriveAuto extends CommandBase {
     Drivetrain drive;
 
-    public DriveAuto(Drivetrain dt){
-        drive = dt;
-        addRequirements(dt);
+    public DriveAuto(){
+        drive = Robot.drive;
+        addRequirements(drive);
 
     }
 

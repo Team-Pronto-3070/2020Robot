@@ -1,16 +1,17 @@
 package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 import frc.robot.subsystems.Intake;
 
 public class IntakeBall extends CommandBase
 {
-private Intake iNtake;
-public IntakeBall (Intake s_intake) {
-    iNtake = s_intake;
-    addRequirements(iNtake);
+private Intake intake;
+public IntakeBall () {
+    intake = Robot.intake;
+    addRequirements(intake);
 }
 public void execute(){
-    iNtake.intake();   
+    intake.intake();   
 }
 
 public void initialize(){

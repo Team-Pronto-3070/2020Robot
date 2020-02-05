@@ -9,9 +9,12 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Hopper;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.WOF;
+
 
 
 /**
@@ -29,6 +32,8 @@ public class Robot extends TimedRobot{
   public static Hopper hop;
   public static WOF wof = null;
   public static OI m_oi;
+  public static Intake intake; 
+  public static Climber climb;
   
 
   //c_Drive drive;
@@ -39,6 +44,8 @@ public class Robot extends TimedRobot{
   public void robotInit() {
     wof = new WOF();
     m_oi = new OI();
+    intake = new Intake();
+    climb = new Climber();
 
     robotMap = new RobotMap();
 

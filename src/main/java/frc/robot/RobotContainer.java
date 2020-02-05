@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.commandGroups.AutoGroup;
+import frc.robot.commandGroups.TeleGroup;
 import frc.robot.commands.DriveCommand;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.DrivetrainKB;
@@ -37,8 +38,6 @@ public class RobotContainer {
   public CommandBase m_autoCommand;
   public CommandBase m_driveCommand;
   
-  CommandGroup teleGroup = null;
-  AutoGroup AutoGroup = null;
   public SendableChooser<String> initPos = new SendableChooser<String>();
   private Drivetrain drive;
 
@@ -54,11 +53,15 @@ public class RobotContainer {
     m_driveCommand = new DriveCommand();
     m_autoCommand = new DriveCommand();
 
-    teleGroup = new CommandGroup();
+   // final TeleGroup teleGroup = new TeleGroup(Robot.drive, Robot.hop, Robot.climb, Robot.intake, Robot.hop);//climb, in, hop
+
+
+
+
     //driveAuto = new AutoGroup(initPos, Robot.drive, Robot.hop);
     // Configure the button bindings
     configureButtonBindings();
-    Robot.drive.setDefaultCommand(m_driveCommand);
+    //Robot.drive.setDefaultCommand(teleGroup);
     //Robot.wof.setDefaultCommand(m_autoCommand);
 
     initPos.addOption("Left", "L");
@@ -93,13 +96,13 @@ public class RobotContainer {
    */
   public CommandBase getAutonomousCommand() {
 
-    m_autoCommand = AutoGroup;
+   // m_autoCommand = AutoGroup;
     return m_autoCommand;
   }
 
-  public CommandGroup getTeleopCommand(){
-    return teleGroup;
-  }
+  // public CommandGroup getTeleopCommand(){
+  //   return teleGroup;
+  // }
 
   public RobotMap.StartingPosition getStartingPosition(){
     RobotMap.StartingPosition startPos = RobotMap.StartingPosition.Preffered;
