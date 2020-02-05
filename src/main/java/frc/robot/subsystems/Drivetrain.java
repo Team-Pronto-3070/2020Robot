@@ -120,7 +120,6 @@ public class Drivetrain extends SubsystemBase {
             return areWeThereYetAngle(pathDir, angle);
         }
     }
-
     public boolean areWeThereYetAngle(RobotMap.PathDirection dir, double angleWanted){
         switch (dir) {
             case Direct: //If we are going the direct way
@@ -140,19 +139,15 @@ public class Drivetrain extends SubsystemBase {
         return doneAngle; //Return whether or not the robot has crossed the threshold.
     }    
 
-    public boolean driveDistance(double distance) {
-        int direction = 0;
-        if(doneDistance) {
-            initDistance = getFLEncoder();
-            doneDistance = false;
-        } else {
+    // public boolean driveDistance(double distance) {
+    //     int direction = 0;
+    //     if(doneDistance) {
+    //         initDistance = getFLEncoder();
+    //         doneDistance = false;
+    //     } else {
             
-		}
-		
-		return true;
-		
-    }
-
+    //     }
+    // }
     public double getFLEncoder(){
         return t_frontLeft.getSelectedSensorPosition();
     }
