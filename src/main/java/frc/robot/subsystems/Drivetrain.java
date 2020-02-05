@@ -40,7 +40,7 @@ public class Drivetrain extends SubsystemBase {
         t_backLeft = new TalonFX(RobotMap.BL_PORT);
         t_backRight = new TalonFX(RobotMap.BR_PORT);
         
-        gyro = new ADIS16448_IMU();
+       // gyro = new ADIS16448_IMU();
 
         configLeftMotors(RobotMap.P, RobotMap.I, RobotMap.D);
         configLeftMotors(RobotMap.P, RobotMap.I, RobotMap.D);
@@ -67,7 +67,7 @@ public class Drivetrain extends SubsystemBase {
     }
 
     public double getAngle(){
-        return gyro.getAngle();
+        return 0; //gyro.getAngle();
     }
 
     public void stop(){
@@ -400,7 +400,7 @@ public class Drivetrain extends SubsystemBase {
         t_backLeft.getSensorCollection().setIntegratedSensorPosition(0, RobotMap.TIMEOUT_MS);
         t_frontRight.getSensorCollection().setIntegratedSensorPosition(0, RobotMap.TIMEOUT_MS);
         t_backRight.getSensorCollection().setIntegratedSensorPosition(0, RobotMap.TIMEOUT_MS);
-		gyro.reset();
+		//gyro.reset();
 		System.out.println("[Integrated Encoders + Pigeon] All sensors are zeroed.\n");
 	}
 	

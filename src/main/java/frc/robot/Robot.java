@@ -55,7 +55,7 @@ public class Robot extends TimedRobot{
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer(RobotMap.KITBOT);
 
-    drive = new Drivetrain();
+    drive = m_robotContainer.drive;
   }
 
   /**

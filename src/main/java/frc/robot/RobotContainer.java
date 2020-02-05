@@ -39,7 +39,7 @@ public class RobotContainer {
   public CommandBase m_driveCommand;
   
   public SendableChooser<String> initPos = new SendableChooser<String>();
-  private Drivetrain drive;
+  public Drivetrain drive;
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -50,8 +50,8 @@ public class RobotContainer {
     else
       drive = new Drivetrain();
     
-    m_driveCommand = new DriveCommand(Robot.drive);
-    m_autoCommand = new DriveCommand(Robot.drive);
+    m_driveCommand = new DriveCommand(drive);
+    m_autoCommand = new DriveCommand(drive);
 
    // final TeleGroup teleGroup = new TeleGroup(Robot.drive, Robot.hop, Robot.climb, Robot.intake, Robot.hop);//climb, in, hop
 
