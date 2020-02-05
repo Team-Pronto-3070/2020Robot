@@ -6,8 +6,8 @@ import frc.robot.subsystems.Intake;
 public class IntakeBall extends CommandBase
 {
 private Intake intake;
-public IntakeBall () {
-    intake = Robot.intake;
+public IntakeBall (Intake in) {
+    intake =in;
     addRequirements(intake);
 }
 public void execute(){

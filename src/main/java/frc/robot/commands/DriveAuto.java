@@ -8,8 +8,8 @@ import frc.robot.subsystems.Drivetrain;
 public class DriveAuto extends CommandBase {
     Drivetrain drive;
 
-    public DriveAuto(){
-        drive = Robot.drive;
+    public DriveAuto(Drivetrain dt){
+        drive = dt;
         addRequirements(drive);
 
     }

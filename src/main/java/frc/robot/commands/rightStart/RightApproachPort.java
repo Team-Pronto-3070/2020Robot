@@ -8,8 +8,8 @@ public class RightApproachPort extends CommandBase {
     
     private Drivetrain drive;
     
-    public RightApproachPort(){
-        drive = Robot.drive;
+    public RightApproachPort(Drivetrain dt){
+        drive = dt;
         addRequirements(drive);
     }
 }

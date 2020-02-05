@@ -9,8 +9,8 @@ public class RightTurnToPort extends CommandBase {
 
     private Drivetrain drive;
     
-    public RightTurnToPort(){
-        drive = Robot.drive;
+    public RightTurnToPort(Drivetrain dt){
+        drive = dt;
         addRequirements(drive);
     }
 

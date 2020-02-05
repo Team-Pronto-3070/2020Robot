@@ -11,10 +11,11 @@ public class DriveCommand extends CommandBase{
     
 //do we need to pass subsystems in the constructor or can we call the static one 
    // private Drivetrain drive;
+    Drivetrain drive;
 
     public DriveCommand(Drivetrain dt){
-    //  drive = dt;
-      addRequirements(Robot.drive);
+      drive = dt;
+      addRequirements(drive);
     
     }
 

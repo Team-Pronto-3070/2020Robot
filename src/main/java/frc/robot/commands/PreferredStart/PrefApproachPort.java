@@ -10,8 +10,8 @@ public class PrefApproachPort extends CommandBase {
     
     private Drivetrain drive;
     
-    public PrefApproachPort(){
-        drive = Robot.drive;
+    public PrefApproachPort(Drivetrain dt){
+        drive = dt;
         addRequirements(drive);
     }
     public void execute()
