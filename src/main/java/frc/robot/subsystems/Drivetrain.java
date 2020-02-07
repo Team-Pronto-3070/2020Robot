@@ -20,8 +20,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.OI;
 import frc.robot.RobotMap;
 
-//TODO: Comment up
-
 public class Drivetrain extends SubsystemBase {
     TalonFX t_frontLeft, t_backLeft, t_frontRight, t_backRight;
     ADIS16448_IMU gyro;
