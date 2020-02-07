@@ -16,7 +16,6 @@ import com.ctre.phoenix.motorcontrol.SensorTerm;
 import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
-
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
@@ -30,6 +29,7 @@ public class Drivetrain extends SubsystemBase {
     boolean doneDistance = false;
     boolean _firstCall = false;
 	boolean _state = false;
+	double localInputScaler = 1;
 
     public Drivetrain(){
 
@@ -56,13 +56,13 @@ public class Drivetrain extends SubsystemBase {
     }
 
     public void leftDrive(double leftSpeed){
-        t_frontLeft.set(ControlMode.PercentOutput, leftSpeed * RobotMap.INPUT_SCALER);
+        t_frontLeft.set(ControlMode.PercentOutput, leftSpeed * localInputScaler);
         t_backLeft.set(ControlMode.Follower, RobotMap.FL_PORT);
 
     }
 
     public void rightDrive(double rightSpeed){
-        t_frontRight.set(ControlMode.PercentOutput, rightSpeed * RobotMap.INPUT_SCALER);
+        t_frontRight.set(ControlMode.PercentOutput, rightSpeed * localInputScaler);
         t_backRight.set(ControlMode.Follower, RobotMap.FR_PORT);
     }
 
@@ -150,8 +150,8 @@ public class Drivetrain extends SubsystemBase {
     // }
     public double getFLEncoder(){
         return t_frontLeft.getSelectedSensorPosition();
-    }
-
+	}
+	
     public void configLeftMotors(double P, double I, double D){
         /* Disable all motor controllers */
 		tankDrive(0,0);

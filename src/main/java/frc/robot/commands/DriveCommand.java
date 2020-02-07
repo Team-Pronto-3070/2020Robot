@@ -28,19 +28,16 @@ public class DriveCommand extends CommandBase{
       right = (right + Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Right, 1) * .75); //full speed ahead
   
           if(Math.abs(Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Left, 1)) > RobotMap.DEADZONE){
-            Robot.drive.leftDrive(Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Left, 1));
+            Robot.drive.leftDrive(Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Left, 1) * getInputScaler(RobotMap.JOYSIDE.Left));
           }else{
             Robot.drive.leftDrive(0);
           }
      
           if(Math.abs(Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Right, 1)) > RobotMap.DEADZONE){
-            Robot.drive.rightDrive(-Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Right, 1));
+            Robot.drive.rightDrive(-Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Right, 1) * getInputScaler(RobotMap.JOYSIDE.Right));
           }else{
             Robot.drive.rightDrive(0);
-          }
-         
-
-    
+          }    
 
       // left = Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Left, 1) > RobotMap.DEADZONE ? Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Left, 1) : -Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Left, 1);
       // right = Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Right, 1) > RobotMap.DEADZONE ? Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Right, 1) : -Robot.m_oi.getJoyAxis(RobotMap.JOYSIDE.Right, 1);
@@ -62,5 +59,13 @@ public class DriveCommand extends CommandBase{
     protected void interrupted(){
       Robot.drive.stop();
     }
+
+    public double getInputScaler(RobotMap.JOYSIDE side){
+      if(side == RobotMap.JOYSIDE.Right)
+        return -Robot.m_oi.j_RIGHT.getRawAxis(2);
+      else
+        return -Robot.m_oi.j_LEFT.getRawAxis(2);
+    }
+  
 
 }
