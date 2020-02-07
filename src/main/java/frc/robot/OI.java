@@ -14,8 +14,8 @@ public class OI {
     public OI(){
         j_LEFT = new Joystick(RobotMap.JOYL_PORT);
         j_RIGHT = new Joystick(RobotMap.JOYR_PORT);
-        hopButt = new JoystickButton(j_LEFT, 2); //TODO: Adjust these values to actual values
-        wofButt = new JoystickButton(j_LEFT, 3);
+        hopButt = new JoystickButton(j_LEFT, RobotMap.HOPPER_BUTTON); 
+        wofButt = new JoystickButton(j_LEFT, RobotMap.WOF_BUTTON);
     }
 
     public double getJoyAxis(RobotMap.JOYSIDE side, int axis){
