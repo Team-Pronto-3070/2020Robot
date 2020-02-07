@@ -78,12 +78,12 @@ public class RobotMap {
         Left, Right, Middle, Preffered
     };
 
-    public static StartingPosition convertStartingPosition(SendableChooser<String> initPos){
-        if(initPos.getSelected().equals("L")){
+    public static StartingPosition convertStartingPosition(String str){
+        if(str.equals("L")){
             return StartingPosition.Left;
-        }else if(initPos.getSelected().equals("R")){
+        }else if(str.equals("R")){
             return StartingPosition.Right;
-        }else if(initPos.getSelected().equals("M")){
+        }else if(str.equals("M")){
             return StartingPosition.Middle;
         }else{
             return StartingPosition.Preffered;

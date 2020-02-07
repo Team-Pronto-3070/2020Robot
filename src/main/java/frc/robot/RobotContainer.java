@@ -9,15 +9,12 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.RobotMap.StartingPosition;
 import frc.robot.commandGroups.AutoGroup;
-import frc.robot.commandGroups.TeleGroup;
 import frc.robot.commands.DriveCommand;
+import frc.robot.commands.UnloadHopper;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.DrivetrainKB;
 import frc.robot.subsystems.Hopper;
@@ -40,6 +37,7 @@ public class RobotContainer {
   public CommandBase m_driveCommand;
   
   AutoGroup autoGroup;
+  CommandBase unloadHop;
 
   public SendableChooser<String> initPos = new SendableChooser<String>();
   public Drivetrain drive;
@@ -60,8 +58,8 @@ public class RobotContainer {
     m_autoCommand = new DriveCommand(drive);
    // final TeleGroup teleGroup = new TeleGroup(Robot.drive, Robot.hop, Robot.climb, Robot.intake, Robot.hop);//climb, in, hop
 
-   autoGroup = new AutoGroup(RobotMap.convertStartingPosition(initPos), drive, hop);
-
+   autoGroup = new AutoGroup(RobotMap.convertStartingPosition(initPos.getSelected()), drive, hop);
+   unloadHop = new UnloadHopper(hop);
 
 
     //driveAuto = new AutoGroup(initPos, Robot.drive, Robot.hop);
@@ -90,7 +88,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
 
-  // Robot.m_oi.hopButt.toggleWhenPressed(m_driveCommand);
+  Robot.m_oi.hopButt.whenPressed(unloadHop);
 
   }
 
