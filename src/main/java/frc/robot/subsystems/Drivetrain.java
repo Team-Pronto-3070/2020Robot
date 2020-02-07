@@ -17,6 +17,7 @@ import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.OI;
 import frc.robot.RobotMap;
 
 //TODO: Comment up
@@ -32,7 +33,6 @@ public class Drivetrain extends SubsystemBase {
 	double localInputScaler = 1;
 
     public Drivetrain(){
-
        // setDefaultCommand(DriveCommand(this));
 
         t_frontLeft = new TalonFX(RobotMap.FL_PORT);

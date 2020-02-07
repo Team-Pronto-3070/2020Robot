@@ -12,18 +12,14 @@ public class UnloadHopper extends CommandBase{
     Hopper hop;
 
     public UnloadHopper(Hopper hopper){
-
         hop = hopper;
-        addRequirements(Robot.hop);
+        addRequirements(hopper);
 
     }
 
 
     public void execute(){
-
         hop.out();
-        
-        
     }
 
     public void initialize(){

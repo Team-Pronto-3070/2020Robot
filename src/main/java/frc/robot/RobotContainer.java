@@ -12,12 +12,13 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.commandGroups.AutoGroup;
-import frc.robot.commands.DriveCommand;
-import frc.robot.commands.UnloadHopper;
-import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.DrivetrainKB;
-import frc.robot.subsystems.Hopper;
+import frc.robot.commandGroups.*;
+import frc.robot.commands.*;
+import frc.robot.commands.LeftStart.*;
+import frc.robot.commands.MiddleStart.*;
+import frc.robot.commands.PreferredStart.*;
+import frc.robot.commands.RightStart.*;
+import frc.robot.subsystems.*;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -40,25 +41,34 @@ public class RobotContainer {
   CommandBase unloadHop;
 
   public SendableChooser<String> initPos = new SendableChooser<String>();
-  public Drivetrain drive;
-  public Hopper hop;
+  public static Drivetrain drive;
+  public static Hopper hop;
+  public static WOF wof;
+  public static OI m_oi;
+  public static Intake intake; 
+  public static Climber climb;
   
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer(boolean kitbot) {
+    
+    
+    wof = new WOF();
+    m_oi = new OI();
+    intake = new Intake();
+    climb = new Climber();
+
     if(kitbot)
       drive = new DrivetrainKB(); 
     else
       drive = new Drivetrain();
-    
-    hop = new Hopper();
       
-    m_driveCommand = new DriveCommand(drive);
-    m_autoCommand = new DriveCommand(drive);
+    m_driveCommand = new DriveCommand(drive, m_oi);
+    m_autoCommand = new DriveCommand(drive, m_oi);
    // final TeleGroup teleGroup = new TeleGroup(Robot.drive, Robot.hop, Robot.climb, Robot.intake, Robot.hop);//climb, in, hop
 
-   autoGroup = new AutoGroup(RobotMap.convertStartingPosition(initPos.getSelected()), drive, hop);
+   
    unloadHop = new UnloadHopper(hop);
 
 
@@ -74,6 +84,8 @@ public class RobotContainer {
     initPos.addOption("Right", "R");
 
     SmartDashboard.putData(initPos);
+
+    autoGroup = new AutoGroup(RobotMap.convertStartingPosition(initPos.getSelected()), drive, hop);
   }
 
   // public Drivetrain getDT(){
@@ -88,7 +100,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
 
-  Robot.m_oi.hopButt.whenPressed(unloadHop);
+  m_oi.hopButt.whenPressed(unloadHop);
 
   }
 
