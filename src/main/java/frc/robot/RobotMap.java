@@ -1,6 +1,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.util.Color;
 import com.revrobotics.ColorMatch;
 
@@ -78,6 +79,19 @@ public class RobotMap {
     public enum StartingPosition {
         Left, Right, Middle, Preffered
     };
+
+    public static StartingPosition convertStartingPosition(SendableChooser<String> initPos){
+        if(initPos.getSelected().equals("L")){
+            return StartingPosition.Left;
+        }else if(initPos.getSelected().equals("R")){
+            return StartingPosition.Right;
+        }else if(initPos.getSelected().equals("M")){
+            return StartingPosition.Middle;
+        }else{
+            return StartingPosition.Preffered;
+        }
+    }
+
 
     public enum GearboxPosition {
         Hi, Lo

@@ -17,6 +17,7 @@ import frc.robot.subsystems.WOF;
 
 
 
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -96,7 +97,9 @@ public class Robot extends TimedRobot{
     // schedule the autonomous command (example)
     if (m_robotContainer.getAutonomousCommand() != null) {
       m_robotContainer.m_autoCommand.schedule();
+      m_robotContainer.autoGroup.schedule();
     }
+
     wof.go();
   }
 
