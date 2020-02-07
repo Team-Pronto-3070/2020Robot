@@ -14,7 +14,7 @@ import frc.robot.RobotMap;
 //TODO: Comment up
 
 public class WOF extends SubsystemBase {
-    TalonSRX t_WOF;
+    public TalonSRX t_WOF;
     Color clr;
     int passes = 0; //# of completed passes of single color. * 2 = # of full rotations
 

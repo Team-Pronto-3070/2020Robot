@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.RobotMap.StartingPosition;
 import frc.robot.commandGroups.AutoGroup;
 import frc.robot.commandGroups.TeleGroup;
 import frc.robot.commands.DriveCommand;
@@ -38,9 +39,12 @@ public class RobotContainer {
   public CommandBase m_autoCommand;
   public CommandBase m_driveCommand;
   
+  AutoGroup autoGroup;
+
   public SendableChooser<String> initPos = new SendableChooser<String>();
   public Drivetrain drive;
-
+  public Hopper hop;
+  
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -50,11 +54,13 @@ public class RobotContainer {
     else
       drive = new Drivetrain();
     
+    hop = new Hopper();
+      
     m_driveCommand = new DriveCommand(drive);
     m_autoCommand = new DriveCommand(drive);
-
    // final TeleGroup teleGroup = new TeleGroup(Robot.drive, Robot.hop, Robot.climb, Robot.intake, Robot.hop);//climb, in, hop
 
+   autoGroup = new AutoGroup(RobotMap.convertStartingPosition(initPos), drive, hop);
 
 
 
@@ -66,7 +72,7 @@ public class RobotContainer {
 
     initPos.addOption("Left", "L");
     initPos.addOption("Middle", "M");
-    initPos.addOption("Preferred", "P");
+    initPos.addOption("Preferred", "P");  
     initPos.addOption("Right", "R");
 
     SmartDashboard.putData(initPos);
