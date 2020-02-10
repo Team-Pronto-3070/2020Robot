@@ -1,6 +1,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.util.Color;
 import com.revrobotics.ColorMatch;
 
@@ -42,8 +43,6 @@ public class RobotMap {
     public static final double WINCH_LIFT_SPEED = 1;
     public static final double HOPPER_LIFT_SPEED = 1;
 
-    public static final double INPUT_SCALER = .5;
-
     public enum ColorType {
         Blue, Red, Yellow, Green, UNKNOWN
     };
@@ -78,6 +77,19 @@ public class RobotMap {
     public enum StartingPosition {
         Left, Right, Middle, Preffered
     };
+
+    public static StartingPosition convertStartingPosition(String str){
+        if(str.equals("L")){
+            return StartingPosition.Left;
+        }else if(str.equals("R")){
+            return StartingPosition.Right;
+        }else if(str.equals("M")){
+            return StartingPosition.Middle;
+        }else{
+            return StartingPosition.Preffered;
+        }
+    }
+
 
     public enum GearboxPosition {
         Hi, Lo
@@ -138,4 +150,11 @@ public class RobotMap {
     public static double getRevs(double inches){
         return getGearboxRatio() * WHEEL_CIRCUMFRENCE_INCHES * inches;
     }
+
+    public static int HOPPER_BUTTON = 2;
+    public static int WOF_BUTTON = 3;
+    public static int INTAKE_BUTTON = 1;
+    public static int OUTPUT_BUTTON = 1;
+    public static int CLIMBER_UP_BUTTON = 3;
+    public static int CLIMBER_DOWN_BUTTON = 2;
 }

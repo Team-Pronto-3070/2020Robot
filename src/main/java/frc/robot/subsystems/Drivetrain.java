@@ -16,11 +16,9 @@ import com.ctre.phoenix.motorcontrol.SensorTerm;
 import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
-
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.OI;
 import frc.robot.RobotMap;
-
-//TODO: Comment up
 
 public class Drivetrain extends SubsystemBase {
     TalonFX t_frontLeft, t_backLeft, t_frontRight, t_backRight;
@@ -30,9 +28,9 @@ public class Drivetrain extends SubsystemBase {
     boolean doneDistance = false;
     boolean _firstCall = false;
 	boolean _state = false;
+	double localInputScaler = 1;
 
     public Drivetrain(){
-
        // setDefaultCommand(DriveCommand(this));
 
         t_frontLeft = new TalonFX(RobotMap.FL_PORT);
@@ -40,7 +38,7 @@ public class Drivetrain extends SubsystemBase {
         t_backLeft = new TalonFX(RobotMap.BL_PORT);
         t_backRight = new TalonFX(RobotMap.BR_PORT);
         
-        gyro = new ADIS16448_IMU();
+       // gyro = new ADIS16448_IMU();
 
         configLeftMotors(RobotMap.P, RobotMap.I, RobotMap.D);
         configLeftMotors(RobotMap.P, RobotMap.I, RobotMap.D);
@@ -56,18 +54,18 @@ public class Drivetrain extends SubsystemBase {
     }
 
     public void leftDrive(double leftSpeed){
-        t_frontLeft.set(ControlMode.PercentOutput, leftSpeed * RobotMap.INPUT_SCALER);
+        t_frontLeft.set(ControlMode.PercentOutput, leftSpeed * localInputScaler);
         t_backLeft.set(ControlMode.Follower, RobotMap.FL_PORT);
 
     }
 
     public void rightDrive(double rightSpeed){
-        t_frontRight.set(ControlMode.PercentOutput, rightSpeed * RobotMap.INPUT_SCALER);
+        t_frontRight.set(ControlMode.PercentOutput, rightSpeed * localInputScaler);
         t_backRight.set(ControlMode.Follower, RobotMap.FR_PORT);
     }
 
     public double getAngle(){
-        return gyro.getAngle();
+        return 0; //gyro.getAngle();
     }
 
     public void stop(){
@@ -120,7 +118,6 @@ public class Drivetrain extends SubsystemBase {
             return areWeThereYetAngle(pathDir, angle);
         }
     }
-
     public boolean areWeThereYetAngle(RobotMap.PathDirection dir, double angleWanted){
         switch (dir) {
             case Direct: //If we are going the direct way
@@ -149,11 +146,10 @@ public class Drivetrain extends SubsystemBase {
             
     //     }
     // }
-
     public double getFLEncoder(){
         return t_frontLeft.getSelectedSensorPosition();
-    }
-
+	}
+	
     public void configLeftMotors(double P, double I, double D){
         /* Disable all motor controllers */
 		tankDrive(0,0);
@@ -402,7 +398,7 @@ public class Drivetrain extends SubsystemBase {
         t_backLeft.getSensorCollection().setIntegratedSensorPosition(0, RobotMap.TIMEOUT_MS);
         t_frontRight.getSensorCollection().setIntegratedSensorPosition(0, RobotMap.TIMEOUT_MS);
         t_backRight.getSensorCollection().setIntegratedSensorPosition(0, RobotMap.TIMEOUT_MS);
-		gyro.reset();
+		//gyro.reset();
 		System.out.println("[Integrated Encoders + Pigeon] All sensors are zeroed.\n");
 	}
 	
@@ -415,3 +411,8 @@ public class Drivetrain extends SubsystemBase {
 		System.out.println("[Integrated Encoders] All encoders are zeroed.\n");
 	}
 }
+
+
+
+
+//haha butt

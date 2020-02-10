@@ -10,7 +10,7 @@ public class RightTurnToPort extends CommandBase {
     
     public RightTurnToPort(Drivetrain dt){
         drive = dt;
-        addRequirements(dt);
+        addRequirements(drive);
     }
 
     public void execute(){

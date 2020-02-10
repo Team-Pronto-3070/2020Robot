@@ -9,9 +9,13 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Hopper;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.WOF;
+
+
 
 
 /**
@@ -23,32 +27,11 @@ import frc.robot.subsystems.WOF;
  */
 public class Robot extends TimedRobot{
   RobotMap robotMap;
-  public static RobotContainer m_robotContainer;
-
-  public static Drivetrain drive;
-  public static Hopper hop;
-  public static WOF wof = null;
-  public static OI m_oi;
-  
-
-  //c_Drive drive;
-
-
+  public static RobotContainer m_rc;
 
   @Override
   public void robotInit() {
-    wof = new WOF();
-    m_oi = new OI();
-
-    robotMap = new RobotMap();
-
-    //SmartDashboard.putBoolean("isBlue", wof.booleanBlue);
-    //SmartDashboard.putNumber("Gyro val", .gyro.getAngle());
-    // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
-    // autonomous chooser on the dashboard.
-    m_robotContainer = new RobotContainer(RobotMap.KITBOT);
-
-    drive = m_robotContainer.getDT();
+    m_rc = new RobotContainer(RobotMap.KITBOT);
   }
 
   /**
@@ -87,10 +70,10 @@ public class Robot extends TimedRobot{
   public void autonomousInit() {
 
     // schedule the autonomous command (example)
-    if (m_robotContainer.getAutonomousCommand() != null) {
-      m_robotContainer.m_autoCommand.schedule();
+    if (m_rc.getAutonomousCommand() != null) {
+      m_rc.m_autoCommand.schedule();
+      m_rc.autoGroup.schedule();
     }
-    
   }
 
   /**
@@ -107,8 +90,8 @@ public class Robot extends TimedRobot{
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    if (m_robotContainer.m_driveCommand != null) {
-      m_robotContainer.m_driveCommand.schedule();
+    if (m_rc.m_driveCommand != null) {
+      m_rc.m_driveCommand.schedule();
     }
   }
 
@@ -131,6 +114,7 @@ public class Robot extends TimedRobot{
    */
   @Override
   public void testPeriodic() {
+    
   }
 }
 

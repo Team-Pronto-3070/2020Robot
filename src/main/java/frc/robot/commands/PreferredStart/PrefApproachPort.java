@@ -4,14 +4,11 @@ import frc.robot.RobotMap;
 import frc.robot.subsystems.Drivetrain;
 public class PrefApproachPort extends CommandBase {
     
-
-
-    
     private Drivetrain drive;
     
     public PrefApproachPort(Drivetrain dt){
         drive = dt;
-        addRequirements(dt);
+        addRequirements(drive);
     }
     public void execute()
 {

@@ -1,33 +1,33 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.subsystems.WOF;
 
 public class ControlPanelStageOne extends CommandBase {
-
+    private WOF wof;
     
 
-    public ControlPanelStageOne(){
-       
-        addRequirements(Robot.wof);
+    public ControlPanelStageOne(WOF wof){
+        this.wof = wof;
+        addRequirements(wof);
 
     }
 
     public void execute(){
        //needs to spin the thing 3-4 times
-       RobotMap.ColorType currentColor = Robot.wof.getClosestColor();
+       RobotMap.ColorType currentColor = wof.getClosestColor();
 
 
-        Robot.wof.go();
+        wof.go();
         int numRot = 3;
         if(numRot > 0){
-            Robot.wof.setDashColor();
-            if(currentColor == Robot.wof.getClosestColor()){
+            wof.setDashColor();
+            if(currentColor == wof.getClosestColor()){
                 numRot--;
             }
         }
-        Robot.wof.stop();
+        wof.stop();
     
     }
 

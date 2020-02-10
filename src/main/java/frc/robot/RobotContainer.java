@@ -9,16 +9,16 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.commandGroups.AutoGroup;
-import frc.robot.commands.DriveCommand;
-import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.DrivetrainKB;
-import frc.robot.subsystems.Hopper;
+import frc.robot.commandGroups.*;
+import frc.robot.commands.*;
+import frc.robot.commands.LeftStart.*;
+import frc.robot.commands.MiddleStart.*;
+import frc.robot.commands.PreferredStart.*;
+import frc.robot.commands.RightStart.*;
+import frc.robot.subsystems.*;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -37,41 +37,60 @@ public class RobotContainer {
   public CommandBase m_autoCommand;
   public CommandBase m_driveCommand;
   
-  CommandGroup teleGroup = null;
-  AutoGroup AutoGroup = null;
-  public SendableChooser<String> initPos = new SendableChooser<String>();
-  private Drivetrain drive;
+  AutoGroup autoGroup;
+  CommandBase unloadHop;
 
+  public SendableChooser<String> initPos = new SendableChooser<String>();
+  public static Drivetrain drive;
+  public static Hopper hop;
+  public static WOF wof;
+  public static OI m_oi;
+  public static Intake intake; 
+  public static Climber climb;
+  
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer(boolean kitbot) {
+    
+    
+    wof = new WOF();
+    m_oi = new OI();
+    intake = new Intake();
+    climb = new Climber();
+
     if(kitbot)
       drive = new DrivetrainKB(); 
     else
       drive = new Drivetrain();
-    
-    m_driveCommand = new DriveCommand();
-    m_autoCommand = new DriveCommand();
+      
+    m_driveCommand = new DriveCommand(drive, m_oi);
+    m_autoCommand = new DriveCommand(drive, m_oi);
+   // final TeleGroup teleGroup = new TeleGroup(Robot.drive, Robot.hop, Robot.climb, Robot.intake, Robot.hop);//climb, in, hop
 
-    teleGroup = new CommandGroup();
+   
+   unloadHop = new UnloadHopper(hop);
+
+
     //driveAuto = new AutoGroup(initPos, Robot.drive, Robot.hop);
     // Configure the button bindings
     configureButtonBindings();
-    Robot.drive.setDefaultCommand(m_driveCommand);
+    //Robot.drive.setDefaultCommand(teleGroup);
     //Robot.wof.setDefaultCommand(m_autoCommand);
 
     initPos.addOption("Left", "L");
     initPos.addOption("Middle", "M");
-    initPos.addOption("Preferred", "P");
+    initPos.addOption("Preferred", "P");  
     initPos.addOption("Right", "R");
 
     SmartDashboard.putData(initPos);
+
+    autoGroup = new AutoGroup(RobotMap.convertStartingPosition(initPos.getSelected()), drive, hop);
   }
 
-  public Drivetrain getDT(){
-    return drive;
-  }
+  // public Drivetrain getDT(){
+  //   return drive;
+  // }
 
   /**
    * Use this method to define your button->command mappings.  Buttons can be created by
@@ -81,7 +100,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
 
-  // Robot.m_oi.hopButt.toggleWhenPressed(m_driveCommand);
+  m_oi.hopButt.whenPressed(unloadHop);
 
   }
 
@@ -93,13 +112,13 @@ public class RobotContainer {
    */
   public CommandBase getAutonomousCommand() {
 
-    m_autoCommand = AutoGroup;
+   // m_autoCommand = AutoGroup;
     return m_autoCommand;
   }
 
-  public CommandGroup getTeleopCommand(){
-    return teleGroup;
-  }
+  // public CommandGroup getTeleopCommand(){
+  //   return teleGroup;
+  // }
 
   public RobotMap.StartingPosition getStartingPosition(){
     RobotMap.StartingPosition startPos = RobotMap.StartingPosition.Preffered;

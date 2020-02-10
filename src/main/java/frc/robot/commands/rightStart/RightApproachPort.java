@@ -1,7 +1,6 @@
 package frc.robot.commands.RightStart;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.RobotMap;
 import frc.robot.subsystems.Drivetrain;
 
 public class RightApproachPort extends CommandBase {
@@ -10,6 +9,6 @@ public class RightApproachPort extends CommandBase {
     
     public RightApproachPort(Drivetrain dt){
         drive = dt;
-        addRequirements(dt);
+        addRequirements(drive);
     }
 }

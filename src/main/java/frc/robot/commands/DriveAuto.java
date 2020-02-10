@@ -9,7 +9,7 @@ public class DriveAuto extends CommandBase {
 
     public DriveAuto(Drivetrain dt){
         drive = dt;
-        addRequirements(dt);
+        addRequirements(drive);
 
     }
 
