@@ -140,15 +140,15 @@ public class Drivetrain extends SubsystemBase {
         return doneAngle; //Return whether or not the robot has crossed the threshold.
     }    
 
-    public boolean driveDistance(double distance) {
-        int direction = 0;
-        if(doneDistance) {
-            initDistance = getFLEncoder();
-            doneDistance = false;
-        } else {
+    // public boolean driveDistance(double distance) {
+    //     int direction = 0;
+    //     if(doneDistance) {
+    //         initDistance = getFLEncoder();
+    //         doneDistance = false;
+    //     } else {
             
-        }
-    }
+    //     }
+    // }
 
     public double getFLEncoder(){
         return t_frontLeft.getSelectedSensorPosition();

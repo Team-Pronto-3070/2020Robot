@@ -1,4 +1,4 @@
-package frc.robot.commands.middleStart;
+package frc.robot.commands.MiddleStart;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotMap;
