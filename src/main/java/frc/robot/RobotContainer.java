@@ -101,7 +101,7 @@ public class RobotContainer {
     if(wofStage == WOF_Stage.STAGE_ONE)
       return new ControlPanelStageOne(s_wof);
     else 
-      reutnr new ControlPanelStageTwo(s_wof);
+      return new ControlPanelStageTwo(s_wof);
   }
 
   private void configureButtonBindings() {
