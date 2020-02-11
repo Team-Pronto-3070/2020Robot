@@ -6,6 +6,7 @@ import com.revrobotics.ColorMatch;
 import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorSensorV3;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -22,9 +23,7 @@ public class WOF extends SubsystemBase {
     boolean booleanGreen = false;
     boolean booleanRed = false;
     boolean booleanYellow = false;
-
-
-
+    
     ColorSensorV3 s_colorSensor;
 
     private final ColorMatch m_colorMatcher = new ColorMatch();
@@ -38,6 +37,8 @@ public class WOF extends SubsystemBase {
         t_WOF = new TalonSRX(RobotMap.T_WOF_PORT);
         
         s_colorSensor = new ColorSensorV3(RobotMap.i2cPort);
+
+        
     }
 
     @Override
@@ -54,11 +55,6 @@ public class WOF extends SubsystemBase {
         booleanRed = false;
         booleanYellow = false;
         booleanGreen = false;
-
-       
-
-     
-
     }
 
     public void setDashColor(){

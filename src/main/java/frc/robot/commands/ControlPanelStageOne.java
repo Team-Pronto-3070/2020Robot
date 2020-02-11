@@ -18,7 +18,6 @@ public class ControlPanelStageOne extends CommandBase {
        //needs to spin the thing 3-4 times
        RobotMap.ColorType currentColor = wof.getClosestColor();
 
-
         wof.go();
         int numRot = 3;
         if(numRot > 0){
@@ -36,12 +35,10 @@ public class ControlPanelStageOne extends CommandBase {
     }
 
     protected void end(){
-
+        
     }
 
     protected void initalize(){
-
-        
 
     }
 

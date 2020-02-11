@@ -17,11 +17,10 @@ import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.OI;
 import frc.robot.RobotMap;
 
 public class Drivetrain extends SubsystemBase {
-    TalonFX t_frontLeft, t_backLeft, t_frontRight, t_backRight;
+    public TalonFX t_frontLeft, t_backLeft, t_frontRight, t_backRight;
     ADIS16448_IMU gyro;
     double initAngle, initDistance;
     boolean doneAngle = false; //Stores whether or not we're there yet
@@ -411,6 +410,9 @@ public class Drivetrain extends SubsystemBase {
 		System.out.println("[Integrated Encoders] All encoders are zeroed.\n");
 	}
 }
+
+
+
 
 
 

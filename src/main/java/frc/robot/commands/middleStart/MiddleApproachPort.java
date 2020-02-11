@@ -12,4 +12,19 @@ public class MiddleApproachPort extends CommandBase {
         drive = dt;
         addRequirements(dt);
     }
+    public boolean isFinished() {
+        return drive.turnToAngle(RobotMap.LEFT_START_TURN_ANGLE);
+    }
+  
+      protected void end(){
+  
+      }
+  
+      protected void initalize(){
+  
+      }
+  
+      protected void interrupted(){
+  
+      }
 }
