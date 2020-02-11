@@ -23,12 +23,7 @@ public class WOF extends SubsystemBase {
     boolean booleanGreen = false;
     boolean booleanRed = false;
     boolean booleanYellow = false;
-
     
-    
-
-
-
     ColorSensorV3 s_colorSensor;
 
     private final ColorMatch m_colorMatcher = new ColorMatch();
