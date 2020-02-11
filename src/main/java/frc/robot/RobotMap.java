@@ -1,7 +1,6 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.I2C;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.util.Color;
 import com.revrobotics.ColorMatch;
 
@@ -32,9 +31,7 @@ public class RobotMap {
     public static final int T_TELE_PORT = T_ANAKIN_PORT;
     public static final int T_BELT1_PORT = T_REVAN_PORT;
     public static final int T_BELT2_PORT = T_BASTILA_PORT;
-
-	public static final boolean KITBOT = false;
-
+    
     public enum JOYSIDE {
         Left, Right
     };
@@ -151,10 +148,14 @@ public class RobotMap {
         return getGearboxRatio() * WHEEL_CIRCUMFRENCE_INCHES * inches;
     }
 
-    public static int HOPPER_BUTTON = 2;
-    public static int WOF_BUTTON = 3;
-    public static int INTAKE_BUTTON = 1;
-    public static int OUTPUT_BUTTON = 1;
-    public static int CLIMBER_UP_BUTTON = 3;
-    public static int CLIMBER_DOWN_BUTTON = 2;
+    public static final int HOPPER_BUTTON = 2;
+    public static final int WOF_BUTTON = 3;
+    public static final int INTAKE_BUTTON = 1;
+    public static final int OUTPUT_BUTTON = 1;
+    public static final int CLIMBER_UP_BUTTON = 3;
+    public static final int CLIMBER_DOWN_BUTTON = 2;
+
+    public enum WOF_Stage {
+        STAGE_ONE, STAGE_TWO
+    };
 }

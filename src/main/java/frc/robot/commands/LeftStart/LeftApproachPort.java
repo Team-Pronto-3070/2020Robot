@@ -11,4 +11,8 @@ public class LeftApproachPort extends CommandBase {
         drive = dt;
         addRequirements(dt);
     }
+
+    public void execute(){
+        
+    }
 }

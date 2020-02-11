@@ -3,8 +3,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.*;
 
-//TODO: Comment up
-
 public class OI {
     
     
