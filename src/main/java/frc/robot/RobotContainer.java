@@ -49,6 +49,8 @@ public class RobotContainer {
   public static Intake s_intake; 
   public static Climber s_climb;
   public static WOF_Stage wofStage = WOF_Stage.STAGE_ONE;
+  public static ControlPanelStageOne CtrlOne;
+  public static ControlPanelStageTwo CtrlTwo;
   
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -67,9 +69,11 @@ public class RobotContainer {
    // final TeleGroup teleGroup = new TeleGroup(Robot.s_drive, Robot.hop, Robot.s_climb, Robot.s_intake, Robot.hop);//s_climb, in, hop
 
    
-   unloadHop = new UnloadHopper(hop);
+    unloadHop = new UnloadHopper(hop);
 
-
+    CtrlOne = new ControlPanelStageOne(s_wof);
+    CtrlTwo = new ControlPanelStageTwo(s_wof);
+    
     //driveAuto = new AutoGroup(initPos, Robot.s_drive, Robot.hop);
     // Configure the button bindings
     configureButtonBindings();
@@ -97,17 +101,17 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
 
-  public CommandBase getWOFStage(){
+  public void configureWOFStage(){
     if(wofStage == WOF_Stage.STAGE_ONE)
-      return new ControlPanelStageOne(s_wof);
+      s_oi.wofButt.whenPressed(CtrlOne);
     else 
-      reutnr new ControlPanelStageTwo(s_wof);
+      s_oi.wofButt.whenPressed(CtrlTwo);
   }
 
   private void configureButtonBindings() {
 
-  s_oi.hopButt.whenPressed(unloadHop);
-  s_oi.wofButt.whenPressed(getWOFStage());
+    s_oi.hopButt.whenPressed(unloadHop);
+    configureWOFStage();
 
   }
 
