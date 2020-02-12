@@ -97,7 +97,7 @@ public class Robot extends TimedRobot{
     if (m_robotContainer.getAutonomousCommand() != null) {
       m_robotContainer.m_autoCommand.schedule();
     }
-    wof.go();
+    
   }
 
   /**

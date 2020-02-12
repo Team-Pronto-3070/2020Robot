@@ -1,7 +1,10 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
+import com.ctre.phoenix.motorcontrol.RemoteLimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
@@ -14,11 +17,13 @@ public class Climber extends SubsystemBase{
     
     public Climber(){
         t_winch = new TalonSRX(RobotMap.T_WINCH_PORT);
-        t_teleArm = new TalonSRX(RobotMap.T_TELE_PORT);    
+        t_teleArm = new TalonSRX(RobotMap.T_TELE_PORT);
+        
+       // t_teleArm.configReverseLimitSwichSource(RemoteLimitSwitchSource.RemoteTalonSRX, LimitSwitchNormal.NormallyClosed,3,0);
     }
 
     public void goUp(){
-        t_winch.set(ControlMode.PercentOutput, RobotMap.WINCH_LIFT_SPEED);
+        t_winch.set(ControlMode.PercentOutput, -RobotMap.WINCH_LIFT_SPEED);
         t_teleArm.set(ControlMode.PercentOutput, RobotMap.TELE_LIFT_SPEED);
     }
     public void teleArmDown(){

@@ -6,7 +6,7 @@ import frc.robot.subsystems.Hopper;
 
 public class UnloadHopper extends CommandBase{
 
-    Hopper hop;
+    private Hopper hop;
 
     public UnloadHopper(Hopper hopper){
 
