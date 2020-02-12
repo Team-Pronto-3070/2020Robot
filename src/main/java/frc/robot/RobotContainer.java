@@ -9,17 +9,17 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.commandGroups.AutoGroup;
-import frc.robot.commandGroups.TeleGroup;
-import frc.robot.commands.DriveCommand;
-import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.DrivetrainKB;
-import frc.robot.subsystems.Hopper;
+import frc.robot.RobotMap.WOF_Stage;
+import frc.robot.commandGroups.*;
+import frc.robot.commands.*;
+import frc.robot.commands.LeftStart.*;
+import frc.robot.commands.MiddleStart.*;
+import frc.robot.commands.PreferredStart.*;
+import frc.robot.commands.RightStart.*;
+import frc.robot.subsystems.*;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -35,45 +35,63 @@ public class RobotContainer {
 
 //IMPLEMENT COMMAND GROUPS
 
-  public CommandBase m_autoCommand;
-  public CommandBase m_driveCommand;
+  public CommandBase s_autoCommand;
+  public CommandBase s_driveCommand;
   
-  public SendableChooser<String> initPos = new SendableChooser<String>();
-  public Drivetrain drive;
+  AutoGroup autoGroup;
+  CommandBase unloadHop;
 
+  public SendableChooser<String> initPos = new SendableChooser<String>();
+  public static Drivetrain s_drive;
+  public static Hopper hop;
+  public static WOF s_wof;
+  public static OI s_oi;
+  public static Intake s_intake; 
+  public static Climber s_climb;
+  public static WOF_Stage wofStage = WOF_Stage.STAGE_ONE;
+  public static ControlPanelStageOne CtrlOne;
+  public static ControlPanelStageTwo CtrlTwo;
+  
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
-  public RobotContainer(boolean kitbot) {
-    if(kitbot)
-      drive = new DrivetrainKB(); 
-    else
-      drive = new Drivetrain();
+  public RobotContainer() {
     
-    m_driveCommand = new DriveCommand(drive);
-    m_autoCommand = new DriveCommand(drive);
+    
+    s_wof = new WOF();
+    s_oi = new OI();
+    s_intake = new Intake();
+    s_climb = new Climber();
+    s_drive = new Drivetrain();
+      
+    s_driveCommand = new DriveCommand(s_drive, s_oi);
+    s_autoCommand = new DriveCommand(s_drive, s_oi);
+   // final TeleGroup teleGroup = new TeleGroup(Robot.s_drive, Robot.hop, Robot.s_climb, Robot.s_intake, Robot.hop);//s_climb, in, hop
 
-   // final TeleGroup teleGroup = new TeleGroup(Robot.drive, Robot.hop, Robot.climb, Robot.intake, Robot.hop);//climb, in, hop
+   
+    unloadHop = new UnloadHopper(hop);
 
-
-
-
-    //driveAuto = new AutoGroup(initPos, Robot.drive, Robot.hop);
+    CtrlOne = new ControlPanelStageOne(s_wof);
+    CtrlTwo = new ControlPanelStageTwo(s_wof);
+    
+    //driveAuto = new AutoGroup(initPos, Robot.s_drive, Robot.hop);
     // Configure the button bindings
     configureButtonBindings();
-    //Robot.drive.setDefaultCommand(teleGroup);
-    //Robot.wof.setDefaultCommand(m_autoCommand);
+    //Robot.s_drive.setDefaultCommand(teleGroup);
+    //Robot.s_wof.setDefaultCommand(s_autoCommand);
 
     initPos.addOption("Left", "L");
     initPos.addOption("Middle", "M");
-    initPos.addOption("Preferred", "P");
+    initPos.addOption("Preferred", "P");  
     initPos.addOption("Right", "R");
 
     SmartDashboard.putData(initPos);
+
+    autoGroup = new AutoGroup(RobotMap.convertStartingPosition(initPos.getSelected()), s_drive, hop);
   }
 
   // public Drivetrain getDT(){
-  //   return drive;
+  //   return s_drive;
   // }
 
   /**
@@ -82,13 +100,21 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
+
+  public void configureWOFStage(){
+    if(wofStage == WOF_Stage.STAGE_ONE)
+      s_oi.wofButt.whenPressed(CtrlOne);
+    else 
+      s_oi.wofButt.whenPressed(CtrlTwo);
+  }
+
   private void configureButtonBindings() {
 
-  // Robot.m_oi.hopButt.toggleWhenPressed(m_driveCommand);
+    s_oi.hopButt.whenPressed(unloadHop);
+    configureWOFStage();
 
     
   }
-
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
@@ -97,8 +123,8 @@ public class RobotContainer {
    */
   public CommandBase getAutonomousCommand() {
 
-   // m_autoCommand = AutoGroup;
-    return m_autoCommand;
+   // s_autoCommand = AutoGroup;
+    return s_autoCommand;
   }
 
   // public CommandGroup getTeleopCommand(){
@@ -121,308 +147,3 @@ public class RobotContainer {
   }
   
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//haha butt

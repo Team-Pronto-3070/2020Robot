@@ -9,12 +9,11 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import frc.robot.Robot;
+
 import frc.robot.RobotMap;
 
 public class DrivetrainKB extends Drivetrain{
     TalonSRX t_frontLeft, t_backLeft, t_frontRight, t_backRight;
-    
 
     public DrivetrainKB(){
         t_frontLeft = new TalonSRX(RobotMap.T_REY_PORT);
@@ -28,14 +27,18 @@ public class DrivetrainKB extends Drivetrain{
     }
 
     public void tankDrive(double leftSpeed, double rightSpeed){
-        System.out.println("HEY you're in tank");
-        //do tank drive thing 
-
-        t_frontRight.set(ControlMode.PercentOutput, rightSpeed/2);
-        t_backRight.set(ControlMode.Follower, RobotMap.T_OBIWAN_PORT);
-        
-        t_frontLeft.set(ControlMode.PercentOutput, Robot.m_oi.j_LEFT.getRawAxis(1)/2);
-        t_backLeft.set(ControlMode.Follower, RobotMap.T_REY_PORT);
+        rightDrive(rightSpeed);
+        leftDrive(leftSpeed);
     }
 
+    public void leftDrive(double leftSpeed){
+        t_frontLeft.set(ControlMode.PercentOutput, leftSpeed * localInputScaler);
+        t_backLeft.set(ControlMode.Follower, RobotMap.FL_PORT);
+
+    }
+
+    public void rightDrive(double rightSpeed){
+        t_frontRight.set(ControlMode.PercentOutput, rightSpeed * localInputScaler);
+        t_backRight.set(ControlMode.Follower, RobotMap.FR_PORT);
+    }
 }

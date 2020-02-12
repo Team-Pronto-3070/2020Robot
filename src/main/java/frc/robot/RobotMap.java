@@ -31,9 +31,7 @@ public class RobotMap {
     public static final int T_TELE_PORT = T_OBIWAN_PORT;
     public static final int T_BELT1_PORT = T_REVAN_PORT;
     public static final int T_BELT2_PORT = T_BASTILA_PORT;
-
-	public static final boolean KITBOT = false;
-
+    
     public enum JOYSIDE {
         Left, Right
     };
@@ -41,8 +39,6 @@ public class RobotMap {
     public static final double TELE_LIFT_SPEED = .5;
     public static final double WINCH_LIFT_SPEED = .5;
     public static final double HOPPER_LIFT_SPEED = 1;
-
-    public static final double INPUT_SCALER = .5;
 
     public enum ColorType {
         Blue, Red, Yellow, Green, UNKNOWN
@@ -78,6 +74,19 @@ public class RobotMap {
     public enum StartingPosition {
         Left, Right, Middle, Preffered
     };
+
+    public static StartingPosition convertStartingPosition(String str){
+        if(str.equals("L")){
+            return StartingPosition.Left;
+        }else if(str.equals("R")){
+            return StartingPosition.Right;
+        }else if(str.equals("M")){
+            return StartingPosition.Middle;
+        }else{
+            return StartingPosition.Preffered;
+        }
+    }
+
 
     public enum GearboxPosition {
         Hi, Lo
@@ -138,4 +147,15 @@ public class RobotMap {
     public static double getRevs(double inches){
         return getGearboxRatio() * WHEEL_CIRCUMFRENCE_INCHES * inches;
     }
+
+    public static final int HOPPER_BUTTON = 2;
+    public static final int WOF_BUTTON = 3;
+    public static final int INTAKE_BUTTON = 1;
+    public static final int OUTPUT_BUTTON = 1;
+    public static final int CLIMBER_UP_BUTTON = 3;
+    public static final int CLIMBER_DOWN_BUTTON = 2;
+
+    public enum WOF_Stage {
+        STAGE_ONE, STAGE_TWO
+    };
 }

@@ -1,23 +1,19 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
-
-//TODO: Comment up
+import edu.wpi.first.wpilibj2.command.button.*;
 
 public class OI {
     
     
     public Joystick j_LEFT, j_RIGHT;
-    JoystickButton hopButt;
-    
+    JoystickButton hopButt, wofButt;
 
     public OI(){
-
         j_LEFT = new Joystick(RobotMap.JOYL_PORT);
         j_RIGHT = new Joystick(RobotMap.JOYR_PORT);
-        hopButt = new JoystickButton(j_LEFT, 2); //TODO: Adjust these values to actual values
-        
+        hopButt = new JoystickButton(j_LEFT, RobotMap.HOPPER_BUTTON); 
+        wofButt = new JoystickButton(j_LEFT, RobotMap.WOF_BUTTON);
     }
 
     public double getJoyAxis(RobotMap.JOYSIDE side, int axis){

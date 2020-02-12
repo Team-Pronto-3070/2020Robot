@@ -2,7 +2,6 @@ package frc.robot.commandGroups;
 
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.LeftStart.*;
 import frc.robot.commands.MiddleStart.*;
@@ -23,6 +22,11 @@ public class AutoGroup extends SequentialCommandGroup{
             case Middle:
                 addCommands(new MiddleTurnToPort(dt), new MiddleApproachPort(dt), new MiddleTurnIntoPort(dt), new AutoUnloadHopper(hop));
                 break;
+            case Preffered:
+                addCommands(new PrefApproachPort(dt));
+                break;
         }
+
+
     }
 }

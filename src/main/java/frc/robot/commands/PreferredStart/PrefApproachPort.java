@@ -1,12 +1,8 @@
 package frc.robot.commands.PreferredStart;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.Drivetrain;
 public class PrefApproachPort extends CommandBase {
-    
-
-
     
     private Drivetrain drive;
     
