@@ -40,6 +40,8 @@ public class RobotContainer {
   
   AutoGroup autoGroup;
   CommandBase unloadHop;
+  CommandBase climberUp;
+  CommandBase climberDown;
 
   public SendableChooser<String> initPos = new SendableChooser<String>();
   public static Drivetrain s_drive;
@@ -63,6 +65,7 @@ public class RobotContainer {
     s_intake = new Intake();
     s_climb = new Climber();
     s_drive = new Drivetrain();
+    hop = new Hopper();
       
     s_driveCommand = new DriveCommand(s_drive, s_oi);
     s_autoCommand = new DriveCommand(s_drive, s_oi);
@@ -70,24 +73,28 @@ public class RobotContainer {
 
    
     unloadHop = new UnloadHopper(hop);
+   
 
     CtrlOne = new ControlPanelStageOne(s_wof);
     CtrlTwo = new ControlPanelStageTwo(s_wof);
     
     //driveAuto = new AutoGroup(initPos, Robot.s_drive, Robot.hop);
     // Configure the button bindings
-    configureButtonBindings();
+   
     //Robot.s_drive.setDefaultCommand(teleGroup);
     //Robot.s_wof.setDefaultCommand(s_autoCommand);
 
     initPos.addOption("Left", "L");
-    initPos.addOption("Middle", "M");
-    initPos.addOption("Preferred", "P");  
+    initPos.addOption("Middle", "M");  
     initPos.addOption("Right", "R");
-
+    initPos.setDefaultOption("Preferred", "P");
+    
     SmartDashboard.putData(initPos);
 
     autoGroup = new AutoGroup(RobotMap.convertStartingPosition(initPos.getSelected()), s_drive, hop);
+  
+  
+    configureButtonBindings();
   }
 
   // public Drivetrain getDT(){
@@ -110,10 +117,10 @@ public class RobotContainer {
 
   private void configureButtonBindings() {
 
-    s_oi.hopButt.whenPressed(unloadHop);
+    s_oi.hopButt.whenPressed(new UnloadHopper(hop));
     configureWOFStage();
-
-    
+    s_oi.climbUpButt.whenPressed( new ClimberUp(s_climb));
+    s_oi.climbDownButt.whenPressed( new ClimberDown(s_climb));
   }
 
   /**

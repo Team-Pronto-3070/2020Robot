@@ -7,13 +7,15 @@ public class OI {
     
     
     public Joystick j_LEFT, j_RIGHT;
-    JoystickButton hopButt, wofButt;
+    JoystickButton hopButt, wofButt, climbUpButt, climbDownButt;
 
     public OI(){
         j_LEFT = new Joystick(RobotMap.JOYL_PORT);
         j_RIGHT = new Joystick(RobotMap.JOYR_PORT);
         hopButt = new JoystickButton(j_LEFT, RobotMap.HOPPER_BUTTON); 
         wofButt = new JoystickButton(j_LEFT, RobotMap.WOF_BUTTON);
+        climbUpButt = new JoystickButton(j_RIGHT, RobotMap.CLIMBER_UP_BUTTON);
+        climbDownButt = new JoystickButton(j_RIGHT, RobotMap.CLIMBER_DOWN_BUTTON);
     }
 
     public double getJoyAxis(RobotMap.JOYSIDE side, int axis){

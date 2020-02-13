@@ -36,7 +36,7 @@ public class RobotMap {
         Left, Right
     };
 
-    public static final double TELE_LIFT_SPEED = .5;
+    public static final double TELE_LIFT_SPEED = -.5;
     public static final double WINCH_LIFT_SPEED = .5;
     public static final double HOPPER_LIFT_SPEED = 1;
 
