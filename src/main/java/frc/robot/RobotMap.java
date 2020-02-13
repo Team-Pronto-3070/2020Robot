@@ -26,9 +26,9 @@ public class RobotMap {
 
     //Set each function-named talon port to each named definition
     public static final int T_WOF_PORT = T_REY_PORT;
-    public static final int T_WINCH_PORT = T_OBIWAN_PORT;
+    public static final int T_WINCH_PORT = T_ANAKIN_PORT;
     public static final int T_HOPPER_PORT = T_ASHOKA_PORT;
-    public static final int T_TELE_PORT = T_ANAKIN_PORT;
+    public static final int T_TELE_PORT = T_OBIWAN_PORT;
     public static final int T_BELT1_PORT = T_REVAN_PORT;
     public static final int T_BELT2_PORT = T_BASTILA_PORT;
     
@@ -36,8 +36,8 @@ public class RobotMap {
         Left, Right
     };
 
-    public static final double TELE_LIFT_SPEED = 1;
-    public static final double WINCH_LIFT_SPEED = 1;
+    public static final double TELE_LIFT_SPEED = .5;
+    public static final double WINCH_LIFT_SPEED = .5;
     public static final double HOPPER_LIFT_SPEED = 1;
 
     public enum ColorType {
