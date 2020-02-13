@@ -35,7 +35,7 @@ public class ControlPanelStageOne extends CommandBase {
     }
 
     protected void end(){
-        
+        //TODO: Change wofStage to ControlPanelStageTwo in RobotContainer.
     }
 
     protected void initalize(){
