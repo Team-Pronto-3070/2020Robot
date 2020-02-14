@@ -90,6 +90,7 @@ public class RobotContainer {
     initPos.setDefaultOption("Preferred", "P");
     
     SmartDashboard.putData(initPos);
+    SmartDashboard.putBoolean("Top Limit Switch", s_climb.upperLimit.get());
 
     autoGroup = new AutoGroup(RobotMap.convertStartingPosition(initPos.getSelected()), s_drive, hop);
   

@@ -10,14 +10,15 @@ public class ClimberUp extends CommandBase {
     Timer timer = new Timer();
     private Climber climber;
 
-    DigitalInput upperLimit;
+    //DigitalInput upperLimit;
 
     
     public ClimberUp (Climber climb) {
         climber = climb;
         addRequirements(climb);
 
-        upperLimit = new DigitalInput(2);
+       
+
         
     }
     public void execute(){ 
@@ -25,13 +26,18 @@ public class ClimberUp extends CommandBase {
           //winch and climber up, climber down and then winch down
 
           //TODO: need to make sure limit switches will stop the motors before testing
-        if(!upperLimit.get()){ 
+        // if(!upperLimit.get()){ 
             climber.goUp();
-        }
+       // }
         
         
         
     }
+    public boolean isLimit(){
+        //return upperLimit.get();
+        return false;
+    }
+
     public boolean isFinished() {
         return false;
        }
