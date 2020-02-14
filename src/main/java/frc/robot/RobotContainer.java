@@ -91,9 +91,10 @@ public class RobotContainer {
     
     SmartDashboard.putData(initPos);
 
+    SmartDashboard.putNumber("FL Encoder Value", s_drive.getLeftEncoderPosition());
+
     autoGroup = new AutoGroup(RobotMap.convertStartingPosition(initPos.getSelected()), s_drive, hop);
-  
-  
+
     configureButtonBindings();
   }
 

@@ -9,7 +9,10 @@ package frc.robot.subsystems;
 
 import com.analog.adis16448.frc.ADIS16448_IMU;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
@@ -22,6 +25,8 @@ public class Drivetrain extends SubsystemBase {
     boolean _firstCall = false;
 	boolean _state = false;
 	double localInputScaler = 1;
+	RobotMap.GearboxPosition gearboxPosition;
+	Solenoid gbSol;
 
     public Drivetrain(){
        // setDefaultCommand(DriveCommand(this));
@@ -29,9 +34,21 @@ public class Drivetrain extends SubsystemBase {
         t_frontLeft = new TalonFX(RobotMap.FL_PORT);
         t_frontRight = new TalonFX(RobotMap.FR_PORT);
         t_backLeft = new TalonFX(RobotMap.BL_PORT);
-        t_backRight = new TalonFX(RobotMap.BR_PORT);
-        
-       // gyro = new ADIS16448_IMU();
+		t_backRight = new TalonFX(RobotMap.BR_PORT);
+		
+		t_frontLeft.configFactoryDefault();
+		t_frontRight.configFactoryDefault();
+		t_backLeft.configFactoryDefault();
+		t_backRight.configFactoryDefault();
+		
+		t_frontLeft.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
+		t_frontRight.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
+		t_backLeft.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
+		t_backRight.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
+
+	   // gyro = new ADIS16448_IMU();
+	   
+	   gbSol = new Solenoid(RobotMap.SOLENOID_PORT);
     }
 
     public void periodic(){
@@ -131,24 +148,30 @@ public class Drivetrain extends SubsystemBase {
         if(doneDistance) {
 			resetEncoderValues();
 			doneDistance = false;
+			return false;
         } else {
-            
+			if(getLeftEncoderPosition() > Math.abs(distance)){
+				stop();
+				doneDistance = true;
+				return true;
+			} else {
+				tankDrive(RobotMap.AUTO_SPEED * RobotMap.getDirCoef(distance), RobotMap.AUTO_SPEED * RobotMap.getDirCoef(distance));
+				return false;
+			}
+
+			/**
+			 * If the encoders>|distance|, then stop and set doneDistance to true
+			 * If the distance goes backward then set motors backward
+			 * If the distance is forward then set motors forward
+			 */
         }
     }
-    public double getFLEncoderPosition(){
+    public double getLeftEncoderPosition(){
 		return t_frontLeft.getSelectedSensorPosition();
 	}
 
-	public double getFREncoderPosition(){
+	public double getRightEncoderPosition(){
 		return t_frontRight.getSelectedSensorPosition();
-	}
-
-	public double getBLEncoderPosition(){
-		return t_backLeft.getSelectedSensorPosition();
-	}
-
-	public double getBREncoderPosition(){
-		return t_backRight.getSelectedSensorPosition();
 	}
 
 	public double getLeftSpeed(){
@@ -164,6 +187,13 @@ public class Drivetrain extends SubsystemBase {
 		t_frontRight.setSelectedSensorPosition(0);
 		t_backLeft.setSelectedSensorPosition(0);
 		t_backLeft.setSelectedSensorPosition(0);
+	}
+
+	public void shiftGB(RobotMap.GearboxPosition pos){
+		if(pos == RobotMap.GearboxPosition.Hi)
+			gbSol.set(RobotMap.GB_SOL_HI);
+		else 
+			gbSol.set(RobotMap.GB_SOL_LO);
 	}
 }
 

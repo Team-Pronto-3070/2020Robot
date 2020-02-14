@@ -27,6 +27,8 @@ public class RobotMap {
 
     public static final I2C.Port i2cPort = I2C.Port.kOnboard; //I2C ports for gyro
 
+    public static final int SOLENOID_PORT = 1;
+
     public static final int JOYL_PORT = 0; //Joystick USB ports
     public static final int JOYR_PORT = 1;
     
@@ -84,10 +86,13 @@ public class RobotMap {
     private static GearboxPosition GB_STATUS = GearboxPosition.Lo; //Var for storing gearbox position
     public static final double LO_GEARBOX_RATIO = 1; //Ratios for different gearbox settings
     public static final double HI_GEARBOX_RATIO = 1;
-    
+
     public enum GearboxPosition { //Enum for the pneumatic shifting gearbox position
         Hi, Lo
     };
+
+    public static final boolean GB_SOL_HI = true;
+    public static final boolean GB_SOL_LO = false;
 
     public static StartingPosition convertStartingPosition(String str){ //Translator for SendableChooser<String> 
         if(str.equals("L")){                                            //input to StartingPosition output
@@ -120,8 +125,13 @@ public class RobotMap {
         return GB_STATUS;
     }
 
-    public static double getRevs(double inches){ //Returns ratio of input revs to output revs
-        return getGearboxRatio() * WHEEL_CIRCUMFRENCE_INCHES * inches;
+    public static int getDirCoef(double distance){
+        if(distance < 0)
+            return -1;
+        else if(distance > 0)
+            return 1;
+        else 
+            return 0;
     }
 
     public enum WOF_Stage { //Wheel Of Fortune stage enum for determining current stage
