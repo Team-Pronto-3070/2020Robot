@@ -31,7 +31,7 @@ public class Climber extends SubsystemBase{  //This whole system will be used as
 
     }
     public void teleArmDown(){
-        t_teleArm.set (ControlMode.PercentOutput, -1); //tells the arm to fall.
+        t_teleArm.set (ControlMode.PercentOutput, 1); //tells the arm to fall.
     }
     public void winchDown(){
         t_winch.set (ControlMode.PercentOutput, -1); //tells the winch to reverse.

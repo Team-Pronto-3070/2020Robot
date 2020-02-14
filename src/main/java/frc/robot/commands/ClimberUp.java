@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -9,34 +10,25 @@ public class ClimberUp extends CommandBase {
     Timer timer = new Timer();
     private Climber climber;
 
-    DigitalOutput upperLimit, lowerLimit;
+    DigitalInput upperLimit;
 
     
     public ClimberUp (Climber climb) {
         climber = climb;
         addRequirements(climb);
 
-        upperLimit = new DigitalOutput(0);
-        lowerLimit = new DigitalOutput(1);
+        upperLimit = new DigitalInput(2);
+        
     }
     public void execute(){ 
-        timer.start();
+        
           //winch and climber up, climber down and then winch down
 
           //TODO: need to make sure limit switches will stop the motors before testing
         if(!upperLimit.get()){ 
             climber.goUp();
         }
-        if(timer.hasPeriodPassed(1))
-        {
-        climber.stop();
-        if(!lowerLimit.get())    
-            climber.teleArmDown();
-        }
-        if(timer.hasPeriodPassed(1))
-        {
-        climber.winchDown();
-        }
+        
         
         
     }
