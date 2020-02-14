@@ -90,6 +90,7 @@ public class RobotContainer {
     initPos.setDefaultOption("Preferred", "P");
     
     SmartDashboard.putData(initPos);
+    SmartDashboard.putBoolean("Top Limit Switch", s_climb.upperLimit.get());
 
     SmartDashboard.putNumber("FL Encoder Value", s_drive.getLeftEncoderPosition());
 
