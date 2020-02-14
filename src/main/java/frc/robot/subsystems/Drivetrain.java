@@ -84,7 +84,7 @@ public class Drivetrain extends SubsystemBase {
 
             if(doneAngle) {
                 initAngle = getAngle(); //Sets initial angle, since it can't check getAngle() while moving
-                doneAngle = false;
+				doneAngle = false;
             }
 
             if(!areWeThereYetAngle(pathDir, angle)){ //If we are not there yet
@@ -127,17 +127,43 @@ public class Drivetrain extends SubsystemBase {
         return doneAngle; //Return whether or not the robot has crossed the threshold.
     }    
 
-    // public boolean driveDistance(double distance) {
-    //     int direction = 0;
-    //     if(doneDistance) {
-    //         initDistance = getFLEncoder();
-    //         doneDistance = false;
-    //     } else {
+    public boolean driveDistance(double distance) {
+        if(doneDistance) {
+			resetEncoderValues();
+			doneDistance = false;
+        } else {
             
-    //     }
-    // }
-    public double getFLEncoder(){
+        }
+    }
+    public double getFLEncoderPosition(){
 		return t_frontLeft.getSelectedSensorPosition();
+	}
+
+	public double getFREncoderPosition(){
+		return t_frontRight.getSelectedSensorPosition();
+	}
+
+	public double getBLEncoderPosition(){
+		return t_backLeft.getSelectedSensorPosition();
+	}
+
+	public double getBREncoderPosition(){
+		return t_backRight.getSelectedSensorPosition();
+	}
+
+	public double getLeftSpeed(){
+		return (t_frontLeft.getSelectedSensorPosition() + t_backLeft.getSelectedSensorPosition()) / 2;
+	}
+
+	public double getRightSpeed(){
+		return (t_frontRight.getSelectedSensorPosition() + t_backRight.getSelectedSensorPosition()) / 2;
+	}
+
+	public void resetEncoderValues(){
+		t_frontLeft.setSelectedSensorPosition(0);
+		t_frontRight.setSelectedSensorPosition(0);
+		t_backLeft.setSelectedSensorPosition(0);
+		t_backLeft.setSelectedSensorPosition(0);
 	}
 }
 

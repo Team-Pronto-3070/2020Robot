@@ -7,8 +7,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.RobotMap;
 
-//TODO: Comment up
-
 public class Hopper extends SubsystemBase {
     
     TalonSRX t_Hopper;
@@ -19,7 +17,6 @@ public class Hopper extends SubsystemBase {
 
     public void in(){
         t_Hopper.set(ControlMode.PercentOutput, RobotMap.HOPPER_LIFT_SPEED); //gives it a percent speed, taking the value from RobotMap
-       
     }
 
     public void out(){
