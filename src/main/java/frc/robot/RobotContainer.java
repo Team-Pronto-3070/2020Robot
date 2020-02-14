@@ -15,10 +15,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotMap.WOF_Stage;
 import frc.robot.commandGroups.*;
 import frc.robot.commands.*;
-import frc.robot.commands.LeftStart.*;
-import frc.robot.commands.MiddleStart.*;
-import frc.robot.commands.PreferredStart.*;
-import frc.robot.commands.RightStart.*;
 import frc.robot.subsystems.*;
 
 /**
@@ -50,33 +46,40 @@ public class RobotContainer {
   public static OI s_oi;
   public static Intake s_intake; 
   public static Climber s_climb;
+  public static Gearbox s_gearbox;
+
   public static WOF_Stage wofStage = WOF_Stage.STAGE_ONE;
+
   public static ControlPanelStageOne CtrlOne;
   public static ControlPanelStageTwo CtrlTwo;
+  public static ShiftDown shiftDown;
+  public static ShiftUp shiftUp;
+  public static AutoShift autoShift;
   
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    
-    
     s_wof = new WOF();
     s_oi = new OI();
     s_intake = new Intake();
     s_climb = new Climber();
     s_drive = new Drivetrain();
     hop = new Hopper();
+    s_gearbox = new Gearbox();
       
     s_driveCommand = new DriveCommand(s_drive, s_oi);
     s_autoCommand = new DriveCommand(s_drive, s_oi);
    // final TeleGroup teleGroup = new TeleGroup(Robot.s_drive, Robot.hop, Robot.s_climb, Robot.s_intake, Robot.hop);//s_climb, in, hop
-
    
     unloadHop = new UnloadHopper(hop);
-   
 
     CtrlOne = new ControlPanelStageOne(s_wof);
     CtrlTwo = new ControlPanelStageTwo(s_wof);
+    
+    shiftDown = new ShiftDown(s_gearbox);
+    shiftUp = new ShiftUp(s_gearbox);
+    autoShift = new AutoShift(s_gearbox);
     
     //driveAuto = new AutoGroup(initPos, Robot.s_drive, Robot.hop);
     // Configure the button bindings
@@ -110,19 +113,20 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
 
-  public void configureWOFStage(){
+  private void configureButtonBindings() {
+
+    s_oi.hopButt.whenPressed(new UnloadHopper(hop));
+
     if(wofStage == WOF_Stage.STAGE_ONE)
       s_oi.wofButt.whenPressed(CtrlOne);
     else 
       s_oi.wofButt.whenPressed(CtrlTwo);
-  }
 
-  private void configureButtonBindings() {
-
-    s_oi.hopButt.whenPressed(new UnloadHopper(hop));
-    configureWOFStage();
     s_oi.climbUpButt.whenPressed( new ClimberUp(s_climb));
     s_oi.climbDownButt.whenPressed( new ClimberDown(s_climb));
+    s_oi.shiftDownButt.whenPressed(new ShiftDown(s_gearbox));
+    s_oi.shiftUpButt.whenPressed(new ShiftUp(s_gearbox));
+    s_oi.autoShiftButt.whenPressed(new AutoShift(s_gearbox));
   }
 
   /**

@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
+import frc.robot.RobotMap.*;
 
 //TODO: Comment up
 
@@ -58,13 +59,13 @@ public class WOF extends SubsystemBase {
     }
 
     public void setDashColor(){
-        if(getClosestColor() == RobotMap.ColorType.Blue){
+        if(getClosestColor() == ColorType.Blue){
             booleanBlue = true;
-        }else if(getClosestColor() == RobotMap.ColorType.Green){
+        }else if(getClosestColor() == ColorType.Green){
             booleanGreen = true;
-        }else if(getClosestColor() == RobotMap.ColorType.Red){
+        }else if(getClosestColor() == ColorType.Red){
             booleanRed = true;
-        }else if(getClosestColor() == RobotMap.ColorType.Yellow){
+        }else if(getClosestColor() == ColorType.Yellow){
             booleanYellow = true;
         }  
     }
@@ -96,21 +97,21 @@ public class WOF extends SubsystemBase {
         m_colorMatcher.addColorMatch(RobotMap.kYellowTarget);    
     }
 
-    public RobotMap.ColorType getClosestColor(){
+    public ColorType getClosestColor(){
         setColor();
 
         ColorMatchResult match = m_colorMatcher.matchClosestColor(clr);
 
         if (match.color == RobotMap.kBlueTarget) {
-            return RobotMap.ColorType.Blue;
+            return ColorType.Blue;
         } else if (match.color == RobotMap.kRedTarget) {
-            return RobotMap.ColorType.Red;
+            return ColorType.Red;
         } else if (match.color == RobotMap.kGreenTarget) {
-            return RobotMap.ColorType.Green;
+            return ColorType.Green;
         } else if (match.color == RobotMap.kYellowTarget) {
-            return RobotMap.ColorType.Yellow;
+            return ColorType.Yellow;
         } else {
-            return RobotMap.ColorType.UNKNOWN;
+            return ColorType.UNKNOWN;
         }
     }
 

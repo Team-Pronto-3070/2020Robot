@@ -31,18 +31,40 @@ public class RobotMap{
 
     public static final int JOYL_PORT = 0; //Joystick USB ports
     public static final int JOYR_PORT = 1;
-    
-    public static final int HOPPER_BUTTON = 2; //Joystick button #s for each function
-    public static final int WOF_BUTTON = 3;
+
+    //Joystick button #s for each function
+    public static final int HOPPER_BUTTON = 2; //Left
+    public static final int WOF_BUTTON = 3; //Left
     public static final int INTAKE_BUTTON = 1;
     public static final int OUTPUT_BUTTON = 1;
-    public static final int CLIMBER_UP_BUTTON = 3;
-    public static final int CLIMBER_DOWN_BUTTON = 2;
+    public static final int CLIMBER_UP_BUTTON = 3; //Right
+    public static final int CLIMBER_DOWN_BUTTON = 2; //Right
+    public static final int SHIFT_UP_BUTTON = 4;
+    public static final int SHIFT_DOWN_BUTTON = 5;
+    public static final int AUTOSHIFT_BUTTON = 2;
 
     public enum JOYSIDE { //Enum for OI class methods
         Left, Right
     };
 
+    public static final int HOPPER_ID = 0; //IDs for each button in BUTTON_SIDES array for configureButtonBindings in OI
+    public static final int WOF_ID = 1;
+    public static final int INTAKE_ID = 2;
+    public static final int OUTPUT_ID = 3;
+    public static final int CL_UP_ID = 4;
+    public static final int CL_DOWN_ID = 5;
+    public static final int SH_UP_ID = 6;
+    public static final int SH_DWN_ID = 7;
+    public static final int SH_AU_ID = 8;
+
+    public static final JOYSIDE[] BUTTON_SIDES = new JOYSIDE[]{JOYSIDE.Left, JOYSIDE.Left, JOYSIDE.Right, 
+                                                            // Hopper,       WOF,          Intake
+                                                               JOYSIDE.Right, JOYSIDE.Left, JOYSIDE.Left,
+                                                            // Output,        Climber down, Climber Up
+                                                               JOYSIDE.Left, JOYSIDE.Right, JOYSIDE.Right};
+                                                            // Shift Up,     Shift down,    Autoshift
+
+    
     public static final double TELE_LIFT_SPEED = -.5;
     public static final double WINCH_LIFT_SPEED = .5;
     public static final double HOPPER_LIFT_SPEED = 1;
@@ -83,7 +105,6 @@ public class RobotMap{
         Left, Right, Middle, Preffered
     };
 
-    private static GearboxPosition GB_STATUS = GearboxPosition.Lo; //Var for storing gearbox position
     public static final double LO_GEARBOX_RATIO = 1; //Ratios for different gearbox settings
     public static final double HI_GEARBOX_RATIO = 1;
 
@@ -106,23 +127,23 @@ public class RobotMap{
         }
     }
 
-    public static double getGearboxRatio(){ //Accessor for returning gearbox ratio based off position
-        if(GB_STATUS == GearboxPosition.Hi)
+    public static double getGearboxRatio(GearboxPosition pos){ //Accessor for returning gearbox ratio based off position
+        if(pos == GearboxPosition.Hi)
             return HI_GEARBOX_RATIO;
         else
             return LO_GEARBOX_RATIO;
     }
 
-    public static GearboxPosition toggleGearboxPosition(){ //Changes setting of GB_STATUS for shifting
-        switch(GB_STATUS) { 
+    public static GearboxPosition toggleGearboxPosition(GearboxPosition pos){ //Changes setting of pos for shifting
+        switch(pos) { 
             case Hi:
-                GB_STATUS = GearboxPosition.Lo;
+                pos = GearboxPosition.Lo;
                 break;
             case Lo:
-                GB_STATUS = GearboxPosition.Hi;
+                pos = GearboxPosition.Hi;
                 break;
         }
-        return GB_STATUS;
+        return pos;
     }
 
     public static int getDirCoef(double distance){
@@ -132,6 +153,10 @@ public class RobotMap{
             return 1;
         else 
             return 0;
+    }
+    
+    public static final JOYSIDE getJoyside(int id){
+        return BUTTON_SIDES[id];
     }
 
     public enum WOF_Stage { //Wheel Of Fortune stage enum for determining current stage

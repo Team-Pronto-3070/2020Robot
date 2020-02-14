@@ -11,10 +11,9 @@ import com.analog.adis16448.frc.ADIS16448_IMU;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
-
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
+import frc.robot.RobotMap.*;
 
 public class Drivetrain extends SubsystemBase {
     public TalonFX t_frontLeft, t_backLeft, t_frontRight, t_backRight;
@@ -25,9 +24,7 @@ public class Drivetrain extends SubsystemBase {
     boolean _firstCall = false;
 	boolean _state = false;
 	double localInputScaler = 1;
-	RobotMap.GearboxPosition gearboxPosition;
-	Solenoid gbSol;
-
+	
     public Drivetrain(){
        // setDefaultCommand(DriveCommand(this));
 
@@ -48,7 +45,6 @@ public class Drivetrain extends SubsystemBase {
 
 	   // gyro = new ADIS16448_IMU();
 	   
-	   gbSol = new Solenoid(RobotMap.SOLENOID_PORT);
     }
 
     public void periodic(){
@@ -187,13 +183,6 @@ public class Drivetrain extends SubsystemBase {
 		t_frontRight.setSelectedSensorPosition(0);
 		t_backLeft.setSelectedSensorPosition(0);
 		t_backLeft.setSelectedSensorPosition(0);
-	}
-
-	public void shiftGB(RobotMap.GearboxPosition pos){
-		if(pos == RobotMap.GearboxPosition.Hi)
-			gbSol.set(RobotMap.GB_SOL_HI);
-		else 
-			gbSol.set(RobotMap.GB_SOL_LO);
 	}
 }
 
