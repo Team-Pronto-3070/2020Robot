@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.CommandGroupBase;
-import frc.robot.RobotMap.WOF_Stage;
+import frc.robot.RobotMap.*;
 import frc.robot.commandGroups.*;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
@@ -41,8 +41,9 @@ public class RobotContainer {
   CommandBase climberDown;
 
   public SendableChooser<String> initPos = new SendableChooser<String>();
+  public SendableChooser<CommandBase> startingPosSelect = new SendableChooser<CommandBase>();
   public static Drivetrain s_drive;
-  public static Hopper hop;
+  public static Hopper s_hopper;
   public static WOF s_wof;
   public static OI s_oi;
   public static Intake s_intake; 
@@ -66,14 +67,14 @@ public class RobotContainer {
     s_intake = new Intake();
     s_climb = new Climber();
     s_drive = new Drivetrain();
-    hop = new Hopper();
+    s_hopper = new Hopper();
     s_gearbox = new Gearbox();
       
     s_driveCommand = new DriveCommand(s_drive, s_oi);
     s_autoCommand = new DriveCommand(s_drive, s_oi);
-   // final TeleGroup teleGroup = new TeleGroup(Robot.s_drive, Robot.hop, Robot.s_climb, Robot.s_intake, Robot.hop);//s_climb, in, hop
+   // final TeleGroup teleGroup = new TeleGroup(Robot.s_drive, Robot.s_hopper, Robot.s_climb, Robot.s_intake, Robot.s_hopper);//s_climb, in, s_hopper
    
-    unloadHop = new UnloadHopper(hop);
+    unloadHop = new UnloadHopper(s_hopper);
 
     CtrlOne = new ControlPanelStageOne(s_wof);
     CtrlTwo = new ControlPanelStageTwo(s_wof);
@@ -95,9 +96,6 @@ public class RobotContainer {
     SmartDashboard.putBoolean("Top Limit Switch", s_climb.upperLimit.get());
 
     SmartDashboard.putNumber("FL Encoder Value", s_drive.getLeftEncoderPosition());
-
-    autoGroup = new AutoGroup(getStartingPosition(), s_drive, hop);
-
     configureButtonBindings();
   }
 
@@ -114,18 +112,21 @@ public class RobotContainer {
 
   private void configureButtonBindings() {
 
-    s_oi.hopButt.whenPressed(new UnloadHopper(hop));
-
-    if(wofStage == WOF_Stage.STAGE_ONE)
-      s_oi.wofButt.whenPressed(CtrlOne);
-    else 
-      s_oi.wofButt.whenPressed(CtrlTwo);
-
+    s_oi.hopButt.whenPressed(new UnloadHopper(s_hopper));
+    configWOFButton(wofStage);
     s_oi.climbUpButt.whenPressed( new ClimberUp(s_climb));
     s_oi.climbDownButt.whenPressed( new ClimberDown(s_climb));
     s_oi.shiftDownButt.whenPressed(new ShiftDown(s_gearbox));
     s_oi.shiftUpButt.whenPressed(new ShiftUp(s_gearbox));
     s_oi.autoShiftButt.whenPressed(new AutoShift(s_gearbox));
+  }
+
+  public void configWOFButton(WOF_Stage stage){
+    wofStage = stage;
+    if(wofStage == WOF_Stage.STAGE_ONE)
+      s_oi.wofButt.whenPressed(CtrlOne);
+    else 
+      s_oi.wofButt.whenPressed(CtrlTwo);
   }
 
   /**
@@ -143,19 +144,23 @@ public class RobotContainer {
   //   return teleGroup;
   // }
 
-  public RobotMap.StartingPosition getStartingPosition(){
+  public StartingPosition getStartingPosition(){
     switch (initPos.getSelected()) {
       case "R":
-        return RobotMap.StartingPosition.Right;
+        return StartingPosition.Right;
       case "M":
-        return RobotMap.StartingPosition.Middle;
+        return StartingPosition.Middle;
       case "L":
-        return RobotMap.StartingPosition.Left;
+        return StartingPosition.Left;
       case "P":
-        return RobotMap.StartingPosition.Preffered;
+        return StartingPosition.Preffered;
       default:
         return null;
     }
+  }
+
+  public void configAutoGroup(){
+    autoGroup = new AutoGroup(getStartingPosition(), s_drive, s_hopper);
   }
   
 }

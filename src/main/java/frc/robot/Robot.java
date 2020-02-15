@@ -60,9 +60,9 @@ public class Robot extends TimedRobot{
    */
   @Override
   public void autonomousInit() {
-
+    m_rc.configAutoGroup();
     // schedule the autonomous command (example)
-    if (m_rc.getAutonomousCommand() != null) {
+    if (m_rc.getAutonomousCommand() != null) { //TODO: Finalize command scheduling
       m_rc.s_autoCommand.schedule();
       m_rc.autoGroup.schedule();
     }
