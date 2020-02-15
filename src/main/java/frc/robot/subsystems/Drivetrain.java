@@ -53,8 +53,8 @@ public class Drivetrain extends SubsystemBase {
     public void tankDrive(double leftSpeed, double rightSpeed){
         double left = 0;
         double right = 0;
-        left = (left + leftSpeed)/2;
-        right = (right + rightSpeed)/2;
+        left = (left + leftSpeed)/4;
+        right = (right + rightSpeed)/4;
         rightDrive(right);
         leftDrive(left);
     }
