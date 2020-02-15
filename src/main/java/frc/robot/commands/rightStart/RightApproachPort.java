@@ -7,24 +7,19 @@ import frc.robot.subsystems.Drivetrain;
 public class RightApproachPort extends CommandBase {
     
     private Drivetrain drive;
+
+    private boolean done = false;
     
     public RightApproachPort(Drivetrain dt){
         drive = dt;
         addRequirements(drive);
     }
-    public boolean isFinished() {
-        return drive.turnToAngle(RobotMap.LEFT_START_TURN_ANGLE);
+
+    public void execute(){
+        done = drive.driveDistance(RobotMap.RIGHT_DISTANCE);
     }
-  
-      protected void end(){
-  
-      }
-  
-      protected void initalize(){
-  
-      }
-  
-      protected void interrupted(){
-  
-      }
+
+    public boolean isFinished() {
+        return done;
+    }
 }

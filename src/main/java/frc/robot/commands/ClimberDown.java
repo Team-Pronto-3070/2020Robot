@@ -18,9 +18,9 @@ public class ClimberDown extends CommandBase {
     }
 
     public void execute(){
-        if(!lowerLimit.get()){
+        
             climb.teleArmDown();
-        }
+        
     }
 
 

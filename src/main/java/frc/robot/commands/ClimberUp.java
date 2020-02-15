@@ -16,10 +16,6 @@ public class ClimberUp extends CommandBase {
     public ClimberUp (Climber climb) {
         climber = climb;
         addRequirements(climb);
-
-       
-
-        
     }
     public void execute(){ 
         

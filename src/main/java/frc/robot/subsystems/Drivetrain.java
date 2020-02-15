@@ -22,9 +22,10 @@ public class Drivetrain extends SubsystemBase {
     boolean doneDistance = false;
     boolean _firstCall = false;
 	boolean _state = false;
-	double localInputScaler = 1;
+    double localInputScaler = 1;
+    private Gearbox gearbox;
 	
-    public Drivetrain(){
+    public Drivetrain(Gearbox gb){
        // setDefaultCommand(DriveCommand(this));
 
         t_frontLeft = new TalonFX(RobotMap.FL_PORT);
@@ -43,7 +44,8 @@ public class Drivetrain extends SubsystemBase {
 		t_backRight.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
 
 	   // gyro = new ADIS16448_IMU();
-	   
+       
+       gearbox = gb;
     }
 
     public void periodic(){
@@ -53,8 +55,8 @@ public class Drivetrain extends SubsystemBase {
     public void tankDrive(double leftSpeed, double rightSpeed){
         double left = 0;
         double right = 0;
-        left = (left + leftSpeed)/2;
-        right = (right + rightSpeed)/2;
+        left = (left + leftSpeed)/4;
+        right = (right + rightSpeed)/4;
         rightDrive(right);
         leftDrive(left);
     }
@@ -143,18 +145,19 @@ public class Drivetrain extends SubsystemBase {
         return doneAngle; //Return whether or not the robot has crossed the threshold.
     }    
 
-    public boolean driveDistance(double distance) {
+    public boolean driveDistance(double distance) { //Distance in inches
+        double revs = distance * RobotMap.revsPerInch(gearbox.getGearboxPosition());
         if(doneDistance) {
 			resetEncoderValues();
 			doneDistance = false;
 			return false;
         } else {
-			if(getLeftEncoderPosition() > Math.abs(distance)){
+			if(getLeftEncoderPosition() > Math.abs(revs)){
 				stop();
 				doneDistance = true;
 				return true;
 			} else {
-				tankDrive(RobotMap.AUTO_SPEED * RobotMap.getDirCoef(distance), RobotMap.AUTO_SPEED * RobotMap.getDirCoef(distance));
+				tankDrive(RobotMap.AUTO_SPEED * RobotMap.getDirCoef(revs), RobotMap.AUTO_SPEED * RobotMap.getDirCoef(revs));
 				return false;
 			}
 
