@@ -7,6 +7,8 @@ import frc.robot.subsystems.Drivetrain;
 public class MiddleTurnToPort extends CommandBase {
 
     private Drivetrain drive;
+
+    private boolean done = false;
     
     public MiddleTurnToPort(Drivetrain dt){
         drive = dt;
@@ -14,14 +16,11 @@ public class MiddleTurnToPort extends CommandBase {
     }
 
     public void execute(){
-        if(drive.turnToAngle(RobotMap.MIDDLE_START_TURN_ANGLE))
-            drive.stop();
-        else   
-            drive.turnToAngle(RobotMap.MIDDLE_START_TURN_ANGLE);
+        done = drive.turnToAngle(RobotMap.MIDDLE_START_TURN_ANGLE);
     }
   
       public boolean isFinished() {
-        return drive.turnToAngle(RobotMap.MIDDLE_START_TURN_ANGLE);
+        return done;
     }
   
       protected void end(){
