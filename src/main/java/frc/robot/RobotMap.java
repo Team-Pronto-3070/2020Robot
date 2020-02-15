@@ -105,7 +105,7 @@ public class RobotMap{
     //Distances for auto second step in inches
     public static final double RIGHT_DISTANCE = 231.6;
     public static final double LEFT_DISTANCE = 129.1;
-    public static final double MIDDLE_DISTANCE =127;
+    public static final double MIDDLE_DISTANCE = 127;
     public static final double PREFFERED_DISTANCE = 108;
 
     public enum PathDirection { //For auto drive/turn methods. Direction for pathfinding
@@ -116,8 +116,11 @@ public class RobotMap{
         Left, Right, Middle, Preffered
     };
 
-    public static final double LO_GEARBOX_RATIO = 1; //Ratios for different gearbox settings
-    public static final double HI_GEARBOX_RATIO = 1;
+    public static final double FIRST_STAGE_GB_RATIO = 40 / 12; //Input 12, output 40
+    public static final double LO_GEARBOX_RATIO = 60 / 24; //Ratios for different gearbox settings
+    public static final double HI_GEARBOX_RATIO = 44 / 40;
+    public static final double THIRD_STAGE_GB_RATIO = 54 / 30; //Input 30, output 54
+
 
     public enum GearboxPosition { //Enum for the pneumatic shifting gearbox position
         Hi, Lo
@@ -137,9 +140,9 @@ public class RobotMap{
 
     public static double getGearboxRatio(GearboxPosition pos){ //Accessor for returning gearbox ratio based off position
         if(pos == GearboxPosition.Hi)
-            return HI_GEARBOX_RATIO;
+            return HI_GEARBOX_RATIO * FIRST_STAGE_GB_RATIO * THIRD_STAGE_GB_RATIO;
         else
-            return LO_GEARBOX_RATIO;
+            return LO_GEARBOX_RATIO * FIRST_STAGE_GB_RATIO * THIRD_STAGE_GB_RATIO;
     }
 
     public static GearboxPosition toggleGearboxPosition(GearboxPosition pos){ //Changes setting of pos for shifting
@@ -170,4 +173,8 @@ public class RobotMap{
     public enum WOF_Stage { //Wheel Of Fortune stage enum for determining current stage
         STAGE_ONE, STAGE_TWO
     };
+
+    public static double revsPerInch(GearboxPosition pos){
+        return getGearboxRatio(pos) / WHEEL_CIRCUMFRENCE_INCHES;        
+    }
 }

@@ -65,9 +65,9 @@ public class RobotContainer {
     s_oi = new OI();
     s_intake = new Intake();
     s_climb = new Climber();
-    s_drive = new Drivetrain();
     s_hopper = new Hopper();
     s_gearbox = new Gearbox();
+    s_drive = new Drivetrain(s_gearbox);
       
     s_driveCommand = new DriveCommand(s_drive, s_oi);
     s_autoCommand = new DriveCommand(s_drive, s_oi);
@@ -112,12 +112,8 @@ public class RobotContainer {
   private void configureButtonBindings() {
 
     s_oi.hopButt.whenPressed(new UnloadHopper(s_hopper));
-
-    if(wofStage == WOF_Stage.STAGE_ONE)
-      s_oi.wofButt.whenPressed(CtrlOne);
-    else 
-      s_oi.wofButt.whenPressed(CtrlTwo);
-
+    s_oi.hopButt.whenReleased(new StopHopper(s_hopper));
+    configWOFButton(wofStage);
     s_oi.climbUpButt.whenHeld( new ClimberUp(s_climb));
     s_oi.climbDownButt.whenHeld(new ClimberDown(s_climb));
     s_oi.climbDownButt.whenReleased(new ClimberStop(s_climb));//when the buttons arent held the climber will stop
