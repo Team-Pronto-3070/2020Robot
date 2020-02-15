@@ -14,6 +14,7 @@ public class OI {
         j_LEFT = new Joystick(RobotMap.JOYL_PORT);
         j_RIGHT = new Joystick(RobotMap.JOYR_PORT);
 
+        //exampleButt = new JoystickButton(j_LEFT or j_RIGHT, 1/2/3/4/etc.);
         hopButt = new JoystickButton(getButtonJoyside(RobotMap.HOPPER_ID), RobotMap.HOPPER_BUTTON); 
         wofButt = new JoystickButton(getButtonJoyside(RobotMap.WOF_ID), RobotMap.WOF_BUTTON);
         climbUpButt = new JoystickButton(getButtonJoyside(RobotMap.CL_UP_ID), RobotMap.CLIMBER_UP_BUTTON);

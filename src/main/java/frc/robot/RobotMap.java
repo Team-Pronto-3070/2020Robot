@@ -1,6 +1,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.util.Color;
 import com.revrobotics.ColorMatch;
 
@@ -27,7 +28,17 @@ public class RobotMap{
 
     public static final I2C.Port i2cPort = I2C.Port.kOnboard; //I2C ports for gyro
 
-    public static final int SOLENOID_PORT = 1;
+    public static final int ARM_SOL_PORT_ONE = 0;
+    public static final int ARM_SOL_PORT_TWO = 1;
+
+    public static final int GB_SOL_PORT_ONE = 2;
+    public static final int GB_SOL_PORT_TWO = 3;
+
+    public static final Value ARM_SOL_ON = Value.kForward;
+    public static final Value ARM_SOL_OFF = Value.kReverse;
+
+    public static final Value GB_SOL_ON = Value.kForward;
+    public static final Value GB_SOL_OFF = Value.kReverse;
 
     public static final int JOYL_PORT = 0; //Joystick USB ports
     public static final int JOYR_PORT = 1;
@@ -71,7 +82,7 @@ public class RobotMap{
 
     public static final double AUTO_SPEED = .5; //Speed value for auto
 
-    public static final double ROTATION_TOLERANCE = 3; //Auto angle tolerance in degrees
+    public static final double ROTATION_TOLERANCE = 1; //Auto angle tolerance in degrees
 
     public static final double DEADZONE = .2; //Joystick deadzone
     
@@ -111,9 +122,6 @@ public class RobotMap{
     public enum GearboxPosition { //Enum for the pneumatic shifting gearbox position
         Hi, Lo
     };
-
-    public static final boolean GB_SOL_HI = true;
-    public static final boolean GB_SOL_LO = false;
 
     public static StartingPosition convertStartingPosition(String str){ //Translator for SendableChooser<String> 
         if(str.equals("L")){                                            //input to StartingPosition output

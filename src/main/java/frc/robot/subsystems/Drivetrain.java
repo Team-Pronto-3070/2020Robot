@@ -13,7 +13,6 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
-import frc.robot.RobotMap.*;
 
 public class Drivetrain extends SubsystemBase {
     public TalonFX t_frontLeft, t_backLeft, t_frontRight, t_backRight;
@@ -79,7 +78,7 @@ public class Drivetrain extends SubsystemBase {
         t_backLeft.set(ControlMode.Follower, RobotMap.FL_PORT);
     }
 
-    public boolean turnToAngle(double angle){
+    public boolean turnToAngle(double angle){//Absolute angle
         if(Math.abs(angle - getAngle()) <= RobotMap.ROTATION_TOLERANCE) { //If angle is within tolerance, we're good
             return true; 
         } else {
