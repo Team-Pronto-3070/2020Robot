@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.CommandGroupBase;
 import frc.robot.RobotMap.WOF_Stage;
 import frc.robot.commandGroups.*;
 import frc.robot.commands.*;
@@ -80,8 +81,6 @@ public class RobotContainer {
     shiftDown = new ShiftDown(s_gearbox);
     shiftUp = new ShiftUp(s_gearbox);
     autoShift = new AutoShift(s_gearbox);
-    
-    //driveAuto = new AutoGroup(initPos, Robot.s_drive, Robot.hop);
     // Configure the button bindings
    
     //Robot.s_drive.setDefaultCommand(teleGroup);
@@ -97,7 +96,7 @@ public class RobotContainer {
 
     SmartDashboard.putNumber("FL Encoder Value", s_drive.getLeftEncoderPosition());
 
-    autoGroup = new AutoGroup(RobotMap.convertStartingPosition(initPos.getSelected()), s_drive, hop);
+    autoGroup = new AutoGroup(getStartingPosition(), s_drive, hop);
 
     configureButtonBindings();
   }
@@ -145,7 +144,6 @@ public class RobotContainer {
   // }
 
   public RobotMap.StartingPosition getStartingPosition(){
-    RobotMap.StartingPosition startPos = RobotMap.StartingPosition.Preffered;
     switch (initPos.getSelected()) {
       case "R":
         return RobotMap.StartingPosition.Right;
@@ -155,8 +153,9 @@ public class RobotContainer {
         return RobotMap.StartingPosition.Left;
       case "P":
         return RobotMap.StartingPosition.Preffered;
+      default:
+        return null;
     }
-    return startPos;
   }
   
 }
