@@ -5,7 +5,6 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.revrobotics.ColorMatch;
 import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorSensorV3;
-
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -26,7 +25,7 @@ public class WOF extends SubsystemBase {
     boolean booleanRed = false;
     boolean booleanYellow = false;
 
-    DoubleSolenoid armSol;
+    public DoubleSolenoid armSol;
     
     ColorSensorV3 s_colorSensor;
 
