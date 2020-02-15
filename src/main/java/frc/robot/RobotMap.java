@@ -53,6 +53,7 @@ public class RobotMap{
     public static final int SHIFT_UP_BUTTON = 4;
     public static final int SHIFT_DOWN_BUTTON = 5;
     public static final int AUTOSHIFT_BUTTON = 2;
+    public static final int CONFIG_BUTTON = 11;
 
     public enum JOYSIDE { //Enum for OI class methods
         Left, Right
@@ -74,7 +75,6 @@ public class RobotMap{
                                                             // Output,        Climber down, Climber Up
                                                                JOYSIDE.Left, JOYSIDE.Right, JOYSIDE.Right};
                                                             // Shift Up,     Shift down,    Autoshift
-
     
     public static final double TELE_LIFT_SPEED = -.5;
     public static final double WINCH_LIFT_SPEED = .5;
