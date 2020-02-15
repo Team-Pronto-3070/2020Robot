@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.CommandGroupBase;
 import frc.robot.RobotMap.*;
 import frc.robot.commandGroups.*;
 import frc.robot.commands.*;
@@ -76,7 +75,7 @@ public class RobotContainer {
    
     unloadHop = new UnloadHopper(s_hopper);
 
-    CtrlOne = new ControlPanelStageOne(s_wof);
+    CtrlOne = new ControlPanelStageOne(s_wof, this);
     CtrlTwo = new ControlPanelStageTwo(s_wof);
     
     shiftDown = new ShiftDown(s_gearbox);
