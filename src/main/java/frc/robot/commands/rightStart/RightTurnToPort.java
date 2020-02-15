@@ -7,6 +7,7 @@ import frc.robot.subsystems.Drivetrain;
 public class RightTurnToPort extends CommandBase {
 
     private Drivetrain drive;
+    
     private boolean done = false;
     
     public RightTurnToPort(Drivetrain dt){
@@ -21,16 +22,4 @@ public class RightTurnToPort extends CommandBase {
     public boolean isFinished() {
         return done;
     }
-  
-      protected void end(){
-  
-      }
-  
-      protected void initalize(){
-  
-      }
-  
-      protected void interrupted(){
-  
-      }
 }

@@ -21,16 +21,4 @@ public class RightTurnIntoPort extends CommandBase {
     public boolean isFinished() {
         return done;
     }
-  
-      protected void end(){
-  
-      }
-  
-      protected void initalize(){
-  
-      }
-  
-      protected void interrupted(){
-  
-      }
 }
