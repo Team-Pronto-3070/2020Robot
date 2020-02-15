@@ -56,6 +56,8 @@ public class RobotContainer {
   public static ShiftDown shiftDown;
   public static ShiftUp shiftUp;
   public static AutoShift autoShift;
+
+  // wofRaisebutt,togglebutt,lower 
   
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.

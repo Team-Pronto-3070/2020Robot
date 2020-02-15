@@ -48,8 +48,8 @@ public class RobotMap{
     public static final int WOF_BUTTON = 3; //Left
     public static final int INTAKE_BUTTON = 1;
     public static final int OUTPUT_BUTTON = 1;
-    public static final int CLIMBER_UP_BUTTON = 3; //Right
-    public static final int CLIMBER_DOWN_BUTTON = 2; //Right
+    public static final int CLIMBER_UP_BUTTON = 2; //Right
+    public static final int CLIMBER_DOWN_BUTTON = 3; //Right
     public static final int SHIFT_UP_BUTTON = 4;
     public static final int SHIFT_DOWN_BUTTON = 5;
     public static final int AUTOSHIFT_BUTTON = 2;
@@ -76,7 +76,7 @@ public class RobotMap{
                                                                JOYSIDE.Left, JOYSIDE.Right, JOYSIDE.Right};
                                                             // Shift Up,     Shift down,    Autoshift
     
-    public static final double TELE_LIFT_SPEED = -.5;
+    public static final double TELE_LIFT_SPEED = 1;
     public static final double WINCH_LIFT_SPEED = .5;
     public static final double HOPPER_LIFT_SPEED = 1;
 
