@@ -112,9 +112,16 @@ public class RobotContainer {
   private void configureButtonBindings() {
 
     s_oi.hopButt.whenPressed(new UnloadHopper(s_hopper));
-    configWOFButton(wofStage);
-    s_oi.climbUpButt.whenPressed( new ClimberUp(s_climb));
-    s_oi.climbDownButt.whenPressed( new ClimberDown(s_climb));
+
+    if(wofStage == WOF_Stage.STAGE_ONE)
+      s_oi.wofButt.whenPressed(CtrlOne);
+    else 
+      s_oi.wofButt.whenPressed(CtrlTwo);
+
+    s_oi.climbUpButt.whenHeld( new ClimberUp(s_climb));
+    s_oi.climbDownButt.whenHeld(new ClimberDown(s_climb));
+    s_oi.climbDownButt.whenReleased(new ClimberStop(s_climb));//when the buttons arent held the climber will stop
+    s_oi.climbUpButt.whenReleased(new ClimberStop(s_climb));
     s_oi.shiftDownButt.whenPressed(new ShiftDown(s_gearbox));
     s_oi.shiftUpButt.whenPressed(new ShiftUp(s_gearbox));
     s_oi.autoShiftButt.whenPressed(new AutoShift(s_gearbox));

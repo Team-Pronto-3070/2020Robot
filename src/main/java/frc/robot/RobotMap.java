@@ -71,7 +71,7 @@ public class RobotMap{
 
     public static final JOYSIDE[] BUTTON_SIDES = new JOYSIDE[]{JOYSIDE.Left, JOYSIDE.Left, JOYSIDE.Right, 
                                                             // Hopper,       WOF,          Intake
-                                                               JOYSIDE.Right, JOYSIDE.Left, JOYSIDE.Left,
+                                                               JOYSIDE.Right, JOYSIDE.Right, JOYSIDE.Right,
                                                             // Output,        Climber down, Climber Up
                                                                JOYSIDE.Left, JOYSIDE.Right, JOYSIDE.Right};
                                                             // Shift Up,     Shift down,    Autoshift
