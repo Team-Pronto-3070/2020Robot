@@ -112,7 +112,7 @@ public class RobotContainer {
 
   private void configureButtonBindings() {
 
-    s_oi.hopButt.whenPressed(new UnloadHopper(hop));
+    s_oi.hopButt.whenPressed(new UnloadHopper(s_hopper));
 
     if(wofStage == WOF_Stage.STAGE_ONE)
       s_oi.wofButt.whenPressed(CtrlOne);
