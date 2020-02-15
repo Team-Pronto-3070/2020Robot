@@ -53,8 +53,12 @@ public class RobotMap{
     public static final int SHIFT_UP_BUTTON = 4;
     public static final int SHIFT_DOWN_BUTTON = 5;
     public static final int AUTOSHIFT_BUTTON = 2;
-    public static final int CONFIG_BUTTON = 11;
 
+    public static final int RAISE_ARM_BUTT = 9; //left
+    public static final int TOGGLE_ARM_BUTT = 9; //right
+    public static final int LOWER_ARM_BUTT = 10; //right
+    
+//raise/toggle/lower armbutt
     public enum JOYSIDE { //Enum for OI class methods
         Left, Right
     };
@@ -68,14 +72,18 @@ public class RobotMap{
     public static final int SH_UP_ID = 6;
     public static final int SH_DWN_ID = 7;
     public static final int SH_AU_ID = 8;
+    public static final int RA_AR_BUTT = 9;
+    public static final int TOG_AR_BUTT = 10;
+    public static final int LOW_AR_BUTT = 11;
 
     public static final JOYSIDE[] BUTTON_SIDES = new JOYSIDE[]{JOYSIDE.Left, JOYSIDE.Left, JOYSIDE.Right, 
                                                             // Hopper,       WOF,          Intake
                                                                JOYSIDE.Right, JOYSIDE.Right, JOYSIDE.Right,
                                                             // Output,        Climber down, Climber Up
-                                                               JOYSIDE.Left, JOYSIDE.Right, JOYSIDE.Right};
+                                                               JOYSIDE.Left, JOYSIDE.Right, JOYSIDE.Right,
                                                             // Shift Up,     Shift down,    Autoshift
-    
+                                                               JOYSIDE.Left, JOYSIDE.Right, JOYSIDE.Right};
+                                                            // Raise arm     Toggle arm     Lower arm
     public static final double TELE_LIFT_SPEED = 1;
     public static final double WINCH_LIFT_SPEED = .5;
     public static final double HOPPER_LIFT_SPEED = 1;
