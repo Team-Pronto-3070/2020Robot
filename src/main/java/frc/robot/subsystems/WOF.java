@@ -6,7 +6,8 @@ import com.revrobotics.ColorMatch;
 import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorSensorV3;
 
-import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -24,22 +25,20 @@ public class WOF extends SubsystemBase {
     boolean booleanGreen = false;
     boolean booleanRed = false;
     boolean booleanYellow = false;
+
+    DoubleSolenoid armSol;
     
     ColorSensorV3 s_colorSensor;
 
     private final ColorMatch m_colorMatcher = new ColorMatch();
     
-    
-
     //Constructor
     public WOF(){
-       
-
         t_WOF = new TalonSRX(RobotMap.T_WOF_PORT);
         
         s_colorSensor = new ColorSensorV3(RobotMap.i2cPort);
 
-        
+        armSol = new DoubleSolenoid(RobotMap.ARM_SOL_PORT_ONE, RobotMap.ARM_SOL_PORT_TWO);
     }
 
     @Override
@@ -117,5 +116,9 @@ public class WOF extends SubsystemBase {
 
     public void setColor(){
         clr = getSensorColor();
+    }
+
+    public void moveArm(Value val){
+        armSol.set(val);
     }
 }
