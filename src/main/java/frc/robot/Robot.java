@@ -8,6 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 /**
@@ -85,6 +86,8 @@ public class Robot extends TimedRobot{
     if (m_rc.s_driveCommand != null) {
       m_rc.s_driveCommand.schedule();
     }
+    
+    
   }
 
   /**
@@ -94,7 +97,7 @@ public class Robot extends TimedRobot{
   public void teleopPeriodic() {
     CommandScheduler.getInstance().run();
 
-    
+   
   }
 
   @Override
@@ -108,7 +111,13 @@ public class Robot extends TimedRobot{
    */
   @Override
   public void testPeriodic() {
-  
+    m_rc.s_wof.setDashColor();
+    System.out.println("Blue boolean: "+ m_rc.s_wof.booleanBlue);
+    System.out.println("Red boolean: "+ m_rc.s_wof.booleanRed);
+    System.out.println("Green boolean: "+ m_rc.s_wof.booleanGreen);
+    System.out.println("Yellow boolean: "+ m_rc.s_wof.booleanYellow);
+    SmartDashboard.updateValues();
+
   }
 }
 

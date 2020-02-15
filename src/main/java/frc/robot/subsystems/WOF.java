@@ -20,10 +20,10 @@ public class WOF extends SubsystemBase {
     Color clr;
     int passes = 0; //# of completed passes of single color. * 2 = # of full rotations
 
-    boolean booleanBlue = false;
-    boolean booleanGreen = false;
-    boolean booleanRed = false;
-    boolean booleanYellow = false;
+    public boolean booleanBlue = false;
+    public boolean booleanGreen = false;
+    public boolean booleanRed = false;
+    public boolean booleanYellow = false;
 
     public DoubleSolenoid armSol;
     
@@ -38,17 +38,6 @@ public class WOF extends SubsystemBase {
         s_colorSensor = new ColorSensorV3(RobotMap.i2cPort);
 
         armSol = new DoubleSolenoid(RobotMap.ARM_SOL_PORT_ONE, RobotMap.ARM_SOL_PORT_TWO);
-    }
-
-    @Override
-    public void periodic()
-    {
-        // write RGB, and HSV value from color sensor to dashboard
-        // Write result enum value to dashboard
-        SmartDashboard.putBoolean("isBlue", booleanBlue);
-        SmartDashboard.putBoolean("isGreen", booleanGreen);
-        SmartDashboard.putBoolean("isRed", booleanRed);
-        SmartDashboard.putBoolean("isYellow", booleanYellow);
 
         booleanBlue = false;
         booleanRed = false;
@@ -56,16 +45,39 @@ public class WOF extends SubsystemBase {
         booleanGreen = false;
     }
 
+    @Override
+    public void periodic()
+    {
+        // write RGB, and HSV value from color sensor to dashboard
+        // Write result enum value to dashboard
+       setDashColor();
+
+        
+    }
+
     public void setDashColor(){
+        
         if(getClosestColor() == ColorType.Blue){
             booleanBlue = true;
+            booleanGreen = false;
+            booleanRed = false;
+            booleanYellow = false;
         }else if(getClosestColor() == ColorType.Green){
+            booleanBlue = false;
             booleanGreen = true;
+            booleanRed = false;
+            booleanYellow = false;
         }else if(getClosestColor() == ColorType.Red){
+            booleanBlue = false;
+            booleanGreen = false;
             booleanRed = true;
+            booleanYellow = false;
         }else if(getClosestColor() == ColorType.Yellow){
+            booleanBlue = false;
+            booleanGreen = false;
+            booleanRed = false;
             booleanYellow = true;
-        }  
+        } 
     }
 
     public void stop(){

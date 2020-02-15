@@ -97,6 +97,12 @@ public class RobotContainer {
     SmartDashboard.putBoolean("Top Limit Switch", s_climb.upperLimit.get());
 
     SmartDashboard.putNumber("FL Encoder Value", s_drive.getLeftEncoderPosition());
+
+    SmartDashboard.putBoolean("isBlue", s_wof.booleanBlue);
+    SmartDashboard.putBoolean("isGreen", s_wof.booleanGreen);
+    SmartDashboard.putBoolean("isRed", s_wof.booleanRed);
+    SmartDashboard.putBoolean("isYellow", s_wof.booleanYellow);
+    
     configureButtonBindings();
   }
 
@@ -120,10 +126,12 @@ public class RobotContainer {
     else 
       s_oi.wofButt.whenPressed(CtrlTwo);
 
-    s_oi.climbUpButt.whenHeld( new ClimberUp(s_climb));
+    s_oi.climbUpButt.whenHeld( new ClimberUp(s_climb));//code for telling the climber when to go up and when to go down
+    s_oi.climbUpButt.whenReleased(new ClimberStop(s_climb));
+
     s_oi.climbDownButt.whenHeld(new ClimberDown(s_climb));
     s_oi.climbDownButt.whenReleased(new ClimberStop(s_climb));//when the buttons arent held the climber will stop
-    s_oi.climbUpButt.whenReleased(new ClimberStop(s_climb));
+    
     s_oi.shiftDownButt.whenPressed(new ShiftDown(s_gearbox));
     s_oi.shiftUpButt.whenPressed(new ShiftUp(s_gearbox));
     s_oi.autoShiftButt.whenPressed(new AutoShift(s_gearbox));
