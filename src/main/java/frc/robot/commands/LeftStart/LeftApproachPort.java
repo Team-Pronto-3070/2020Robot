@@ -7,6 +7,8 @@ import frc.robot.subsystems.Drivetrain;
 public class LeftApproachPort extends CommandBase {
     
     private Drivetrain drive;
+
+    private boolean done = false;
     
     public LeftApproachPort(Drivetrain dt){
         drive = dt;
@@ -14,21 +16,10 @@ public class LeftApproachPort extends CommandBase {
     }
 
     public void execute(){
-        
+        done = drive.driveDistance(RobotMap.LEFT_DISTANCE);
     }
-    public boolean isFinished() {
-        return drive.turnToAngle(RobotMap.LEFT_START_TURN_ANGLE);
-    }
-  
-      protected void end(){
-  
-      }
-  
-      protected void initalize(){
-  
-      }
-  
-      protected void interrupted(){
 
-      }
+    public boolean isFinished() {
+        return done;
+    }
 }

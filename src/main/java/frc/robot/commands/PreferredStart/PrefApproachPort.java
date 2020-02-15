@@ -5,31 +5,19 @@ import frc.robot.subsystems.Drivetrain;
 public class PrefApproachPort extends CommandBase {
     
     private Drivetrain drive;
+
+    private boolean done = false;
     
     public PrefApproachPort(Drivetrain dt){
         drive = dt;
         addRequirements(drive);
     }
-    public void execute()
-{
 
+    public void execute(){
+        done = drive.driveDistance(RobotMap.PREFFERED_DISTANCE);
+    }
+
+    public boolean isFinished(){
+        return done;
+    }
 }
-public boolean isFinished() {
- return false;
-}
-
-protected void end(){
-
-}
-
-protected void initalize(){
-
-}
-
-protected void interrupted(){
- // Robot.drive.stop();
-}
-
-}
-
-//we has gots to drive forward "x" feet, and then we need to shoot the balls out

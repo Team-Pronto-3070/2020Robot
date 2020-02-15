@@ -31,4 +31,7 @@ public class Gearbox extends SubsystemBase {
             shift(GearboxPosition.Hi);
     }
     
+    public RobotMap.GearboxPosition getGearboxPosition(){
+        return gearboxPosition;        
+    }
 }

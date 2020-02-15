@@ -7,24 +7,18 @@ import frc.robot.subsystems.Drivetrain;
 public class RightTurnIntoPort extends CommandBase {
 
     private Drivetrain drive;
+    private boolean done = false;
     
     public RightTurnIntoPort(Drivetrain dt){
         drive = dt;
         addRequirements(drive);
     }
-    public boolean isFinished() {
-        return drive.turnToAngle(RobotMap.LEFT_START_TURN_ANGLE);
+
+    public void execute(){
+        done = drive.turnToAngle(90 - RobotMap.RIGHT_START_TURN_ANGLE);
     }
-  
-      protected void end(){
-  
-      }
-  
-      protected void initalize(){
-  
-      }
-  
-      protected void interrupted(){
-  
-      }
+
+    public boolean isFinished() {
+        return done;
+    }
 }
