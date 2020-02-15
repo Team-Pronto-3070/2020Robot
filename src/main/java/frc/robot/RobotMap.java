@@ -155,7 +155,7 @@ public class RobotMap{
             return 0;
     }
     
-    public static final JOYSIDE getButtonJoyside(int id){
+    public static JOYSIDE getButtonJoyside(int id){
         return BUTTON_SIDES[id];
     }
 
