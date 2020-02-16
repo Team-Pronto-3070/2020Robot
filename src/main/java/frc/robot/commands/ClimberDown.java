@@ -1,7 +1,6 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Climber;
 
@@ -18,9 +17,7 @@ public class ClimberDown extends CommandBase {
     }
 
     public void execute(){
-        
-            climb.teleArmDown();
-        
+        climb.teleArmDown();
     }
 
 

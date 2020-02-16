@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.WOF;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -21,6 +22,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 public class Robot extends TimedRobot{
   RobotMap robotMap;
   public static RobotContainer m_rc;
+  public static WOF wof;
 
   @Override
   public void robotInit() {
@@ -111,7 +113,7 @@ public class Robot extends TimedRobot{
    */
   @Override
   public void testPeriodic() {
-    m_rc.s_wof.setDashColor();
+    wof.setDashColor();
     System.out.println("Blue boolean: "+ m_rc.s_wof.booleanBlue);
     System.out.println("Red boolean: "+ m_rc.s_wof.booleanRed);
     System.out.println("Green boolean: "+ m_rc.s_wof.booleanGreen);
