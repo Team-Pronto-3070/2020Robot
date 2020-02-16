@@ -43,6 +43,8 @@ public class WOF extends SubsystemBase {
         booleanRed = false;
         booleanYellow = false;
         booleanGreen = false;
+        
+        addColorsToMatcher();
     }
 
     @Override
@@ -78,6 +80,11 @@ public class WOF extends SubsystemBase {
             booleanRed = false;
             booleanYellow = true;
         } 
+
+        SmartDashboard.putBoolean("isBlue", booleanBlue);
+        SmartDashboard.putBoolean("isGreen", booleanGreen);
+        SmartDashboard.putBoolean("isRed", booleanRed);
+        SmartDashboard.putBoolean("isYellow", booleanYellow);
     }
 
     public void stop(){
@@ -89,9 +96,12 @@ public class WOF extends SubsystemBase {
     }
 
     public Color getSensorColor(){
-        System.out.println( s_colorSensor.getRed());
-        System.out.println(s_colorSensor.getBlue());
-        System.out.println(s_colorSensor.getGreen());
+        // System.out.println( s_colorSensor.getRed());
+        // System.out.println(s_colorSensor.getBlue());
+        // System.out.println(s_colorSensor.getGreen());
+        SmartDashboard.putNumber("Red", s_colorSensor.getRed());
+        SmartDashboard.putNumber("Green", s_colorSensor.getGreen());
+        SmartDashboard.putNumber("Blue", s_colorSensor.getBlue());
         return ColorMatch.makeColor(s_colorSensor.getRed(), s_colorSensor.getGreen(), s_colorSensor.getBlue());
     }
 
@@ -111,10 +121,12 @@ public class WOF extends SubsystemBase {
     }
 
     public ColorType getClosestColor(){
+        //System.out.println("In the start of getClosestColor");
         setColor();
+       // System.out.println("sets color");
 
         ColorMatchResult match = m_colorMatcher.matchClosestColor(clr);
-
+        //System.out.println("start of matching");
           if (match.color == RobotMap.kBlueTarget) {
             return ColorType.Blue;
         } else if (match.color == RobotMap.kRedTarget) {
@@ -124,8 +136,10 @@ public class WOF extends SubsystemBase {
         } else if (match.color == RobotMap.kYellowTarget) {
             return ColorType.Yellow;
         } else {
+            System.out.println("end of matching");
             return ColorType.UNKNOWN;
         }
+        
     }
 
     public void setColor(){

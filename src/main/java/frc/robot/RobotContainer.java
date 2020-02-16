@@ -97,11 +97,6 @@ public class RobotContainer {
     SmartDashboard.putBoolean("Top Limit Switch", s_climb.upperLimit.get());
 
     SmartDashboard.putNumber("FL Encoder Value", s_drive.getLeftEncoderPosition());
-
-    SmartDashboard.putBoolean("isBlue", s_wof.booleanBlue);
-    SmartDashboard.putBoolean("isGreen", s_wof.booleanGreen);
-    SmartDashboard.putBoolean("isRed", s_wof.booleanRed);
-    SmartDashboard.putBoolean("isYellow", s_wof.booleanYellow);
     
     configureButtonBindings();
   }
