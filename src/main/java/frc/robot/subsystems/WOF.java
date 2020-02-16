@@ -89,6 +89,9 @@ public class WOF extends SubsystemBase {
     }
 
     public Color getSensorColor(){
+        System.out.println( s_colorSensor.getRed());
+        System.out.println(s_colorSensor.getBlue());
+        System.out.println(s_colorSensor.getGreen());
         return ColorMatch.makeColor(s_colorSensor.getRed(), s_colorSensor.getGreen(), s_colorSensor.getBlue());
     }
 
@@ -112,7 +115,7 @@ public class WOF extends SubsystemBase {
 
         ColorMatchResult match = m_colorMatcher.matchClosestColor(clr);
 
-        if (match.color == RobotMap.kBlueTarget) {
+          if (match.color == RobotMap.kBlueTarget) {
             return ColorType.Blue;
         } else if (match.color == RobotMap.kRedTarget) {
             return ColorType.Red;
