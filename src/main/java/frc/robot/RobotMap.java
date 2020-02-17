@@ -20,8 +20,8 @@ public class RobotMap{
 
     //Set each function-named talon port to each named definition
     public static final int T_WOF_PORT = T_REY_PORT; 
-    public static final int T_WINCH_PORT = T_ANAKIN_PORT;
-    public static final int T_HOPPER_PORT = T_ASHOKA_PORT;
+    public static final int T_WINCH_PORT = T_ASHOKA_PORT;
+    public static final int T_HOPPER_PORT = T_ANAKIN_PORT;
     public static final int T_TELE_PORT = T_OBIWAN_PORT;
     public static final int T_BELT1_PORT = T_REVAN_PORT;
     public static final int T_BELT2_PORT = T_BASTILA_PORT;
