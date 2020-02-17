@@ -16,21 +16,23 @@ import frc.robot.RobotMap.*;
 //TODO: Comment up
 
 public class WOF extends SubsystemBase {
-    public TalonSRX t_WOF;
-    Color clr;
+    public TalonSRX t_WOF; //Motor object
+    Color clr; //Var for storing color sensed by color sensor
     int passes = 0; //# of completed passes of single color. * 2 = # of full rotations
 
-    public boolean booleanBlue = false;
-    public boolean booleanGreen = false;
-    public boolean booleanRed = false;
-    public boolean booleanYellow = false;
+    public boolean[] colorBooleans = new boolean[4]; //Boolean for each color - to be put up on SmartDashboard
 
-    public DoubleSolenoid armSol;
+    public DoubleSolenoid armSol; //Solenoid object
     
-    ColorSensorV3 s_colorSensor;
+    ColorSensorV3 s_colorSensor; //Color sensor object
 
-    private final ColorMatch m_colorMatcher = new ColorMatch();
-    
+    private final ColorMatch m_colorMatcher = new ColorMatch(); //Color Matcher object for sensing status of WOF
+
+    final int BLUE = 0;
+    final int GREEN = 1;
+    final int RED = 2;
+    final int YELLOW = 3;
+
     //Constructor
     public WOF(){
         t_WOF = new TalonSRX(RobotMap.T_WOF_PORT);
@@ -38,11 +40,6 @@ public class WOF extends SubsystemBase {
         s_colorSensor = new ColorSensorV3(RobotMap.i2cPort);
 
         armSol = new DoubleSolenoid(RobotMap.ARM_SOL_PORT_ONE, RobotMap.ARM_SOL_PORT_TWO);
-
-        booleanBlue = false;
-        booleanRed = false;
-        booleanYellow = false;
-        booleanGreen = false;
         
         addColorsToMatcher();
     }
@@ -53,46 +50,36 @@ public class WOF extends SubsystemBase {
         // write RGB, and HSV value from color sensor to dashboard
         // Write result enum value to dashboard
        setDashColor();
-
-        
     }
 
     public void setDashColor(){
         
         if(getClosestColor() == ColorType.Blue){
-            booleanBlue = true;
-            booleanGreen = false;
-            booleanRed = false;
-            booleanYellow = false;
+            resetColorBool();
+            colorBooleans[BLUE] = true;
         }else if(getClosestColor() == ColorType.Green){
-            booleanBlue = false;
-            booleanGreen = true;
-            booleanRed = false;
-            booleanYellow = false;
+            resetColorBool();
+            colorBooleans[GREEN] = true;
         }else if(getClosestColor() == ColorType.Red){
-            booleanBlue = false;
-            booleanGreen = false;
-            booleanRed = true;
-            booleanYellow = false;
+            resetColorBool();
+            colorBooleans[RED] = true;
         }else if(getClosestColor() == ColorType.Yellow){
-            booleanBlue = false;
-            booleanGreen = false;
-            booleanRed = false;
-            booleanYellow = true;
+            resetColorBool();
+            colorBooleans[YELLOW] = true;
         } 
 
-        SmartDashboard.putBoolean("isBlue", booleanBlue);
-        SmartDashboard.putBoolean("isGreen", booleanGreen);
-        SmartDashboard.putBoolean("isRed", booleanRed);
-        SmartDashboard.putBoolean("isYellow", booleanYellow);
+        SmartDashboard.putBoolean("isBlue", colorBooleans[BLUE]);
+        SmartDashboard.putBoolean("isGreen", colorBooleans[GREEN]);
+        SmartDashboard.putBoolean("isRed", colorBooleans[RED]);
+        SmartDashboard.putBoolean("isYellow", colorBooleans[YELLOW]);
     }
 
-    public void stop(){
+    public void stop(){ //If you need this comment, you shouldn't be reading this code
         t_WOF.set(ControlMode.PercentOutput, 0);
     }
 
     public void go(){
-        t_WOF.set(ControlMode.PercentOutput, .6);
+        t_WOF.set(ControlMode.PercentOutput, RobotMap.WOF_TURN_SPEED); //Begins the wheel spinning
     }
 
     public Color getSensorColor(){
@@ -113,7 +100,7 @@ public class WOF extends SubsystemBase {
         return s_colorSensor.getProximity();
     }
 
-    public void addColorsToMatcher(){
+    public void addColorsToMatcher(){ //Adds each of the colors to the list of possibles in colorMatcher
         m_colorMatcher.addColorMatch(RobotMap.kBlueTarget);
         m_colorMatcher.addColorMatch(RobotMap.kGreenTarget);
         m_colorMatcher.addColorMatch(RobotMap.kRedTarget);
@@ -142,27 +129,33 @@ public class WOF extends SubsystemBase {
         
     }
 
-    public void setColor(){
+    public void setColor(){ //Sets clr to the value seen by the color sensor
         clr = getSensorColor();
     }
 
-    public void moveArm(Value val){
+    public void moveArm(Value val){ //Actuates arm
         armSol.set(val);
     }
 
-    public boolean getBooleanBlue(){
-        return booleanBlue;
+    public boolean getBooleanBlue(){ //Accessors for color booleans
+        return colorBooleans[BLUE];
     }
 
     public boolean getBooleanGreen(){
-        return booleanGreen;
+        return colorBooleans[GREEN];
     }
 
     public boolean getBooleanRed(){
-        return booleanRed;
+        return colorBooleans[RED];
     }
 
     public boolean getBooleanYellow(){
-        return booleanYellow;
+        return colorBooleans[RED];
+    }
+
+    public void resetColorBool(){
+        for(int i = 0; i < 4; i++){
+            colorBooleans[i] = false;
+        }
     }
 }

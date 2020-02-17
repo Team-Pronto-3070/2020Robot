@@ -87,6 +87,7 @@ public class RobotMap{
     public static final double TELE_LIFT_SPEED = 1;
     public static final double WINCH_LIFT_SPEED = .5;
     public static final double HOPPER_LIFT_SPEED = 1;
+    public static final double WOF_TURN_SPEED = .6;
 
     public static final double AUTO_SPEED = .5; //Speed value for auto
 

@@ -9,8 +9,6 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
-//TODO: Comment up
-
 public class Climber extends SubsystemBase{  //This whole system will be used as a single command.
 
     TalonSRX t_winch;
