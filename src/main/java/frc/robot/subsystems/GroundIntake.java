@@ -13,13 +13,16 @@ public class GroundIntake extends SubsystemBase {
     public GroundIntake(){
         t_intake1 = new TalonSRX(RobotMap.T_BELT1_PORT); 
         t_intake2 = new TalonSRX(RobotMap.T_BELT2_PORT);
-    
-    
     }
 
     public void intake(){
         t_intake1.set(ControlMode.PercentOutput, 1);
         t_intake2.set(ControlMode.PercentOutput, 1);
+    }
+
+    public void stop(){
+        t_intake1.set(ControlMode.PercentOutput, 0);
+        t_intake2.set(ControlMode.PercentOutput, 0);
     }
 
 }

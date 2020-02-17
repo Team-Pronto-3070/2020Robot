@@ -13,9 +13,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotMap.*;
-import frc.robot.commandGroups.*;
-import frc.robot.commands.*;
+import frc.robot.commands.CommandGroups.AutoGroup;
 import frc.robot.subsystems.*;
+import frc.robot.commands.ClimberCommmands.*;
+import frc.robot.commands.CompressorCommands.*;
+import frc.robot.commands.GearboxCommands.*;
+import frc.robot.commands.HopperCommands.*;
+import frc.robot.commands.IntakeCommands.*;
+import frc.robot.commands.WOFArmCommands.*;
+import frc.robot.commands.WOFWheelCommands.*;
+import frc.robot.commands.DriveCommand;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -34,6 +41,7 @@ public class RobotContainer {
   public static GroundIntake s_intake; 
   public static Climber s_climb;
   public static Gearbox s_gearbox;
+  public static GBCompressor s_comp;
 
   public static WOF_Stage wofStage = WOF_Stage.STAGE_ONE;
 
@@ -45,6 +53,7 @@ public class RobotContainer {
     s_hopper = new Hopper();
     s_gearbox = new Gearbox();
     s_drive = new Drivetrain(s_gearbox);
+    s_comp = new GBCompressor();
 
     initPos.addOption("Left", "L");
     initPos.addOption("Middle", "M");  
@@ -77,6 +86,13 @@ public class RobotContainer {
     s_oi.shiftDownButt.whenPressed(new ShiftDown(s_gearbox));
     s_oi.shiftUpButt.whenPressed(new ShiftUp(s_gearbox));
     s_oi.autoShiftButt.whenPressed(new AutoShift(s_gearbox));
+    s_oi.compStartButt.whenPressed(new StartCompressor(s_comp));
+    s_oi.compStopButt.whenPressed(new StopCompressor(s_comp));
+    s_oi.compToggleButt.whenPressed(new ToggleCompressor(s_comp));
+    s_oi.intakeButt.whenPressed(new IntakeBall(s_intake));
+    s_oi.intakeButt.whenReleased(new StopIntake(s_intake));
+    s_oi.outputButt.whenPressed(new UnloadHopper(s_hopper));
+    s_oi.outputButt.whenReleased(new StopHopper(s_hopper));
   }
 
   public void configWOFButton(WOF_Stage stage){
