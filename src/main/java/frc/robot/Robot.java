@@ -113,13 +113,12 @@ public class Robot extends TimedRobot{
    */
   @Override
   public void testPeriodic() {
-    m_rc.s_wof.setDashColor();
-    System.out.println("Blue boolean: "+ m_rc.s_wof.booleanBlue);
-    System.out.println("Red boolean: "+ m_rc.s_wof.booleanRed);
-    System.out.println("Green boolean: "+ m_rc.s_wof.booleanGreen);
-    System.out.println("Yellow boolean: "+ m_rc.s_wof.booleanYellow);
+    m_rc.setDashColor();
+    System.out.println("Blue boolean: "+ m_rc.getBooleanBlue());
+    System.out.println("Red boolean: "+ m_rc.getBooleanRed());
+    System.out.println("Green boolean: "+ m_rc.getBooleanGreen());
+    System.out.println("Yellow boolean: "+ m_rc.getBooleanYellow());
     SmartDashboard.updateValues();
-
   }
 }
 

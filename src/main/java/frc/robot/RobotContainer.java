@@ -167,5 +167,24 @@ public class RobotContainer {
   public void configAutoGroup(){
     autoGroup = new AutoGroup(getStartingPosition(), s_drive, s_hopper);
   }
+
+  public boolean getBooleanBlue(){
+    return s_wof.getBooleanBlue();
+  }
+
+  public boolean getBooleanGreen(){
+    return s_wof.getBooleanGreen();
+  }
+
+  public boolean getBooleanRed(){
+    return s_wof.getBooleanRed();
+  }
+
+  public boolean getBooleanYellow(){
+    return s_wof.getBooleanYellow();
+  }
   
+  public void setDashColor(){
+    s_wof.setDashColor();
+  }
 }

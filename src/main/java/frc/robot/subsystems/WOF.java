@@ -149,4 +149,20 @@ public class WOF extends SubsystemBase {
     public void moveArm(Value val){
         armSol.set(val);
     }
+
+    public boolean getBooleanBlue(){
+        return booleanBlue;
+    }
+
+    public boolean getBooleanGreen(){
+        return booleanGreen;
+    }
+
+    public boolean getBooleanRed(){
+        return booleanRed;
+    }
+
+    public boolean getBooleanYellow(){
+        return booleanYellow;
+    }
 }
