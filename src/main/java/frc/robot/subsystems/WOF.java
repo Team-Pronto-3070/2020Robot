@@ -153,7 +153,7 @@ public class WOF extends SubsystemBase {
         return colorBooleans[RED];
     }
 
-    public void resetColorBool(){
+    public void resetColorBool(){ //Sets all of colorBool to false
         for(int i = 0; i < 4; i++){
             colorBooleans[i] = false;
         }

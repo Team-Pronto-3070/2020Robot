@@ -20,7 +20,7 @@ public class AutoUnloadHopper extends CommandBase {
         timer.start();
         
         hopper.out();
-        if(timer.hasPeriodPassed(1)){
+        if(timer.hasPeriodPassed(3)){
             hopper.stop();
         }
        

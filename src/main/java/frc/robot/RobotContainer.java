@@ -31,13 +31,17 @@ public class RobotContainer {
 
 //IMPLEMENT COMMAND GROUPS
 
-  public CommandBase s_autoCommand;
-  public CommandBase s_driveCommand;
+  public CommandBase c_driveCommand;
   
-  AutoGroup autoGroup;
-  CommandBase unloadHop;
-  CommandBase climberUp;
-  CommandBase climberDown;
+  AutoGroup g_autoGroup;
+  UnloadHopper c_unloadHop;
+  ClimberUp c_climberUp;
+  ClimberDown c_climberDown;
+  ControlPanelStageOne c_CtrlOne;
+  ControlPanelStageTwo c_CtrlTwo;
+  ShiftDown c_shiftDown;
+  ShiftUp c_shiftUp;
+  AutoShift c_autoShift;
 
   public SendableChooser<String> initPos = new SendableChooser<String>();
   public SendableChooser<CommandBase> startingPosSelect = new SendableChooser<CommandBase>();
@@ -51,11 +55,7 @@ public class RobotContainer {
 
   public static WOF_Stage wofStage = WOF_Stage.STAGE_ONE;
 
-  public static ControlPanelStageOne CtrlOne;
-  public static ControlPanelStageTwo CtrlTwo;
-  public static ShiftDown shiftDown;
-  public static ShiftUp shiftUp;
-  public static AutoShift autoShift;
+  
 
   // wofRaisebutt,togglebutt,lower 
   
@@ -71,18 +71,17 @@ public class RobotContainer {
     s_gearbox = new Gearbox();
     s_drive = new Drivetrain(s_gearbox);
       
-    s_driveCommand = new DriveCommand(s_drive, s_oi);
-    s_autoCommand = new DriveCommand(s_drive, s_oi);
+    c_driveCommand = new DriveCommand(s_drive, s_oi);
    // final TeleGroup teleGroup = new TeleGroup(Robot.s_drive, Robot.s_hopper, Robot.s_climb, Robot.s_intake, Robot.s_hopper);//s_climb, in, s_hopper
    
-    unloadHop = new UnloadHopper(s_hopper);
+    c_unloadHop = new UnloadHopper(s_hopper);
 
-    CtrlOne = new ControlPanelStageOne(s_wof, this);
-    CtrlTwo = new ControlPanelStageTwo(s_wof);
+    c_CtrlOne = new ControlPanelStageOne(s_wof, this);
+    c_CtrlTwo = new ControlPanelStageTwo(s_wof);
     
-    shiftDown = new ShiftDown(s_gearbox);
-    shiftUp = new ShiftUp(s_gearbox);
-    autoShift = new AutoShift(s_gearbox);
+    c_shiftDown = new ShiftDown(s_gearbox);
+    c_shiftUp = new ShiftUp(s_gearbox);
+    c_autoShift = new AutoShift(s_gearbox);
     // Configure the button bindings
    
     //Robot.s_drive.setDefaultCommand(teleGroup);
@@ -129,9 +128,9 @@ public class RobotContainer {
   public void configWOFButton(WOF_Stage stage){
     wofStage = stage;
     if(wofStage == WOF_Stage.STAGE_ONE)
-      s_oi.wofButt.whenPressed(CtrlOne);
+      s_oi.wofButt.whenPressed(c_CtrlOne);
     else 
-      s_oi.wofButt.whenPressed(CtrlTwo);
+      s_oi.wofButt.whenPressed(c_CtrlTwo);
   }
 
   /**
@@ -142,7 +141,7 @@ public class RobotContainer {
   public CommandBase getAutonomousCommand() {
 
    // s_autoCommand = AutoGroup;
-    return s_autoCommand;
+    return g_autoGroup;
   }
 
   // public CommandGroup getTeleopCommand(){
@@ -165,7 +164,7 @@ public class RobotContainer {
   }
 
   public void configAutoGroup(){
-    autoGroup = new AutoGroup(getStartingPosition(), s_drive, s_hopper);
+    g_autoGroup = new AutoGroup(getStartingPosition(), s_drive, s_hopper);
   }
 
   public boolean getBooleanBlue(){
@@ -186,5 +185,13 @@ public class RobotContainer {
   
   public void setDashColor(){
     s_wof.setDashColor();
+  }
+
+  public void scheduleAutoGroup(){
+    g_autoGroup.schedule();
+  }
+
+  public void scheduleDriveCommand(){
+    c_driveCommand.schedule();
   }
 }

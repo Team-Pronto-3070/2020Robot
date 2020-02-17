@@ -43,9 +43,9 @@ public class Drivetrain extends SubsystemBase {
 		t_backLeft.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
 		t_backRight.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
 
-	   // gyro = new ADIS16448_IMU();
+	    gyro = new ADIS16448_IMU();
        
-       gearbox = gb;
+        gearbox = gb;
     }
 
     public void periodic(){
@@ -73,7 +73,7 @@ public class Drivetrain extends SubsystemBase {
     }
 
     public double getAngle(){
-        return 0; //gyro.getAngle();
+        return gyro.getAngle();
     }
 
     public void stop(){
