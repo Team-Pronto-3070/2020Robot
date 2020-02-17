@@ -98,10 +98,10 @@ public class RobotMap{
     public static final int WHEEL_DIAMETER_INCHES = 8; //Wheel diameter in inches
     public static final double WHEEL_CIRCUMFRENCE_INCHES = 2 * WHEEL_DIAMETER_INCHES * Math.PI; //Wheel circumfrence in inches
 
-    public static final Color kBlueTarget = ColorMatch.makeColor(0.143, 0.427, 0.429); //Color constants
-    public static final Color kGreenTarget = ColorMatch.makeColor(0.197, 0.561, 0.240);
-    public static final Color kRedTarget = ColorMatch.makeColor(0.561, 0.232, 0.114);
-    public static final Color kYellowTarget = ColorMatch.makeColor(0.361, 0.524, 0.113);
+    public static final Color kBlueTarget = ColorMatch.makeColor(143, 427, 429); //Color constants
+    public static final Color kGreenTarget = ColorMatch.makeColor(197, 561, 240);
+    public static final Color kRedTarget = ColorMatch.makeColor(561, 232, 114);
+    public static final Color kYellowTarget = ColorMatch.makeColor(361, 524, 113);
 
     public enum ColorType { //WOF color enum 
         Blue, Red, Yellow, Green, UNKNOWN
