@@ -6,11 +6,11 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
-public class Intake extends SubsystemBase {
+public class GroundIntake extends SubsystemBase {
 
     TalonSRX t_intake1;
     TalonSRX t_intake2;
-    public Intake(){
+    public GroundIntake(){
         t_intake1 = new TalonSRX(RobotMap.T_BELT1_PORT); 
         t_intake2 = new TalonSRX(RobotMap.T_BELT2_PORT);
     

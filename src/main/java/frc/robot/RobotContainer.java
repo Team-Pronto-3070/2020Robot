@@ -31,7 +31,7 @@ public class RobotContainer {
   public static Hopper s_hopper;
   public static WOF s_wof;
   public static OI s_oi;
-  public static Intake s_intake; 
+  public static GroundIntake s_intake; 
   public static Climber s_climb;
   public static Gearbox s_gearbox;
 
@@ -40,7 +40,7 @@ public class RobotContainer {
   public RobotContainer() {
     s_wof = new WOF();
     s_oi = new OI();
-    s_intake = new Intake();
+    s_intake = new GroundIntake();
     s_climb = new Climber();
     s_hopper = new Hopper();
     s_gearbox = new Gearbox();
