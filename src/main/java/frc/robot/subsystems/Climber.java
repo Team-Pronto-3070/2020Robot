@@ -28,13 +28,13 @@ public class Climber extends SubsystemBase{  //This whole system will be used as
 
     public void goUp(){
         
-        // t_winch.set(ControlMode.PercentOutput, -RobotMap.WINCH_LIFT_SPEED); // creates a speed command for the winch located in RobotMap
+        t_winch.set(ControlMode.PercentOutput, -RobotMap.WINCH_LIFT_SPEED); // creates a speed command for the winch located in RobotMap
         t_teleArm.set(ControlMode.PercentOutput, RobotMap.TELE_LIFT_SPEED); // creates a speed command for the lift arm located in RobotMap
 
     }
     public void teleArmDown(){
         t_teleArm.set (ControlMode.PercentOutput, -RobotMap.TELE_LIFT_SPEED); //tells the arm to fall.
-        // t_winch.set(ControlMode.PercentOutput, RobotMap.WINCH_LIFT_SPEED);
+        t_winch.set(ControlMode.PercentOutput, RobotMap.WINCH_LIFT_SPEED);
     }
     public void winchDown(){
         t_winch.set (ControlMode.PercentOutput, -1); //tells the winch to reverse.
