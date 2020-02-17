@@ -24,7 +24,7 @@ public class AutoGroup extends SequentialCommandGroup{
                 addCommands(new MiddleTurnToPort(dt), new MiddleApproachPort(dt), new MiddleTurnIntoPort(dt), new AutoUnloadHopper(hop));
                 break;
             case Preffered:
-                addCommands(new PrefApproachPort(dt));
+                addCommands(new PrefApproachPort(dt), new AutoUnloadHopper(hop));
                 break;
         }
 

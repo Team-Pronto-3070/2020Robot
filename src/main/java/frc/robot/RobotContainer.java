@@ -61,7 +61,6 @@ public class RobotContainer {
     initPos.setDefaultOption("Preferred", "P");
     
     SmartDashboard.putData(initPos);
-    SmartDashboard.putBoolean("Top Limit Switch", s_climb.upperLimit.get());
 
     SmartDashboard.putNumber("FL Encoder Value", s_drive.getLeftEncoderPosition());
     
@@ -85,7 +84,7 @@ public class RobotContainer {
     s_oi.climbDownButt.whenReleased(new ClimberStop(s_climb));//when the buttons arent held the climber will stop
     s_oi.shiftDownButt.whenPressed(new ShiftDown(s_gearbox));
     s_oi.shiftUpButt.whenPressed(new ShiftUp(s_gearbox));
-    s_oi.autoShiftButt.whenPressed(new AutoShift(s_gearbox));
+    s_oi.autoShiftButt.whenPressed(new ShiftToggle(s_gearbox));
     s_oi.compStartButt.whenPressed(new StartCompressor(s_comp));
     s_oi.compStopButt.whenPressed(new StopCompressor(s_comp));
     s_oi.compToggleButt.whenPressed(new ToggleCompressor(s_comp));

@@ -7,13 +7,10 @@ import frc.robot.subsystems.Climber;
 public class ClimberDown extends CommandBase {
 
     private Climber climb;
-    DigitalInput lowerLimit;
 
     public ClimberDown(Climber climber){
             climb = climber;
             addRequirements(climber);
-
-            lowerLimit = new DigitalInput(1);
     }
 
     public void execute(){
