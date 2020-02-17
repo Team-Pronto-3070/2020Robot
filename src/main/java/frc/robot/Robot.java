@@ -7,6 +7,10 @@
 
 package frc.robot;
 
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -23,10 +27,19 @@ public class Robot extends TimedRobot{
   RobotMap robotMap;
   public static RobotContainer m_rc;
   public static WOF wof;
+  UsbCamera cam;
+  CvSink cvSink;
+  CvSource outputStream;
 
   @Override
   public void robotInit() {
     m_rc = new RobotContainer();
+    cam = CameraServer.getInstance().startAutomaticCapture("Video Feed", RobotMap.CAMERA_PORT);
+    cam.setResolution(RobotMap.CAMERA_X, RobotMap.CAMERA_Y);
+    cam.setExposureManual(RobotMap.CAMERA_EXPOSURE);
+
+    cvSink = CameraServer.getInstance().getVideo();
+    outputStream = CameraServer.getInstance().putVideo("Rectangle", RobotMap.CAMERA_X, RobotMap.CAMERA_Y);
   }
 
   /**
@@ -97,8 +110,6 @@ public class Robot extends TimedRobot{
   @Override
   public void teleopPeriodic() {
     CommandScheduler.getInstance().run();
-
-   
   }
 
   @Override

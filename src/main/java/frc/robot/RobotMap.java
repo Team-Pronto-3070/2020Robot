@@ -135,6 +135,11 @@ public class RobotMap{
         Hi, Lo
     };
 
+    public static final int CAMERA_PORT = 0;
+    public static final int CAMERA_EXPOSURE = 80;
+    public static final int CAMERA_X = 320;
+    public static final int CAMERA_Y = 240;
+
     public static StartingPosition convertStartingPosition(String str){ //Translator for SendableChooser<String> 
         if(str.equals("L")){                                            //input to StartingPosition output
             return StartingPosition.Left;
