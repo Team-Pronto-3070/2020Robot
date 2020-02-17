@@ -9,6 +9,7 @@ public class AutoUnloadHopper extends CommandBase {
 
     private Hopper hopper;
     Timer timer = new Timer();
+    private boolean done = false;
 
     public AutoUnloadHopper(Hopper hop) {
         hopper = hop;
@@ -22,22 +23,14 @@ public class AutoUnloadHopper extends CommandBase {
         hopper.out();
         if(timer.hasPeriodPassed(3)){
             hopper.stop();
+            done = true;
         }
        
         timer.stop();
     }
 
-    public void initialize(){
-
-    }
-
-    public void interrupted(){
-
-    } 
-
     public boolean isFinished(){
-
-        return false;
+        return done;
     }
 
     public void end(){

@@ -24,25 +24,7 @@ import frc.robot.subsystems.*;
  * (including subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
- 
-
-  //public final DrivetrainKB drivetrainKB = new DrivetrainKB();
-
-//IMPLEMENT COMMAND GROUPS
-
-  public CommandBase c_driveCommand;
   
-  AutoGroup g_autoGroup;
-  UnloadHopper c_unloadHop;
-  ClimberUp c_climberUp;
-  ClimberDown c_climberDown;
-  ControlPanelStageOne c_CtrlOne;
-  ControlPanelStageTwo c_CtrlTwo;
-  ShiftDown c_shiftDown;
-  ShiftUp c_shiftUp;
-  AutoShift c_autoShift;
-
   public SendableChooser<String> initPos = new SendableChooser<String>();
   public SendableChooser<CommandBase> startingPosSelect = new SendableChooser<CommandBase>();
   public static Drivetrain s_drive;
@@ -55,13 +37,6 @@ public class RobotContainer {
 
   public static WOF_Stage wofStage = WOF_Stage.STAGE_ONE;
 
-  
-
-  // wofRaisebutt,togglebutt,lower 
-  
-  /**
-   * The container for the robot.  Contains subsystems, OI devices, and commands.
-   */
   public RobotContainer() {
     s_wof = new WOF();
     s_oi = new OI();
@@ -70,22 +45,6 @@ public class RobotContainer {
     s_hopper = new Hopper();
     s_gearbox = new Gearbox();
     s_drive = new Drivetrain(s_gearbox);
-      
-    c_driveCommand = new DriveCommand(s_drive, s_oi);
-   // final TeleGroup teleGroup = new TeleGroup(Robot.s_drive, Robot.s_hopper, Robot.s_climb, Robot.s_intake, Robot.s_hopper);//s_climb, in, s_hopper
-   
-    c_unloadHop = new UnloadHopper(s_hopper);
-
-    c_CtrlOne = new ControlPanelStageOne(s_wof, this);
-    c_CtrlTwo = new ControlPanelStageTwo(s_wof);
-    
-    c_shiftDown = new ShiftDown(s_gearbox);
-    c_shiftUp = new ShiftUp(s_gearbox);
-    c_autoShift = new AutoShift(s_gearbox);
-    // Configure the button bindings
-   
-    //Robot.s_drive.setDefaultCommand(teleGroup);
-    //Robot.s_wof.setDefaultCommand(s_autoCommand);
 
     initPos.addOption("Left", "L");
     initPos.addOption("Middle", "M");  
@@ -100,10 +59,6 @@ public class RobotContainer {
     configureButtonBindings();
   }
 
-  // public Drivetrain getDT(){
-  //   return s_drive;
-  // }
-
   /**
    * Use this method to define your button->command mappings.  Buttons can be created by
    * instantiating a {@link GenericHID} or one of its subclasses ({@link
@@ -112,14 +67,13 @@ public class RobotContainer {
    */
 
   private void configureButtonBindings() {
-
     s_oi.hopButt.whenPressed(new UnloadHopper(s_hopper));
     s_oi.hopButt.whenReleased(new StopHopper(s_hopper));
     configWOFButton(wofStage);
+    s_oi.wofButt.whenReleased(new StopWOF(s_wof));
     s_oi.climbUpButt.whenHeld( new ClimberUp(s_climb));
     s_oi.climbDownButt.whenHeld(new ClimberDown(s_climb));
     s_oi.climbDownButt.whenReleased(new ClimberStop(s_climb));//when the buttons arent held the climber will stop
-    
     s_oi.shiftDownButt.whenPressed(new ShiftDown(s_gearbox));
     s_oi.shiftUpButt.whenPressed(new ShiftUp(s_gearbox));
     s_oi.autoShiftButt.whenPressed(new AutoShift(s_gearbox));
@@ -128,25 +82,10 @@ public class RobotContainer {
   public void configWOFButton(WOF_Stage stage){
     wofStage = stage;
     if(wofStage == WOF_Stage.STAGE_ONE)
-      s_oi.wofButt.whenPressed(c_CtrlOne);
+      s_oi.wofButt.whenPressed(new ControlPanelStageOne(s_wof, this));
     else 
-      s_oi.wofButt.whenPressed(c_CtrlTwo);
+      s_oi.wofButt.whenPressed(new ControlPanelStageTwo(s_wof));
   }
-
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
-  public CommandBase getAutonomousCommand() {
-
-   // s_autoCommand = AutoGroup;
-    return g_autoGroup;
-  }
-
-  // public CommandGroup getTeleopCommand(){
-  //   return teleGroup;
-  // }
 
   public StartingPosition getStartingPosition(){
     switch (initPos.getSelected()) {
@@ -161,10 +100,6 @@ public class RobotContainer {
       default:
         return null;
     }
-  }
-
-  public void configAutoGroup(){
-    g_autoGroup = new AutoGroup(getStartingPosition(), s_drive, s_hopper);
   }
 
   public boolean getBooleanBlue(){
@@ -188,10 +123,10 @@ public class RobotContainer {
   }
 
   public void scheduleAutoGroup(){
-    g_autoGroup.schedule();
+    new AutoGroup(getStartingPosition(), s_drive, s_hopper).schedule();
   }
 
   public void scheduleDriveCommand(){
-    c_driveCommand.schedule();
+    new DriveCommand(s_drive, s_oi).schedule();
   }
 }

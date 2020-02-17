@@ -20,6 +20,10 @@ public class ClimberDown extends CommandBase {
         climb.teleArmDown();
     }
 
+    public boolean isFinished(){
+        return false;
+    }
+
 
     
 }
