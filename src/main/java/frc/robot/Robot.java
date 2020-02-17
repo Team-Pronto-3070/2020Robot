@@ -76,11 +76,7 @@ public class Robot extends TimedRobot{
    */
   @Override
   public void autonomousInit() {
-    m_rc.configAutoGroup();
-    // schedule the autonomous command (example)
-    if (m_rc.getAutonomousCommand() != null) { //TODO: Finalize command scheduling
-      m_rc.scheduleAutoGroup();
-    }
+    m_rc.scheduleAutoGroup();  
   }
 
   /**
@@ -93,15 +89,7 @@ public class Robot extends TimedRobot{
 
   @Override
   public void teleopInit() {
-    // This makes sure that the autonomous stops running when
-    // teleop starts running. If you want the autonomous to
-    // continue until interrupted by another command, remove
-    // this line or comment it out.
-    if (m_rc.c_driveCommand != null) {
-      m_rc.scheduleDriveCommand();
-    }
-    
-    
+    m_rc.scheduleDriveCommand();  
   }
 
   /**

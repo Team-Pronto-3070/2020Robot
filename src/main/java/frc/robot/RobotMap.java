@@ -20,8 +20,8 @@ public class RobotMap{
 
     //Set each function-named talon port to each named definition
     public static final int T_WOF_PORT = T_REY_PORT; 
-    public static final int T_WINCH_PORT = T_ANAKIN_PORT;
-    public static final int T_HOPPER_PORT = T_ASHOKA_PORT;
+    public static final int T_WINCH_PORT = T_ASHOKA_PORT;
+    public static final int T_HOPPER_PORT = T_ANAKIN_PORT;
     public static final int T_TELE_PORT = T_OBIWAN_PORT;
     public static final int T_BELT1_PORT = T_REVAN_PORT;
     public static final int T_BELT2_PORT = T_BASTILA_PORT;
@@ -44,6 +44,7 @@ public class RobotMap{
     public static final int JOYR_PORT = 1;
 
     //Joystick button #s for each function
+<<<<<<< HEAD
     public static final int HOPPER_BUTTON = 1; //Right
     public static final int WOF_BUTTON = 3; //Left
     public static final int INTAKE_BUTTON = 1;
@@ -51,11 +52,25 @@ public class RobotMap{
     public static final int CLIMBER_DOWN_BUTTON = 3; //Right
     public static final int SHIFT_UP_BUTTON = 4;//left
     public static final int SHIFT_DOWN_BUTTON = 5;//right
+=======
+    public static final int HOPPER_BUTTON = 2;
+    public static final int WOF_BUTTON = 3;
+    public static final int INTAKE_BUTTON = 1;
+    public static final int OUTPUT_BUTTON = 1;
+    public static final int CLIMBER_UP_BUTTON = 2; 
+    public static final int CLIMBER_DOWN_BUTTON = 3; 
+    public static final int SHIFT_UP_BUTTON = 4;
+    public static final int SHIFT_DOWN_BUTTON = 5;
+>>>>>>> 193b0ae539e3500529f9f3f10d314435c94e0afd
     public static final int AUTOSHIFT_BUTTON = 2;
+    public static final int RAISE_ARM_BUTTON = 9; 
+    public static final int TOGGLE_ARM_BUTTON = 9;
+    public static final int LOWER_ARM_BUTTON = 10;
+    public static final int START_COMP_BUTTON = 11;
+    public static final int STOP_COMP_BUTTON = 12;
+    public static final int TOGGLE_COMP_BUTTON = 6;
 
-    public static final int RAISE_ARM_BUTT = 9; //left
-    public static final int TOGGLE_ARM_BUTT = 9; //right
-    public static final int LOWER_ARM_BUTT = 10; //right
+    public static final int COMPRESSOR_PORT = 0;
     
 //raise/toggle/lower armbutt
     public enum JOYSIDE { //Enum for OI class methods
@@ -71,9 +86,12 @@ public class RobotMap{
     public static final int SH_UP_ID = 6;
     public static final int SH_DWN_ID = 7;
     public static final int SH_AU_ID = 8;
-    public static final int RA_AR_BUTT = 9;
-    public static final int TOG_AR_BUTT = 10;
-    public static final int LOW_AR_BUTT = 11;
+    public static final int RA_AR_ID = 9;
+    public static final int TOG_AR_ID = 10;
+    public static final int LOW_AR_ID = 11;
+    public static final int START_COMP_ID = 12;
+    public static final int STOP_COMP_ID = 13;
+    public static final int TOGGLE_COMP_ID = 14;
 
     public static final JOYSIDE[] BUTTON_SIDES = new JOYSIDE[]{JOYSIDE.Left, JOYSIDE.Left, JOYSIDE.Right, 
                                                             // Hopper,       WOF,          Intake
@@ -81,8 +99,11 @@ public class RobotMap{
                                                             // Output,        Climber down, Climber Up
                                                                JOYSIDE.Left, JOYSIDE.Right, JOYSIDE.Right,
                                                             // Shift Up,     Shift down,    Autoshift
-                                                               JOYSIDE.Left, JOYSIDE.Right, JOYSIDE.Right};
+                                                               JOYSIDE.Left, JOYSIDE.Right, JOYSIDE.Right,
                                                             // Raise arm     Toggle arm     Lower arm
+                                                               JOYSIDE.Left, JOYSIDE.Left, JOYSIDE.Right
+                                                            // Start comp,   Stop comp,    Toggle comp
+                                                            };
     public static final double TELE_LIFT_SPEED = 1;
     public static final double WINCH_LIFT_SPEED = .5;
     public static final double HOPPER_LIFT_SPEED = 1;
