@@ -98,6 +98,9 @@ public class RobotMap{
     public static final double WINCH_LIFT_SPEED = .5;
     public static final double HOPPER_LIFT_SPEED = 1;
     public static final double WOF_TURN_SPEED = .6;
+    public static final int WOF_WAIT_PERIOD = 1;
+    public static final int WOF_ROTATIONS = 3;
+    public static final int WOF_PASSES = WOF_ROTATIONS * 2;
 
     public static final double AUTO_SPEED = .5; //Speed value for auto
 

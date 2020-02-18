@@ -3,11 +3,11 @@ package frc.robot.commands.GearboxCommands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Gearbox;
 
-public class AutoShift extends CommandBase {
+public class ShiftToggle extends CommandBase {
 
     private static Gearbox gb;
     
-    public AutoShift(Gearbox gearbox){
+    public ShiftToggle(Gearbox gearbox){
         addRequirements(gearbox);
         gb = gearbox;
     }

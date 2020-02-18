@@ -5,7 +5,6 @@ import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
@@ -14,16 +13,12 @@ public class Climber extends SubsystemBase{  //This whole system will be used as
     TalonSRX t_winch;
     TalonSRX t_teleArm;
     
-    public DigitalInput upperLimit;
-    
     public Climber(){
         t_winch = new TalonSRX(RobotMap.T_WINCH_PORT); //sets the motor for the winch
         t_teleArm = new TalonSRX(RobotMap.T_TELE_PORT); //sets the motor for the lift arm
         t_teleArm.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
         t_teleArm.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
         //t_teleArm.setInverted(true);
-        upperLimit = new DigitalInput(2);
-
     }
 
     public void goUp(){

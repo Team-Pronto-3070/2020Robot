@@ -7,21 +7,21 @@ import frc.robot.RobotMap;
 import frc.robot.subsystems.WOF;
 
 
-public class ControlPanelStageTwo extends CommandBase {
+public class StageTwoSpin extends CommandBase {
 
     private WOF wof;
-    Timer timer;
-
+    Timer timer = new Timer();
+    private boolean done = false;
     String gameData;
     RobotMap.ColorType gameColor = RobotMap.ColorType.UNKNOWN;
 
 
-    public ControlPanelStageTwo(WOF wof){
+    public StageTwoSpin(WOF wof){
         this.wof = wof;
         addRequirements(wof);
+    }
 
-        timer = new Timer(); 
-        
+    protected void initalize(){
         gameData = DriverStation.getInstance().getGameSpecificMessage();    
         if(gameData.length() > 0){
             if(gameData.charAt(0) == 'R'){
@@ -36,42 +36,28 @@ public class ControlPanelStageTwo extends CommandBase {
                 gameColor = RobotMap.ColorType.UNKNOWN;
             }
         }
-
     }
 
     public void execute(){    
-
-        
         //spin for 1 second
-        wof.go();
-        if(timer.hasPeriodPassed(.5)){
-             //if the current color does not equal to wanted color keep spinning
-            if(wof.getClosestColor() == gameColor){
-                wof.stop();      
+        if(!done){
+            wof.go();
+            timer.start();
+            if(timer.hasPeriodPassed(.5)){
+                //if the current color does not equal to wanted color keep spinning
+                timer.reset();
+                if(wof.getClosestColor() == gameColor){
+                    done = true;     
+                }
             }
         }
-       
-
-        
-
     }
 
     public boolean isFinished() {
-     return false;
+     return done;
     }
 
     protected void end(){
-
+        wof.stop();
     }
-
-    protected void initalize(){
-
-    }
-
-    protected void interrupted(){
-
-    }
-
-
-
 }
