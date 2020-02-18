@@ -28,8 +28,8 @@ public class RobotMap{
 
     public static final I2C.Port i2cPort = I2C.Port.kOnboard; //I2C ports for gyro
 
-    public static final int ARM_SOL_PORT_ONE = 0;
-    public static final int ARM_SOL_PORT_TWO = 1;
+    public static final int ARM_SOL_PORT_ONE = 4;
+    public static final int ARM_SOL_PORT_TWO = 5;
 
     public static final int GB_SOL_PORT_ONE = 2;
     public static final int GB_SOL_PORT_TWO = 3;
