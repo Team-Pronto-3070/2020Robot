@@ -44,15 +44,6 @@ public class RobotMap{
     public static final int JOYR_PORT = 1;
 
     //Joystick button #s for each function
-<<<<<<< HEAD
-    public static final int HOPPER_BUTTON = 1; //Right
-    public static final int WOF_BUTTON = 3; //Left
-    public static final int INTAKE_BUTTON = 1;
-    public static final int CLIMBER_UP_BUTTON = 2; //Right
-    public static final int CLIMBER_DOWN_BUTTON = 3; //Right
-    public static final int SHIFT_UP_BUTTON = 4;//left
-    public static final int SHIFT_DOWN_BUTTON = 5;//right
-=======
     public static final int HOPPER_BUTTON = 2;
     public static final int WOF_BUTTON = 3;
     public static final int INTAKE_BUTTON = 1;
@@ -61,7 +52,6 @@ public class RobotMap{
     public static final int CLIMBER_DOWN_BUTTON = 3; 
     public static final int SHIFT_UP_BUTTON = 4;
     public static final int SHIFT_DOWN_BUTTON = 5;
->>>>>>> 193b0ae539e3500529f9f3f10d314435c94e0afd
     public static final int AUTOSHIFT_BUTTON = 2;
     public static final int RAISE_ARM_BUTTON = 9; 
     public static final int TOGGLE_ARM_BUTTON = 9;
