@@ -52,7 +52,7 @@ public class RobotMap{
     public static final int CLIMBER_DOWN_BUTTON = 3; 
     public static final int SHIFT_UP_BUTTON = 4;
     public static final int SHIFT_DOWN_BUTTON = 5;
-    public static final int AUTOSHIFT_BUTTON = 2;
+    public static final int AUTOSHIFT_BUTTON = 2 ;
     public static final int RAISE_ARM_BUTTON = 9; 
     public static final int TOGGLE_ARM_BUTTON = 9;
     public static final int LOWER_ARM_BUTTON = 10;

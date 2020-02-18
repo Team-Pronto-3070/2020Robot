@@ -16,19 +16,30 @@ public class OI {
         j_LEFT = new Joystick(RobotMap.JOYL_PORT);
         j_RIGHT = new Joystick(RobotMap.JOYR_PORT);
 
-        //exampleButt = new JoystickButton(j_LEFT or j_RIGHT, 1/2/3/4/etc.);
+        //button for outputing from the hopper(button 2 on the left joystick) 
         hopButt = new JoystickButton(getButtonJoyside(RobotMap.HOPPER_ID), RobotMap.HOPPER_BUTTON); 
+        //used for operating the wheel of fortune mech(button 3 on the left joystick)
         wofButt = new JoystickButton(getButtonJoyside(RobotMap.WOF_ID), RobotMap.WOF_BUTTON);
+
+        //the two buttons that put the climber up and down(button three for up and button 2 for down on the right)
         climbUpButt = new JoystickButton(getButtonJoyside(RobotMap.CL_UP_ID), RobotMap.CLIMBER_UP_BUTTON);
         climbDownButt = new JoystickButton(getButtonJoyside(RobotMap.CL_DOWN_ID), RobotMap.CLIMBER_DOWN_BUTTON);
+        //shift up is button 4 on the left, shift down is button 5 on the left
+        //TODO: Find a good button for an auto shifter
         shiftUpButt = new JoystickButton(getButtonJoyside(RobotMap.SH_UP_ID), RobotMap.SHIFT_UP_BUTTON);
         shiftDownButt = new JoystickButton(getButtonJoyside(RobotMap.SH_DWN_ID), RobotMap.SHIFT_DOWN_BUTTON);
         autoShiftButt = new JoystickButton(getButtonJoyside(RobotMap.SH_AU_ID), RobotMap.AUTOSHIFT_BUTTON);
+        //intake button is on button the trigger of the left joystick
         intakeButt = new JoystickButton(getButtonJoyside(RobotMap.INTAKE_ID), RobotMap.INTAKE_BUTTON);
-        outputButt = new JoystickButton(getButtonJoyside(RobotMap.OUTPUT_ID),RobotMap.OUTPUT_BUTTON);
+        //outputButt = new JoystickButton(getButtonJoyside(RobotMap.OUTPUT_ID),RobotMap.OUTPUT_BUTTON);
+        //not sure if output butt will be used yet
+
+        //buttons for compressing, 11 for starting and 12 for stopping on the left, 6 on the right for toggling
         compStartButt = new JoystickButton(getButtonJoyside(RobotMap.START_COMP_ID),RobotMap.START_COMP_BUTTON);
         compStopButt = new JoystickButton(getButtonJoyside(RobotMap.STOP_COMP_ID),RobotMap.STOP_COMP_BUTTON);
         compToggleButt = new JoystickButton(getButtonJoyside(RobotMap.TOGGLE_COMP_ID),RobotMap.TOGGLE_COMP_BUTTON);
+
+        //buttons for wof, 9 and 10 on the right(up for 9 on the left and 10 for down on the right) toggling is 10 on the left
         wofArmUpButt = new JoystickButton(getButtonJoyside(RobotMap.RA_AR_ID), RobotMap.RAISE_ARM_BUTTON);
         wofArmToggleButt = new JoystickButton(getButtonJoyside(RobotMap.TOG_AR_ID), RobotMap.TOGGLE_ARM_BUTTON);
         wofArmDownButt = new JoystickButton(getButtonJoyside(RobotMap.SH_DWN_ID), RobotMap.LOWER_ARM_BUTTON);
