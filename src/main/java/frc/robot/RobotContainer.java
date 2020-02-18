@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotMap.*;
 import frc.robot.subsystems.*;
@@ -147,5 +148,9 @@ public class RobotContainer {
 
   public void scheduleDriveCommand(){
     new DriveCommand(s_drive, s_oi).schedule();
+  }
+
+  public Color getSensorColor(){
+    return s_wof.getSensorColor();
   }
 }
