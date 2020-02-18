@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotMap.*;
-import frc.robot.commands.CommandGroups.AutoGroup;
 import frc.robot.subsystems.*;
 import frc.robot.commands.ClimberCommmands.*;
 import frc.robot.commands.CompressorCommands.*;
@@ -23,6 +22,7 @@ import frc.robot.commands.IntakeCommands.*;
 import frc.robot.commands.WOFArmCommands.*;
 import frc.robot.commands.WOFWheelCommands.*;
 import frc.robot.commands.DriveCommand;
+import frc.robot.commands.CommandGroups.*;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a

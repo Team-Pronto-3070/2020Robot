@@ -9,7 +9,7 @@ public class GBCompressor extends SubsystemBase {
     Compressor comp;
     private boolean on = false;
 
-    public GBCompressor(){
+    public GBCompressor(){ //constructor
         comp = new Compressor(RobotMap.COMPRESSOR_PORT);
     }
 

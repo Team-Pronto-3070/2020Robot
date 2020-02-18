@@ -6,41 +6,42 @@ import frc.robot.RobotMap;
 import frc.robot.RobotMap.*;
 import frc.robot.subsystems.WOF;
 
-public class ControlPanelStageOne extends CommandBase {
+public class StageOneSpin extends CommandBase {
     private WOF wof;
     private RobotContainer rc;
-
-    public ControlPanelStageOne(WOF wof, RobotContainer rc){
+    int numRot = RobotMap.WOF_PASSES;
+    RobotMap.ColorType currentColor;
+    
+    public StageOneSpin(WOF wof, RobotContainer rc){
         this.wof = wof;
         this.rc = rc;
         addRequirements(wof);
     }
 
+    public void initalize(){
+        currentColor = wof.getClosestColor();
+    }
+
     public void execute(){
         //needs to spin the thing 3-4 times
-        RobotMap.ColorType currentColor = wof.getClosestColor();
 
-        wof.go();
-        int numRot = 3;
-        if(numRot > 0){
+        if(numRot > 0){   
+            wof.go();
             wof.setDashColor();
             if(currentColor == wof.getClosestColor()){
                 numRot--;
             }
+        } else {
+            wof.stop();
         }
-        wof.stop();
     }
 
     public boolean isFinished() {
-     return false;
+     return numRot == 0;
     }
 
     protected void end(){
         rc.configWOFButton(WOF_Stage.STAGE_TWO);
-    }
-
-    protected void initalize(){
-
     }
 
     protected void interrupted(){
