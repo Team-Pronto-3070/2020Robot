@@ -119,6 +119,8 @@ public class RobotMap{
     public enum ColorType { //WOF color enum 
         Blue, Red, Yellow, Green, UNKNOWN
     };
+
+    public static final ColorType[] COLOR_ORDER = new ColorType[]{ColorType.Blue, ColorType.Green, ColorType.Red, ColorType.Yellow};
    
     public static final double LEFT_START_TURN_ANGLE = 57; //Angles for first step of auto TurnToPort
     public static final double RIGHT_START_TURN_ANGLE = 59.7;
@@ -203,5 +205,21 @@ public class RobotMap{
 
     public static double revsPerInch(GearboxPosition pos){
         return getGearboxRatio(pos) / WHEEL_CIRCUMFRENCE_INCHES;        
+    }
+
+    public static ColorType shiftColors(ColorType clr){
+        switch(clr){
+            case Blue:
+                return ColorType.Red;
+            case Green: 
+                return ColorType.Yellow;
+            case Red:
+                return ColorType.Green;
+            case Yellow:
+                return ColorType.Blue;
+            default:
+                return null;
+        }
+        
     }
 }
