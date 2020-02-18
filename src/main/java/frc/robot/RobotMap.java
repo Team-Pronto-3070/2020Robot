@@ -13,14 +13,14 @@ public class RobotMap{
 
     public static final int T_REY_PORT = 5; //TalonSRX ports
     public static final int T_OBIWAN_PORT = 6;
-    public static final int T_ASHOKA_PORT = 7;
+    public static final int T_AHSOKA_PORT = 7;
     public static final int T_ANAKIN_PORT = 8;
     public static final int T_REVAN_PORT = 9;
     public static final int T_BASTILA_PORT = 10;
 
     //Set each function-named talon port to each named definition
     public static final int T_WOF_PORT = T_REY_PORT; 
-    public static final int T_WINCH_PORT = T_BASTILA_PORT;
+    public static final int T_WINCH_PORT = T_AHSOKA_PORT;
     public static final int T_HOPPER_PORT = T_ANAKIN_PORT;
     public static final int T_TELE_PORT = T_OBIWAN_PORT;
     public static final int T_BELT1_PORT = T_REVAN_PORT;
