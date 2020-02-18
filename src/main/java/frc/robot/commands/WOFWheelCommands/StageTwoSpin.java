@@ -1,7 +1,6 @@
 package frc.robot.commands.WOFWheelCommands;
 
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.WOF;
@@ -10,7 +9,6 @@ import frc.robot.subsystems.WOF;
 public class StageTwoSpin extends CommandBase {
 
     private WOF wof;
-    Timer timer = new Timer();
     private boolean done = false;
     String gameData;
     RobotMap.ColorType gameColor = RobotMap.ColorType.UNKNOWN;
@@ -22,9 +20,9 @@ public class StageTwoSpin extends CommandBase {
     }
 
     protected void initalize(){
-        gameData = DriverStation.getInstance().getGameSpecificMessage();    
-        if(gameData.length() > 0){
-            if(gameData.charAt(0) == 'R'){
+        gameData = DriverStation.getInstance().getGameSpecificMessage(); //Takes goal from frc
+        if(gameData.length() > 0){ //If there is a message
+            if(gameData.charAt(0) == 'R'){ //Assigns colors via message given
                 gameColor = RobotMap.ColorType.Red;
             }else if(gameData.charAt(0) == 'Y'){
                 gameColor = RobotMap.ColorType.Yellow;
@@ -39,16 +37,13 @@ public class StageTwoSpin extends CommandBase {
     }
 
     public void execute(){    
-        //spin for 1 second
         if(!done){
-            wof.go();
-            timer.start();
-            if(timer.hasPeriodPassed(.5)){
-                //if the current color does not equal to wanted color keep spinning
-                timer.reset();
-                if(wof.getClosestColor() == gameColor){
-                    done = true;     
-                }
+            //If the color does not match the desired color
+            if(wof.getClosestColor() != RobotMap.shiftColors(gameColor)) //shiftColor returns 90 degrees off to accomodate field sensor position
+                wof.go();
+            else {
+                done = true;
+                wof.stop();
             }
         }
     }
