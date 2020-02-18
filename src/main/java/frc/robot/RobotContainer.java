@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotMap.*;
 import frc.robot.subsystems.*;
@@ -80,6 +81,7 @@ public class RobotContainer {
     configWOFButton(wofStage);
     s_oi.wofButt.whenReleased(new StopWOF(s_wof));
     s_oi.climbUpButt.whenHeld( new ClimberUp(s_climb));
+    s_oi.climbUpButt.whenReleased(new ClimberUp(s_climb));
     s_oi.climbDownButt.whenHeld(new ClimberDown(s_climb));
     s_oi.climbDownButt.whenReleased(new ClimberStop(s_climb));//when the buttons arent held the climber will stop
     s_oi.shiftDownButt.whenPressed(new ShiftDown(s_gearbox));
@@ -146,5 +148,9 @@ public class RobotContainer {
 
   public void scheduleDriveCommand(){
     new DriveCommand(s_drive, s_oi).schedule();
+  }
+
+  public Color getSensorColor(){
+    return s_wof.getSensorColor();
   }
 }

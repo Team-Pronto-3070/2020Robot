@@ -13,8 +13,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 import frc.robot.RobotMap.*;
 
-//TODO: Comment up
-
 public class WOF extends SubsystemBase {
     public TalonSRX t_WOF; //Motor object
     Color clr; //Var for storing color sensed by color sensor
@@ -54,16 +52,21 @@ public class WOF extends SubsystemBase {
 
     public void setDashColor(){
         
-        if(getClosestColor() == ColorType.Blue){
+        // if(getClosestColor() == ColorType.Blue){
+        //just checks if the color sensor's blue value is the highest    
+        if(Math.max(s_colorSensor.getBlue(), Math.max(s_colorSensor.getGreen(), s_colorSensor.getRed())) == s_colorSensor.getBlue()){
             resetColorBool();
             colorBooleans[BLUE] = true;
-        }else if(getClosestColor() == ColorType.Green){
+        // }else if(getClosestColor() == ColorType.Green){
+        }else if(Math.max(s_colorSensor.getGreen(), Math.max(s_colorSensor.getBlue(), s_colorSensor.getRed())) == s_colorSensor.getGreen()){
             resetColorBool();
             colorBooleans[GREEN] = true;
-        }else if(getClosestColor() == ColorType.Red){
+        // }else if(getClosestColor() == ColorType.Red){
+        }else if(Math.max(s_colorSensor.getRed(), Math.max(s_colorSensor.getGreen(), s_colorSensor.getBlue())) == s_colorSensor.getRed()){
             resetColorBool();
             colorBooleans[RED] = true;
-        }else if(getClosestColor() == ColorType.Yellow){
+        // }else if(getClosestColor() == ColorType.Yellow){
+        }else if(Math.abs(s_colorSensor.getBlue() - s_colorSensor.getGreen()) < 20){
             resetColorBool();
             colorBooleans[YELLOW] = true;
         } 
@@ -83,7 +86,7 @@ public class WOF extends SubsystemBase {
     }
 
     public Color getSensorColor(){
-        // System.out.println( s_colorSensor.getRed());
+        // System.out.println( s_colorSensor.getRed()); 
         // System.out.println(s_colorSensor.getBlue());
         // System.out.println(s_colorSensor.getGreen());
         SmartDashboard.putNumber("Red", s_colorSensor.getRed());

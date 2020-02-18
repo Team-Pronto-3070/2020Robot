@@ -24,7 +24,6 @@ import frc.robot.subsystems.WOF;
  * project.
  */
 public class Robot extends TimedRobot{
-  RobotMap robotMap;
   public static RobotContainer m_rc;
   public static WOF wof;
   UsbCamera cam;
@@ -76,7 +75,7 @@ public class Robot extends TimedRobot{
    */
   @Override
   public void autonomousInit() {
-    m_rc.scheduleAutoGroup();  
+    m_rc.scheduleAutoGroup();
   }
 
   /**
@@ -111,12 +110,15 @@ public class Robot extends TimedRobot{
    */
   @Override
   public void testPeriodic() {
+    m_rc.getSensorColor();
     m_rc.setDashColor();
     System.out.println("Blue boolean: "+ m_rc.getBooleanBlue());
     System.out.println("Red boolean: "+ m_rc.getBooleanRed());
     System.out.println("Green boolean: "+ m_rc.getBooleanGreen());
     System.out.println("Yellow boolean: "+ m_rc.getBooleanYellow());
     SmartDashboard.updateValues();
+
+
   }
 }
 

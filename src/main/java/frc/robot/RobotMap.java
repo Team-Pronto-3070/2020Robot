@@ -20,7 +20,7 @@ public class RobotMap{
 
     //Set each function-named talon port to each named definition
     public static final int T_WOF_PORT = T_REY_PORT; 
-    public static final int T_WINCH_PORT = T_ASHOKA_PORT;
+    public static final int T_WINCH_PORT = T_BASTILA_PORT;
     public static final int T_HOPPER_PORT = T_ANAKIN_PORT;
     public static final int T_TELE_PORT = T_OBIWAN_PORT;
     public static final int T_BELT1_PORT = T_REVAN_PORT;
@@ -44,21 +44,24 @@ public class RobotMap{
     public static final int JOYR_PORT = 1;
 
     //Joystick button #s for each function
-    public static final int HOPPER_BUTTON = 2;
-    public static final int WOF_BUTTON = 3;
-    public static final int INTAKE_BUTTON = 1;
-    public static final int OUTPUT_BUTTON = 1;
-    public static final int CLIMBER_UP_BUTTON = 2; 
-    public static final int CLIMBER_DOWN_BUTTON = 3; 
-    public static final int SHIFT_UP_BUTTON = 4;
-    public static final int SHIFT_DOWN_BUTTON = 5;
-    public static final int AUTOSHIFT_BUTTON = 2 ;
-    public static final int RAISE_ARM_BUTTON = 9; 
-    public static final int TOGGLE_ARM_BUTTON = 9;
-    public static final int LOWER_ARM_BUTTON = 10;
-    public static final int START_COMP_BUTTON = 11;
-    public static final int STOP_COMP_BUTTON = 12;
-    public static final int TOGGLE_COMP_BUTTON = 6;
+    public static final int HOPPER_BUTTON = 1; //Right
+    public static final int INTAKE_BUTTON = 1;//Left
+    public static final int TOGGLE_SHIFT_BUTTON = 2; //Right
+    public static final int CLIMBER_TOGGLE_BUTTON = 3; //Right
+    public static final int WOF_BUTTON = 2; //Left
+    public static final int SHIFT_UP_BUTTON = 4; //Left
+    public static final int SHIFT_DOWN_BUTTON = 5; //Left
+    public static final int TOGGLE_COMP_BUTTON = 4; //Right
+    public static final int TOGGLE_ARM_BUTTON = 5; //Right
+    public static final int RAISE_ARM_BUTTON = 6; //Left
+    public static final int LOWER_ARM_BUTTON = 7; //Left
+    public static final int START_COMP_BUTTON = 8; //Left
+    public static final int STOP_COMP_BUTTON = 9; //Left
+    public static final int OUTPUT_BUTTON = 10; //Left
+    public static final int CLIMBER_UP_BUTTON = 6; //Right
+    public static final int CLIMBER_DOWN_BUTTON = 7; //Right
+    public static final int WINCH_FORWARD_BUTTON = 8; //Right
+    public static final int WINCH_BACKWARD_BUTTON = 9; //Right
 
     public static final int COMPRESSOR_PORT = 0;
     
@@ -68,31 +71,36 @@ public class RobotMap{
     };
 
     public static final int HOPPER_ID = 0; //IDs for each button in BUTTON_SIDES array for configureButtonBindings in OI
-    public static final int WOF_ID = 1;
-    public static final int INTAKE_ID = 2;
-    public static final int OUTPUT_ID = 3;
-    public static final int CL_UP_ID = 4;
-    public static final int CL_DOWN_ID = 5;
-    public static final int SH_UP_ID = 6;
-    public static final int SH_DWN_ID = 7;
-    public static final int SH_AU_ID = 8;
-    public static final int RA_AR_ID = 9;
-    public static final int TOG_AR_ID = 10;
-    public static final int LOW_AR_ID = 11;
-    public static final int START_COMP_ID = 12;
-    public static final int STOP_COMP_ID = 13;
-    public static final int TOGGLE_COMP_ID = 14;
+    public static final int INTAKE_ID = 1;
+    public static final int SH_TGL_ID= 2;
+    public static final int CL_TGL_ID = 3;
+    public static final int WOF_ID = 4;
+    public static final int SH_UP_ID = 5;
+    public static final int SH_DWN_ID = 6;
+    public static final int COMP_TGL_ID = 7;
+    public static final int ARM_TGL_ID = 8;
+    public static final int ARM_UP_ID = 9;
+    public static final int ARM_DOWN_ID = 10;
+    public static final int START_COMP_ID = 11;
+    public static final int STOP_COMP_ID = 12;
+    public static final int OUTPUT_ID = 13;
+    public static final int CL_UP_ID = 14;
+    public static final int CL_DOWN_ID = 15;
+    public static final int WNCH_FRWD_ID = 16;
+    public static final int WNCH_BCKWD_ID = 17;
 
-    public static final JOYSIDE[] BUTTON_SIDES = new JOYSIDE[]{JOYSIDE.Left, JOYSIDE.Left, JOYSIDE.Right, 
-                                                            // Hopper,       WOF,          Intake
-                                                               JOYSIDE.Right, JOYSIDE.Right, JOYSIDE.Right,
-                                                            // Output,        Climber down, Climber Up
+    public static final JOYSIDE[] BUTTON_SIDES = new JOYSIDE[]{JOYSIDE.Right, JOYSIDE.Left, JOYSIDE.Right, 
+                                                            // Hopper,        Intake,       Toggle Shift
+                                                               JOYSIDE.Right, JOYSIDE.Left, JOYSIDE.Left,
+                                                            // Climb Toggle,  WOF,          Shift up
                                                                JOYSIDE.Left, JOYSIDE.Right, JOYSIDE.Right,
-                                                            // Shift Up,     Shift down,    Autoshift
-                                                               JOYSIDE.Left, JOYSIDE.Right, JOYSIDE.Right,
-                                                            // Raise arm     Toggle arm     Lower arm
-                                                               JOYSIDE.Left, JOYSIDE.Left, JOYSIDE.Right
-                                                            // Start comp,   Stop comp,    Toggle comp
+                                                            // Shift down,   Toggle comp,   Toggle arm
+                                                               JOYSIDE.Left, JOYSIDE.Left, JOYSIDE.Left,
+                                                            // Raise arm     Lower arm     Start comp
+                                                               JOYSIDE.Left, JOYSIDE.Left, JOYSIDE.Right,
+                                                            // Stop comp,    Ground ouput, Climb up
+                                                               JOYSIDE.Right, JOYSIDE.Right, JOYSIDE.Right
+                                                            // Climb down,    Winch forward, winch backward
                                                             };
     public static final double TELE_LIFT_SPEED = 1;
     public static final double WINCH_LIFT_SPEED = .5;
@@ -119,6 +127,8 @@ public class RobotMap{
     public enum ColorType { //WOF color enum 
         Blue, Red, Yellow, Green, UNKNOWN
     };
+
+    public static final ColorType[] COLOR_ORDER = new ColorType[]{ColorType.Blue, ColorType.Green, ColorType.Red, ColorType.Yellow};
    
     public static final double LEFT_START_TURN_ANGLE = 57; //Angles for first step of auto TurnToPort
     public static final double RIGHT_START_TURN_ANGLE = 59.7;
@@ -203,5 +213,21 @@ public class RobotMap{
 
     public static double revsPerInch(GearboxPosition pos){
         return getGearboxRatio(pos) / WHEEL_CIRCUMFRENCE_INCHES;        
+    }
+
+    public static ColorType shiftColors(ColorType clr){
+        switch(clr){
+            case Blue:
+                return ColorType.Red;
+            case Green: 
+                return ColorType.Yellow;
+            case Red:
+                return ColorType.Green;
+            case Yellow:
+                return ColorType.Blue;
+            default:
+                return null;
+        }
+        
     }
 }
