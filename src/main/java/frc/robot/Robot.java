@@ -110,7 +110,7 @@ public class Robot extends TimedRobot{
    */
   @Override
   public void testPeriodic() {
-    m_rc.s_wof.getSensorColor();
+    m_rc.getSensorColor();
     m_rc.setDashColor();
     System.out.println("Blue boolean: "+ m_rc.getBooleanBlue());
     System.out.println("Red boolean: "+ m_rc.getBooleanRed());
