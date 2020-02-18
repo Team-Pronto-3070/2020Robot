@@ -11,8 +11,8 @@ public class ClimberUp extends CommandBase {
         addRequirements(climb);
     }
     public void execute(){ 
-        climber.goUp();
-        
+       // climber.goUp();
+        climber.winchDown();
     }
     
     public boolean isFinished() {

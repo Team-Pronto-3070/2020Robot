@@ -10,7 +10,7 @@ import frc.robot.RobotMap;
 
 public class Climber extends SubsystemBase{  //This whole system will be used as a single command.
 
-    TalonSRX t_winch;
+    public TalonSRX t_winch;
     TalonSRX t_teleArm;
     
     public Climber(){
@@ -32,7 +32,7 @@ public class Climber extends SubsystemBase{  //This whole system will be used as
         t_winch.set(ControlMode.PercentOutput, RobotMap.WINCH_LIFT_SPEED);
     }
     public void winchDown(){
-        t_winch.set (ControlMode.PercentOutput, -1); //tells the winch to reverse.
+        t_winch.set(ControlMode.PercentOutput, -RobotMap.WINCH_LIFT_SPEED); //tells the winch to reverse.
     }
     public void stop(){
         t_teleArm.set(ControlMode.PercentOutput,0); // Stops all the movement.

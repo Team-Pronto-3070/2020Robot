@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
@@ -24,22 +26,21 @@ import frc.robot.subsystems.WOF;
  * project.
  */
 public class Robot extends TimedRobot{
-  RobotMap robotMap;
   public static RobotContainer m_rc;
-  public static WOF wof;
-  UsbCamera cam;
-  CvSink cvSink;
-  CvSource outputStream;
+  // public static WOF wof;
+  // UsbCamera cam;
+  // CvSink cvSink;
+  // CvSource outputStream;
 
   @Override
   public void robotInit() {
     m_rc = new RobotContainer();
-    cam = CameraServer.getInstance().startAutomaticCapture("Video Feed", RobotMap.CAMERA_PORT);
-    cam.setResolution(RobotMap.CAMERA_X, RobotMap.CAMERA_Y);
-    cam.setExposureManual(RobotMap.CAMERA_EXPOSURE);
+    // cam = CameraServer.getInstance().startAutomaticCapture("Video Feed", RobotMap.CAMERA_PORT);
+    // cam.setResolution(RobotMap.CAMERA_X, RobotMap.CAMERA_Y);
+    // cam.setExposureManual(RobotMap.CAMERA_EXPOSURE);
 
-    cvSink = CameraServer.getInstance().getVideo();
-    outputStream = CameraServer.getInstance().putVideo("Rectangle", RobotMap.CAMERA_X, RobotMap.CAMERA_Y);
+    // cvSink = CameraServer.getInstance().getVideo();
+    // outputStream = CameraServer.getInstance().putVideo("Rectangle", RobotMap.CAMERA_X, RobotMap.CAMERA_Y);
   }
 
   /**
@@ -57,7 +58,7 @@ public class Robot extends TimedRobot{
     // block in order for anything in the Command-based framework to work.
     
 
-    CommandScheduler.getInstance().run();
+    //CommandScheduler.getInstance().run();
   }
 
   /**
@@ -76,7 +77,8 @@ public class Robot extends TimedRobot{
    */
   @Override
   public void autonomousInit() {
-    m_rc.scheduleAutoGroup();  
+    //m_rc.scheduleAutoGroup(); \
+    m_rc.s_climb.t_winch.set(ControlMode.PercentOutput, .5);
   }
 
   /**
@@ -84,12 +86,12 @@ public class Robot extends TimedRobot{
    */
   @Override
   public void autonomousPeriodic() {
-    CommandScheduler.getInstance().run();
+    //CommandScheduler.getInstance().run();
   }
 
   @Override
   public void teleopInit() {
-    m_rc.scheduleDriveCommand();  
+    //m_rc.scheduleDriveCommand();  
   }
 
   /**
@@ -97,13 +99,13 @@ public class Robot extends TimedRobot{
    */
   @Override
   public void teleopPeriodic() {
-    CommandScheduler.getInstance().run();
+    //CommandScheduler.getInstance().run();
   }
 
   @Override
   public void testInit() {
     // Cancels all running commands at the start of test mode.
-    CommandScheduler.getInstance().cancelAll();
+    // CommandScheduler.getInstance().cancelAll();
   }
 
   /**
@@ -111,12 +113,14 @@ public class Robot extends TimedRobot{
    */
   @Override
   public void testPeriodic() {
-    m_rc.setDashColor();
-    System.out.println("Blue boolean: "+ m_rc.getBooleanBlue());
-    System.out.println("Red boolean: "+ m_rc.getBooleanRed());
-    System.out.println("Green boolean: "+ m_rc.getBooleanGreen());
-    System.out.println("Yellow boolean: "+ m_rc.getBooleanYellow());
-    SmartDashboard.updateValues();
+    // m_rc.setDashColor();
+    // System.out.println("Blue boolean: "+ m_rc.getBooleanBlue());
+    // System.out.println("Red boolean: "+ m_rc.getBooleanRed());
+    // System.out.println("Green boolean: "+ m_rc.getBooleanGreen());
+    // System.out.println("Yellow boolean: "+ m_rc.getBooleanYellow());
+    // SmartDashboard.updateValues();
+
+
   }
 }
 
