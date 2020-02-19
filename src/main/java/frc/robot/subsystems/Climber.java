@@ -19,7 +19,8 @@ public class Climber extends SubsystemBase{  //This whole system will be used as
         t_teleArm = new TalonSRX(RobotMap.T_TELE_PORT); //sets the motor for the lift arm
         t_teleArm.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
         t_teleArm.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
-        t_winch.setInverted(true);
+        t_winch.setInverted(false);
+        t_teleArm.setInverted(true);
     }
 
     public void goUp(){
