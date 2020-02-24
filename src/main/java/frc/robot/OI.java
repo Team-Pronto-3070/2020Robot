@@ -43,7 +43,7 @@ public class OI {
         toggleClimbButt = new JoystickButton(getButtonJoyside(RobotMap.CL_TGL_ID), RobotMap.CLIMBER_TOGGLE_BUTTON);
         winchForwardButt = new JoystickButton(getButtonJoyside(RobotMap.WNCH_FRWD_ID), RobotMap.WINCH_FORWARD_BUTTON);
         winchBackwardButt = new JoystickButton(getButtonJoyside(RobotMap.WNCH_BCKWD_ID), RobotMap.WINCH_BACKWARD_BUTTON);
-        groundOutputButt = new JoystickButton(getButtonJoyside(RobotMap.OUTPUT_BUTTON), RobotMap.OUTPUT_ID);
+        groundOutputButt = new JoystickButton(getButtonJoyside(RobotMap.OUTPUT_ID), RobotMap.OUTPUT_BUTTON);
     }
 
     public double getJoyAxis(RobotMap.JOYSIDE side, int axis){

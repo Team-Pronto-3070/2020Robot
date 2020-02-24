@@ -23,8 +23,7 @@ public class RobotMap{
     public static final int T_WINCH_PORT = T_AHSOKA_PORT;
     public static final int T_HOPPER_PORT = T_ANAKIN_PORT;
     public static final int T_TELE_PORT = T_OBIWAN_PORT;
-    public static final int T_BELT1_PORT = T_REVAN_PORT;
-    public static final int T_BELT2_PORT = T_BASTILA_PORT;
+    public static final int T_BELT_PORT = T_REVAN_PORT;
 
     public static final I2C.Port i2cPort = I2C.Port.kOnboard; //I2C ports for gyro
 
