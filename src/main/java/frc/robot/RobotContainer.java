@@ -95,6 +95,7 @@ public class RobotContainer {
     s_oi.wofArmDownButt.whenPressed(new LowerArm(s_wof));
     s_oi.wofArmUpButt.whenPressed(new RaiseArm(s_wof));
     s_oi.wofArmToggleButt.whenPressed(new ToggleArm(s_wof));
+    s_oi.groundOutputButt.whenPressed(new OutputBall(s_intake));
   }
 
   public void configWOFButton(WOF_Stage stage){

@@ -9,7 +9,7 @@ public class OI {
     
     public Joystick j_LEFT, j_RIGHT;
     JoystickButton hopButt, wofButt, toggleClimbButt, climbUpButt, climbDownButt, shiftUpButt,
-                    shiftDownButt, autoShiftButt,intakeButt,outputButt, compStartButt,
+                    shiftDownButt, autoShiftButt,intakeButt, compStartButt,
                     compStopButt, compToggleButt, wofArmUpButt, wofArmDownButt, wofArmToggleButt,
                     winchForwardButt, winchBackwardButt, groundOutputButt;
 
