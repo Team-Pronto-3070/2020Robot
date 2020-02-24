@@ -17,11 +17,19 @@ public class GroundIntake extends SubsystemBase {
     public GroundIntake(){ //constructor
         t_intake1 = new TalonSRX(RobotMap.T_BELT1_PORT); //defines the ports as a talon, connecting them to the variable in RobotMap
         t_intake2 = new TalonSRX(RobotMap.T_BELT2_PORT); 
+        t_intake1.setInverted(true);
+        t_intake2.setInverted(true);
+        
     }
 
-    public void intake(){
+    public void in(){
         t_intake1.set(ControlMode.PercentOutput, 1); //gives the intake motors the value of 100%, turning them on.
-        t_intake2.set(ControlMode.PercentOutput, 1); //it makes them run the belt, moving the balls.
+        t_intake2.set(ControlMode.PercentOutput, .75); //it makes them run the belt, moving the balls.
+    }
+
+    public void out(){
+        t_intake1.set(ControlMode.PercentOutput, -1); //gives the intake motors the value of 100%, turning them on.
+        t_intake2.set(ControlMode.PercentOutput, -.75); //it makes them run the belt, moving the balls.
     }
 
     public void stop(){

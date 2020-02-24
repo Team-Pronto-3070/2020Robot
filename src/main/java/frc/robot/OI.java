@@ -11,7 +11,7 @@ public class OI {
     JoystickButton hopButt, wofButt, toggleClimbButt, climbUpButt, climbDownButt, shiftUpButt,
                     shiftDownButt, autoShiftButt,intakeButt,outputButt, compStartButt,
                     compStopButt, compToggleButt, wofArmUpButt, wofArmDownButt, wofArmToggleButt,
-                    winchForwardButt, winchBackwardButt;
+                    winchForwardButt, winchBackwardButt, groundOutputButt;
 
     public OI(){
         j_LEFT = new Joystick(RobotMap.JOYL_PORT);
@@ -43,6 +43,7 @@ public class OI {
         toggleClimbButt = new JoystickButton(getButtonJoyside(RobotMap.CL_TGL_ID), RobotMap.CLIMBER_TOGGLE_BUTTON);
         winchForwardButt = new JoystickButton(getButtonJoyside(RobotMap.WNCH_FRWD_ID), RobotMap.WINCH_FORWARD_BUTTON);
         winchBackwardButt = new JoystickButton(getButtonJoyside(RobotMap.WNCH_BCKWD_ID), RobotMap.WINCH_BACKWARD_BUTTON);
+        groundOutputButt = new JoystickButton(getButtonJoyside(RobotMap.OUTPUT_BUTTON), RobotMap.OUTPUT_ID);
     }
 
     public double getJoyAxis(RobotMap.JOYSIDE side, int axis){

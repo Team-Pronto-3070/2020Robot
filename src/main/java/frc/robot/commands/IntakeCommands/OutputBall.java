@@ -3,15 +3,15 @@ package frc.robot.commands.IntakeCommands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.GroundIntake;
 
-public class IntakeBall extends CommandBase
+public class OutputBall extends CommandBase
 {
 private GroundIntake intake;
-public IntakeBall (GroundIntake in) {
+public OutputBall (GroundIntake in) {
     intake =in;
     addRequirements(intake);
 }
 public void execute(){
-    intake.in();   
+    intake.out();   
 }
 
 public void initialize(){
