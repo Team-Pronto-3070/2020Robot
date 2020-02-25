@@ -22,7 +22,6 @@ public class Drivetrain extends SubsystemBase {
     boolean doneDistance = false;
     boolean _firstCall = false;
 	boolean _state = false;
-    double localInputScaler = .40;
     private Gearbox gearbox;
 	
     public Drivetrain(Gearbox gb){
@@ -62,13 +61,13 @@ public class Drivetrain extends SubsystemBase {
     }
 
     public void leftDrive(double leftSpeed){
-        t_frontLeft.set(ControlMode.PercentOutput, -leftSpeed * localInputScaler);
+        t_frontLeft.set(ControlMode.PercentOutput, leftSpeed);
         t_backLeft.set(ControlMode.Follower, RobotMap.FL_PORT);
 
     }
 
     public void rightDrive(double rightSpeed){
-        t_frontRight.set(ControlMode.PercentOutput, -rightSpeed * localInputScaler);
+        t_frontRight.set(ControlMode.PercentOutput, -rightSpeed);
         t_backRight.set(ControlMode.Follower, RobotMap.FR_PORT);
     }
 

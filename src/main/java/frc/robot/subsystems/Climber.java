@@ -19,16 +19,18 @@ public class Climber extends SubsystemBase{  //This whole system will be used as
         t_teleArm.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
         t_teleArm.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
         t_winch.setInverted(false);
-        t_teleArm.setInverted(true);
+        t_winch.configContinuousCurrentLimit(20);
+        //DO NOT setInverted for TalonSRX's connected to limit switches
     }
 
     public void goUp(){
-        t_teleArm.set(ControlMode.PercentOutput, RobotMap.TELE_LIFT_SPEED); // creates a speed command for the lift arm located in RobotMap
+        t_teleArm.set(ControlMode.PercentOutput, -RobotMap.TELE_LIFT_SPEED); // creates a speed command for the lift arm located in RobotMap
         up = true;
     }
 
     public void goDown(){ //TODO: Put winch in here
-        t_teleArm.set(ControlMode.PercentOutput, -RobotMap.TELE_LIFT_SPEED); //tells the arm to fall.
+        t_teleArm.set(ControlMode.PercentOutput, RobotMap.TELE_LIFT_SPEED); //tells the arm to fall.
+        t_winch.set(ControlMode.PercentOutput, .1);
         up = false;
     }
 
