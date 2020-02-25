@@ -83,7 +83,6 @@ public class Robot extends TimedRobot{
    */
   @Override
   public void autonomousPeriodic() {
-    CommandScheduler.getInstance().run();
   }
 
   @Override
@@ -118,6 +117,8 @@ public class Robot extends TimedRobot{
     System.out.println("Yellow boolean: "+ m_rc.getBooleanYellow());
     SmartDashboard.updateValues();
 
+    System.out.println("Left: " + m_rc.getOIScaler(RobotMap.JOYSIDE.Left));
+    System.out.println("Right: " + m_rc.getOIScaler(RobotMap.JOYSIDE.Right));
 
   }
 }

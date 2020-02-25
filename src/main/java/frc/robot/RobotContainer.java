@@ -96,6 +96,11 @@ public class RobotContainer {
     s_oi.wofArmUpButt.whenPressed(new RaiseArm(s_wof));
     s_oi.wofArmToggleButt.whenPressed(new ToggleArm(s_wof));
     s_oi.groundOutputButt.whenPressed(new OutputBall(s_intake));
+    s_oi.groundOutputButt.whenReleased(new StopIntake(s_intake));
+    s_oi.winchForwardButt.whenPressed(new WinchOut(s_climb));
+    s_oi.winchForwardButt.whenReleased(new StopWinch(s_climb));
+    s_oi.winchBackwardButt.whenPressed(new WinchIn(s_climb));
+    s_oi.winchBackwardButt.whenReleased(new StopWinch(s_climb));
   }
 
   public void configWOFButton(WOF_Stage stage){
@@ -151,5 +156,9 @@ public class RobotContainer {
 
   public Color getSensorColor(){
     return s_wof.getSensorColor();
+  }
+
+  public double getOIScaler(JOYSIDE side){
+    return s_oi.getScaler(side);
   }
 }

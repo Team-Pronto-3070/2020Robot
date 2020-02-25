@@ -3,6 +3,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.*;
 import frc.robot.RobotMap;
+import frc.robot.RobotMap.JOYSIDE;
 
 public class OI {
     
@@ -48,9 +49,9 @@ public class OI {
 
     public double getJoyAxis(RobotMap.JOYSIDE side, int axis){
         if(side == RobotMap.JOYSIDE.Left)
-            return j_LEFT.getRawAxis(axis);
+            return j_LEFT.getRawAxis(axis) * getScaler(JOYSIDE.Right);
         else
-            return j_RIGHT.getRawAxis(axis);
+            return j_RIGHT.getRawAxis(axis) * getScaler(JOYSIDE.Right);
     }
 
     public boolean getJoyButton(RobotMap.JOYSIDE side, int button){
@@ -61,13 +62,16 @@ public class OI {
     }
 
     public Joystick getButtonJoyside(int id){
-        switch(RobotMap.getButtonJoyside(id)){
-            case Left:
-                return j_LEFT;
-            case Right:
-                return j_RIGHT;
-            default:
-                return null;
-        }
+        if(RobotMap.getButtonJoyside(id) == JOYSIDE.Left)
+            return j_LEFT;
+        else
+            return j_RIGHT;
+    }
+
+    public double getScaler(JOYSIDE side){
+        if(side == JOYSIDE.Left)
+            return .5 * (-j_LEFT.getRawAxis(2) + 1); //Alters the range of sliders to 0 to 1 instead of 1 to -1
+        else
+            return .5 * (-j_RIGHT.getRawAxis(2) + 1);
     }
 }
