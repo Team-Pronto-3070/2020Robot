@@ -8,8 +8,8 @@ public class ClimberDown extends CommandBase {
     private Climber climb;
 
     public ClimberDown(Climber climber){
-            climb = climber;
-            addRequirements(climber);
+        climb = climber;
+        addRequirements(climber);
     }
 
     public void execute(){

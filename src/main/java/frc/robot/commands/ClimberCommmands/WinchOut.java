@@ -16,7 +16,7 @@ public class WinchOut extends CommandBase {
         climb.winchOut();
     }
 
-    public boolean isFinished(){
+    public boolean aisFinished(){
         return false;
     }
 }

@@ -102,7 +102,7 @@ public class RobotMap{
                                                             // Climb down,    Winch forward, winch backward
                                                             };
     public static final double TELE_LIFT_SPEED = 1;
-    public static final double WINCH_LIFT_SPEED = .5;
+    public static final double WINCH_LIFT_SPEED = 1;
     public static final double HOPPER_LIFT_SPEED = 1;
     public static final double WOF_TURN_SPEED = .6;
     public static final int WOF_WAIT_PERIOD = 1;

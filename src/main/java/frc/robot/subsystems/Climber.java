@@ -27,9 +27,8 @@ public class Climber extends SubsystemBase{  //This whole system will be used as
         up = true;
     }
 
-    public void goDown(){
+    public void goDown(){ //TODO: Put winch in here
         t_teleArm.set(ControlMode.PercentOutput, -RobotMap.TELE_LIFT_SPEED); //tells the arm to fall.
-        t_winch.set(ControlMode.PercentOutput, -RobotMap.WINCH_LIFT_SPEED);
         up = false;
     }
 
@@ -44,7 +43,7 @@ public class Climber extends SubsystemBase{  //This whole system will be used as
     public void stopWinch(){
         t_winch.set(ControlMode.PercentOutput, 0);
     }
-    
+
     public void stop(){
         t_teleArm.set(ControlMode.PercentOutput,0); // Stops all the movement.
         t_winch.set(ControlMode.PercentOutput,0); 
