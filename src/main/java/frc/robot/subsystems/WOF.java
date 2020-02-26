@@ -92,7 +92,6 @@ public class WOF extends SubsystemBase {
         SmartDashboard.putNumber("Red", s_colorSensor.getRed());
         SmartDashboard.putNumber("Green", s_colorSensor.getGreen());
         SmartDashboard.putNumber("Blue", s_colorSensor.getBlue());
-        return ColorMatch.makeColor(s_colorSensor.getRed(), s_colorSensor.getGreen(), s_colorSensor.getBlue());
     }
 
     public int getIR(){
