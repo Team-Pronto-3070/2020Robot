@@ -7,11 +7,14 @@
 
 package frc.robot;
 
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-
+import frc.robot.subsystems.WOF;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -21,37 +24,21 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  * project.
  */
 public class Robot extends TimedRobot{
-  RobotMap robotMap;
-  public static RobotContainer m_robotContainer;
-  SendableChooser<String> initPos = new SendableChooser<String>();
-
-  
-  public static OI m_oi;
-
-  //c_Drive drive;
-
-
+  public static RobotContainer m_rc;
+  public static WOF wof;
+  UsbCamera cam;
+  CvSink cvSink;
+  CvSource outputStream;
 
   @Override
   public void robotInit() {
-    m_oi = new OI();
+    m_rc = new RobotContainer();
+    cam = CameraServer.getInstance().startAutomaticCapture("Video Feed", RobotMap.CAMERA_PORT);
+    cam.setResolution(RobotMap.CAMERA_X, RobotMap.CAMERA_Y);
+    cam.setExposureManual(RobotMap.CAMERA_EXPOSURE);
 
-    robotMap = new RobotMap();
-    initPos.addOption("Left", "L");
-    initPos.addOption("Middle", "M");
-    initPos.addOption("Preferred", "P");
-    initPos.addOption("Right", "R");
-
-    SmartDashboard.putData(initPos);
-    SmartDashboard.putNumber("Gyro val", m_oi.gyro.getAngle());
-    // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
-    // autonomous chooser on the dashboard.
-    m_robotContainer = new RobotContainer(RobotMap.KITBOT);
-    
-    //m_robotContainer.m_driveCommandKB.start();
-
-//    drive = new c_Drive();
-
+    cvSink = CameraServer.getInstance().getVideo();
+    outputStream = CameraServer.getInstance().putVideo("Rectangle", RobotMap.CAMERA_X, RobotMap.CAMERA_Y);
   }
 
   /**
@@ -88,12 +75,7 @@ public class Robot extends TimedRobot{
    */
   @Override
   public void autonomousInit() {
-
-    // schedule the autonomous command (example)
-    if (m_robotContainer.getAutonomousCommand() != null) {
-      m_robotContainer.m_autoCommand.schedule();
-    }
-    
+    m_rc.scheduleAutoGroup();
   }
 
   /**
@@ -101,22 +83,11 @@ public class Robot extends TimedRobot{
    */
   @Override
   public void autonomousPeriodic() {
-    
   }
 
   @Override
   public void teleopInit() {
-    // This makes sure that the autonomous stops running when
-    // teleop starts running. If you want the autonomous to
-    // continue until interrupted by another command, remove
-    // this line or comment it out.
-    if (m_robotContainer.m_autoCommand != null) {
-      m_robotContainer.m_autoCommand.cancel();
-    }
-   
-    if (m_robotContainer.m_driveCommand != null) {
-      m_robotContainer.m_driveCommand.schedule();
-    }
+    m_rc.scheduleTeleopDrive();  
   }
 
   /**
@@ -124,7 +95,6 @@ public class Robot extends TimedRobot{
    */
   @Override
   public void teleopPeriodic() {
-    CommandScheduler.getInstance().run();
   }
 
   @Override
@@ -138,5 +108,18 @@ public class Robot extends TimedRobot{
    */
   @Override
   public void testPeriodic() {
+    m_rc.getSensorColor();
+    m_rc.setDashColor();
+    System.out.println("Blue boolean: "+ m_rc.getBooleanBlue());
+    System.out.println("Red boolean: "+ m_rc.getBooleanRed());
+    System.out.println("Green boolean: "+ m_rc.getBooleanGreen());
+    System.out.println("Yellow boolean: "+ m_rc.getBooleanYellow());
+    SmartDashboard.updateValues();
+
+    System.out.println("Left: " + m_rc.getOIScaler(RobotMap.JOYSIDE.Left));
+    System.out.println("Right: " + m_rc.getOIScaler(RobotMap.JOYSIDE.Right));
+
   }
 }
+
+  
