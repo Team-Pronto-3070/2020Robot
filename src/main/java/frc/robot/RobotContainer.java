@@ -40,9 +40,10 @@ public class RobotContainer {
   public static WOF s_wof;
   public static OI s_oi;
   public static GroundIntake s_intake; 
-  public static Climber s_climb;
+  public static ClimberArm s_climb;
   public static Gearbox s_gearbox;
   public static GBCompressor s_comp;
+  public static Winch s_winch;
 
   public static WOF_Stage wofStage = WOF_Stage.STAGE_ONE;
 
@@ -50,11 +51,12 @@ public class RobotContainer {
     s_wof = new WOF();
     s_oi = new OI();
     s_intake = new GroundIntake();
-    s_climb = new Climber();
+    s_climb = new ClimberArm();
     s_hopper = new Hopper();
     s_gearbox = new Gearbox();
     s_drive = new Drivetrain(s_gearbox);
     s_comp = new GBCompressor();
+    s_winch = new Winch();
 
     initPos.addOption("Left", "L");
     initPos.addOption("Middle", "M");  
@@ -105,11 +107,11 @@ public class RobotContainer {
     s_oi.groundOutputButt.whenPressed(new OutputBall(s_intake));
     s_oi.groundOutputButt.whenReleased(new StopIntake(s_intake));
 
-    s_oi.winchForwardButt.whenPressed(new WinchOut(s_climb));
-    s_oi.winchForwardButt.whenReleased(new StopWinch(s_climb));
+    s_oi.winchForwardButt.whenPressed(new WinchOut(s_winch));
+    s_oi.winchForwardButt.whenReleased(new StopWinch(s_winch));
     
-    s_oi.winchBackwardButt.whenPressed(new WinchIn(s_climb));
-    s_oi.winchBackwardButt.whenReleased(new StopWinch(s_climb));
+    s_oi.winchBackwardButt.whenPressed(new WinchIn(s_winch));
+    s_oi.winchBackwardButt.whenReleased(new StopWinch(s_winch));
 
     // s_oi.dtFlipButt.whenPressed(new FlipDriveControls(s_drive));
   }

@@ -1,22 +1,22 @@
 package frc.robot.commands.ClimberCommmands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.Winch;
 
 public class StopWinch extends CommandBase {
 
-    private Climber climb;
+    private Winch winch;
 
-    public StopWinch(Climber climb){
-        addRequirements(climb);
-        this.climb = climb;
+    public StopWinch(Winch winch){
+        addRequirements(winch);
+        this.winch = winch;
     }
 
     public void execute(){
-        climb.stopWinch();
+        winch.stop();
     }
 
-    public boolean aisFinished(){
+    public boolean isFinished(){
         return false;
     }
 }

@@ -1,19 +1,19 @@
 package frc.robot.commands.ClimberCommmands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.Winch;
 
 public class WinchOut extends CommandBase {
 
-    private Climber climb;
+    private Winch winch;
 
-    public WinchOut(Climber climb){
-        addRequirements(climb);
-        this.climb = climb;
+    public WinchOut(Winch winch){
+        addRequirements(winch);
+        this.winch = winch;
     }
 
     public void execute(){
-        climb.winchOut();
+        winch.out();
     }
 
     public boolean aisFinished(){
