@@ -13,6 +13,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
+import frc.robot.RobotMap.PathDirection;
 
 public class Drivetrain extends SubsystemBase {
     public TalonFX t_frontLeft, t_backLeft, t_frontRight, t_backRight;
@@ -23,9 +24,10 @@ public class Drivetrain extends SubsystemBase {
     boolean _firstCall = false;
 	boolean _state = false;
     private Gearbox gearbox;
+    private RobotMap.PathDirection dtDirection = RobotMap.PathDirection.Direct;
 	
     public Drivetrain(Gearbox gb){
-       // setDefaultCommand(DriveCommand(this));
+       // setDefaultCommand(TeleopDrive(this));
 
         t_frontLeft = new TalonFX(RobotMap.FL_PORT);
         t_frontRight = new TalonFX(RobotMap.FR_PORT);
@@ -52,12 +54,13 @@ public class Drivetrain extends SubsystemBase {
     }
 
     public void tankDrive(double leftSpeed, double rightSpeed){
-        double left = 0;
-        double right = 0;
-        left = (left + leftSpeed)/4;
-        right = (right + rightSpeed)/4;
-        rightDrive(right);
-        leftDrive(left);
+        if(dtDirection == RobotMap.PathDirection.Direct){
+            rightDrive(rightSpeed);
+            leftDrive(leftSpeed);
+        } else {
+            rightDrive(-rightSpeed);
+            leftDrive(-leftSpeed);
+        }
     }
 
     public void leftDrive(double leftSpeed){
@@ -188,7 +191,14 @@ public class Drivetrain extends SubsystemBase {
 		t_frontRight.setSelectedSensorPosition(0);
 		t_backLeft.setSelectedSensorPosition(0);
 		t_backLeft.setSelectedSensorPosition(0);
-	}
+    }
+    
+    public void flipDirection(){
+        if(dtDirection == RobotMap.PathDirection.Direct)
+            dtDirection = PathDirection.Reverse;
+        else
+            dtDirection = PathDirection.Direct;
+    }
 }
 
 

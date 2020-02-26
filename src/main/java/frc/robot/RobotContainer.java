@@ -22,7 +22,7 @@ import frc.robot.commands.HopperCommands.*;
 import frc.robot.commands.IntakeCommands.*;
 import frc.robot.commands.WOFArmCommands.*;
 import frc.robot.commands.WOFWheelCommands.*;
-import frc.robot.commands.DriveCommand;
+import frc.robot.commands.DriveCommands.*;
 import frc.robot.commands.CommandGroups.*;
 
 /**
@@ -80,27 +80,38 @@ public class RobotContainer {
     s_oi.hopButt.whenReleased(new StopHopper(s_hopper));
     configWOFButton(wofStage);
     s_oi.wofButt.whenReleased(new StopWOF(s_wof));
-    s_oi.climbUpButt.whenHeld( new ClimberUp(s_climb));
+
+    s_oi.climbUpButt.whenHeld(new ClimberUp(s_climb));
     s_oi.climbUpButt.whenReleased(new ClimberStop(s_climb));
+
     s_oi.climbDownButt.whenHeld(new ClimberDown(s_climb));
-    s_oi.climbDownButt.whenReleased(new ClimberStop(s_climb));//when the buttons arent held the climber will stop
+    s_oi.climbDownButt.whenReleased(new ClimberStop(s_climb)); // when the buttons arent held the climber will stop
+
     s_oi.shiftDownButt.whenPressed(new ShiftDown(s_gearbox));
     s_oi.shiftUpButt.whenPressed(new ShiftUp(s_gearbox));
+
     s_oi.autoShiftButt.whenPressed(new ShiftToggle(s_gearbox));
+
     s_oi.compStartButt.whenPressed(new StartCompressor(s_comp));
     s_oi.compStopButt.whenPressed(new StopCompressor(s_comp));
+
     s_oi.compToggleButt.whenPressed(new ToggleCompressor(s_comp));
-    s_oi.intakeButt.whenPressed(new IntakeBall(s_intake));
-    s_oi.intakeButt.whenReleased(new StopIntake(s_intake));
+
     s_oi.wofArmDownButt.whenPressed(new LowerArm(s_wof));
     s_oi.wofArmUpButt.whenPressed(new RaiseArm(s_wof));
+
     s_oi.wofArmToggleButt.whenPressed(new ToggleArm(s_wof));
+
     s_oi.groundOutputButt.whenPressed(new OutputBall(s_intake));
     s_oi.groundOutputButt.whenReleased(new StopIntake(s_intake));
+
     s_oi.winchForwardButt.whenPressed(new WinchOut(s_climb));
     s_oi.winchForwardButt.whenReleased(new StopWinch(s_climb));
+    
     s_oi.winchBackwardButt.whenPressed(new WinchIn(s_climb));
     s_oi.winchBackwardButt.whenReleased(new StopWinch(s_climb));
+
+    // s_oi.dtFlipButt.whenPressed(new FlipDriveControls(s_drive));
   }
 
   public void configWOFButton(WOF_Stage stage){
@@ -150,8 +161,8 @@ public class RobotContainer {
     new AutoGroup(getStartingPosition(), s_drive, s_hopper).schedule();
   }
 
-  public void scheduleDriveCommand(){
-    new DriveCommand(s_drive, s_oi).schedule();
+  public void scheduleTeleopDrive(){
+    new TeleopDrive(s_drive, s_oi).schedule();
   }
 
   public Color getSensorColor(){

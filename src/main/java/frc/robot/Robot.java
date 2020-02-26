@@ -87,7 +87,7 @@ public class Robot extends TimedRobot{
 
   @Override
   public void teleopInit() {
-    m_rc.scheduleDriveCommand();  
+    m_rc.scheduleTeleopDrive();  
   }
 
   /**

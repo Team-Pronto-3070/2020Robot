@@ -1,4 +1,4 @@
-package frc.robot.commands; 
+package frc.robot.commands.DriveCommands; 
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.OI;
@@ -7,7 +7,7 @@ import frc.robot.RobotMap.JOYSIDE;
 import frc.robot.subsystems.Drivetrain;
 
 
-public class DriveCommand extends CommandBase{
+public class TeleopDrive extends CommandBase{
 
     
 //do we need to pass subsystems in the constructor or can we call the static one 
@@ -15,8 +15,8 @@ public class DriveCommand extends CommandBase{
     private static Drivetrain drive;
     private static OI oi;
 
-    public DriveCommand(Drivetrain dt, OI oi){
-      DriveCommand.oi = oi;
+    public TeleopDrive(Drivetrain dt, OI oi){
+      TeleopDrive.oi = oi;
       drive = dt;
       addRequirements(drive);
     }

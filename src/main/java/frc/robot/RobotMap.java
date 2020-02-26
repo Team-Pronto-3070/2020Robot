@@ -44,8 +44,8 @@ public class RobotMap{
 
     //Joystick button #s for each function
     public static final int HOPPER_BUTTON = 1; //Right
-    public static final int INTAKE_BUTTON = 1;//Left
-    public static final int TOGGLE_SHIFT_BUTTON = 2; //Right
+    public static final int DTFLIP_BUTTON = 3; //Left
+    public static final int TOGGLE_SHIFT_BUTTON = 1; //Right
     public static final int CLIMBER_TOGGLE_BUTTON = 3; //Right
     public static final int WOF_BUTTON = 2; //Left
     public static final int SHIFT_UP_BUTTON = 4; //Left
@@ -70,7 +70,8 @@ public class RobotMap{
     };
 
     public static final int HOPPER_ID = 0; //IDs for each button in BUTTON_SIDES array for configureButtonBindings in OI
-    public static final int INTAKE_ID = 1;
+    public static final int DTFLIP_ID = 1;
+    // TODO: change out indexes to remove intake
     public static final int SH_TGL_ID= 2;
     public static final int CL_TGL_ID = 3;
     public static final int WOF_ID = 4;
@@ -88,7 +89,7 @@ public class RobotMap{
     public static final int WNCH_FRWD_ID = 16;
     public static final int WNCH_BCKWD_ID = 17;
 
-    public static final JOYSIDE[] BUTTON_SIDES = new JOYSIDE[]{JOYSIDE.Right, JOYSIDE.Left, JOYSIDE.Right, 
+    public static final JOYSIDE[] BUTTON_SIDES = new JOYSIDE[]{JOYSIDE.Right, JOYSIDE.Left, JOYSIDE.Left, 
                                                             // Hopper,        Intake,       Toggle Shift
                                                                JOYSIDE.Right, JOYSIDE.Left, JOYSIDE.Left,
                                                             // Climb Toggle,  WOF,          Shift up

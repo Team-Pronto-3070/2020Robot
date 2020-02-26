@@ -10,9 +10,9 @@ public class OI {
     
     public Joystick j_LEFT, j_RIGHT;
     JoystickButton hopButt, wofButt, toggleClimbButt, climbUpButt, climbDownButt, shiftUpButt,
-                    shiftDownButt, autoShiftButt,intakeButt, compStartButt,
+                    shiftDownButt, autoShiftButt, compStartButt,
                     compStopButt, compToggleButt, wofArmUpButt, wofArmDownButt, wofArmToggleButt,
-                    winchForwardButt, winchBackwardButt, groundOutputButt;
+                    winchForwardButt, winchBackwardButt, groundOutputButt; //, dtFlipButt;
 
     public OI(){
         j_LEFT = new Joystick(RobotMap.JOYL_PORT);
@@ -30,11 +30,8 @@ public class OI {
         shiftUpButt = new JoystickButton(getButtonJoyside(RobotMap.SH_UP_ID), RobotMap.SHIFT_UP_BUTTON);
         shiftDownButt = new JoystickButton(getButtonJoyside(RobotMap.SH_DWN_ID), RobotMap.SHIFT_DOWN_BUTTON);
         autoShiftButt = new JoystickButton(getButtonJoyside(RobotMap.SH_TGL_ID), RobotMap.TOGGLE_SHIFT_BUTTON);
-        intakeButt = new JoystickButton(getButtonJoyside(RobotMap.INTAKE_ID), RobotMap.INTAKE_BUTTON);
-        //outputButt = new JoystickButton(getButtonJoyside(RobotMap.OUTPUT_ID),RobotMap.OUTPUT_BUTTON);
-        //not sure if output butt will be used yet
-
         //buttons for compressing, 11 for starting and 12 for stopping on the left, 6 on the right for toggling
+
         compStartButt = new JoystickButton(getButtonJoyside(RobotMap.START_COMP_ID),RobotMap.START_COMP_BUTTON);
         compStopButt = new JoystickButton(getButtonJoyside(RobotMap.STOP_COMP_ID),RobotMap.STOP_COMP_BUTTON);
         compToggleButt = new JoystickButton(getButtonJoyside(RobotMap.COMP_TGL_ID),RobotMap.TOGGLE_COMP_BUTTON);
@@ -45,6 +42,7 @@ public class OI {
         winchForwardButt = new JoystickButton(getButtonJoyside(RobotMap.WNCH_FRWD_ID), RobotMap.WINCH_FORWARD_BUTTON);
         winchBackwardButt = new JoystickButton(getButtonJoyside(RobotMap.WNCH_BCKWD_ID), RobotMap.WINCH_BACKWARD_BUTTON);
         groundOutputButt = new JoystickButton(getButtonJoyside(RobotMap.OUTPUT_ID), RobotMap.OUTPUT_BUTTON);
+        // dtFlipButt = new JoystickButton(getButtonJoyside(RobotMap.DTFLIP_ID), RobotMap.DTFLIP_BUTTON);
     }
 
     public double getJoyAxis(RobotMap.JOYSIDE side, int axis){
