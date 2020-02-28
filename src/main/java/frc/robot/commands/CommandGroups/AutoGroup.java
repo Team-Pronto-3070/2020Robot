@@ -8,11 +8,12 @@ import frc.robot.commands.AutoCommands.PreferredStart.*;
 import frc.robot.commands.AutoCommands.RightStart.*;
 import frc.robot.commands.HopperCommands.AutoUnloadHopper;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Gearbox;
 import frc.robot.subsystems.Hopper;
 
 public class AutoGroup extends SequentialCommandGroup{
     
-    public AutoGroup(RobotMap.StartingPosition pos, Drivetrain dt, Hopper hop){
+    public AutoGroup(RobotMap.StartingPosition pos, Drivetrain dt, Hopper hop, Gearbox gb){
         switch(pos) {
             case Left:
                 addCommands(new LeftTurnToPort(dt), new LeftApproachPort(dt), new LeftTurnIntoPort(dt), new AutoUnloadHopper(hop));
@@ -24,7 +25,7 @@ public class AutoGroup extends SequentialCommandGroup{
                 addCommands(new MiddleTurnToPort(dt), new MiddleApproachPort(dt), new MiddleTurnIntoPort(dt), new AutoUnloadHopper(hop));
                 break;
             case Preffered:
-                addCommands(new PrefApproachPort(dt), new AutoUnloadHopper(hop));
+                addCommands(new PrefApproachPort(dt, hop, gb) /*, new AutoUnloadHopper(hop)*/);
                 break;
         }
 

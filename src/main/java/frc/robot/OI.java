@@ -1,6 +1,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+
 import edu.wpi.first.wpilibj2.command.button.*;
 import frc.robot.RobotMap;
 import frc.robot.RobotMap.JOYSIDE;
@@ -12,7 +13,7 @@ public class OI {
     JoystickButton hopButt, wofButt, toggleClimbButt, climbUpButt, climbDownButt, shiftUpButt,
                     shiftDownButt, autoShiftButt, compStartButt,
                     compStopButt, compToggleButt, wofArmUpButt, wofArmDownButt, wofArmToggleButt,
-                    winchForwardButt, winchBackwardButt, groundOutputButt; //, dtFlipButt;
+                    winchForwardButt, winchBackwardButt, groundOutputButt, climbWinchSyncButt; //, dtFlipButt;
 
     public OI(){
         j_LEFT = new Joystick(RobotMap.JOYL_PORT);
@@ -43,6 +44,8 @@ public class OI {
         winchBackwardButt = new JoystickButton(getButtonJoyside(RobotMap.WNCH_BCKWD_ID), RobotMap.WINCH_BACKWARD_BUTTON);
         groundOutputButt = new JoystickButton(getButtonJoyside(RobotMap.OUTPUT_ID), RobotMap.OUTPUT_BUTTON);
         // dtFlipButt = new JoystickButton(getButtonJoyside(RobotMap.DTFLIP_ID), RobotMap.DTFLIP_BUTTON);
+
+        climbWinchSyncButt = new JoystickButton(getButtonJoyside(RobotMap.CWSYNC_ID), RobotMap.CLIMB_WINCH_SYNC_BUTTON);
     }
 
     public double getJoyAxis(RobotMap.JOYSIDE side, int axis){

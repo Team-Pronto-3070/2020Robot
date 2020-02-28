@@ -17,10 +17,12 @@ public class Gearbox extends SubsystemBase {
         if(pos == GearboxPosition.Hi){
             gearboxPosition = GearboxPosition.Hi;
             gbSol.set(RobotMap.GB_SOL_ON);
+            System.out.println("Hi");
         }
         else {
             gearboxPosition = GearboxPosition.Lo;
             gbSol.set(RobotMap.GB_SOL_OFF);
+            System.out.println("Lo");
         }
     }
     

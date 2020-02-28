@@ -66,7 +66,7 @@ public class WOF extends SubsystemBase {
             resetColorBool();
             colorBooleans[RED] = true;
         // }else if(getClosestColor() == ColorType.Yellow){
-        }else if(Math.abs(s_colorSensor.getBlue() - s_colorSensor.getGreen()) < 20){
+        }else{
             resetColorBool();
             colorBooleans[YELLOW] = true;
         } 

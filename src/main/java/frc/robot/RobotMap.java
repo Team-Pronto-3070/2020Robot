@@ -36,8 +36,8 @@ public class RobotMap{
     public static final Value ARM_SOL_ON = Value.kForward;
     public static final Value ARM_SOL_OFF = Value.kReverse;
 
-    public static final Value GB_SOL_ON = Value.kForward;
-    public static final Value GB_SOL_OFF = Value.kReverse;
+    public static final Value GB_SOL_ON = Value.kReverse;
+    public static final Value GB_SOL_OFF = Value.kForward;
 
     public static final int JOYL_PORT = 0; //Joystick USB ports
     public static final int JOYR_PORT = 1;
@@ -61,6 +61,7 @@ public class RobotMap{
     public static final int CLIMBER_DOWN_BUTTON = 7; //Right
     public static final int WINCH_FORWARD_BUTTON = 8; //Right
     public static final int WINCH_BACKWARD_BUTTON = 9; //Right
+    public static final int CLIMB_WINCH_SYNC_BUTTON = 10; //Right
 
     public static final int COMPRESSOR_PORT = 0;
     
@@ -88,6 +89,7 @@ public class RobotMap{
     public static final int CL_DOWN_ID = 15;
     public static final int WNCH_FRWD_ID = 16;
     public static final int WNCH_BCKWD_ID = 17;
+    public static final int CWSYNC_ID = 18;
 
     public static final JOYSIDE[] BUTTON_SIDES = new JOYSIDE[]{JOYSIDE.Right, JOYSIDE.Left, JOYSIDE.Left, 
                                                             // Hopper,        Intake,       Toggle Shift
@@ -99,8 +101,10 @@ public class RobotMap{
                                                             // Raise arm     Lower arm     Start comp
                                                                JOYSIDE.Left, JOYSIDE.Left, JOYSIDE.Right,
                                                             // Stop comp,    Ground ouput, Climb up
-                                                               JOYSIDE.Right, JOYSIDE.Right, JOYSIDE.Right
+                                                               JOYSIDE.Right, JOYSIDE.Right, JOYSIDE.Right,
                                                             // Climb down,    Winch forward, winch backward
+                                                                JOYSIDE.Right
+                                                            // Climb/Winch Sync
                                                             };
     public static final double TELE_LIFT_SPEED = 1;
     public static final double WINCH_LIFT_SPEED = 1;
@@ -110,7 +114,7 @@ public class RobotMap{
     public static final int WOF_ROTATIONS = 3;
     public static final int WOF_PASSES = WOF_ROTATIONS * 2;
 
-    public static final double AUTO_SPEED = .5; //Speed value for auto
+    public static final double AUTO_SPEED = .2; //Speed value for auto
 
     public static final double ROTATION_TOLERANCE = 1; //Auto angle tolerance in degrees
 
@@ -211,8 +215,8 @@ public class RobotMap{
         STAGE_ONE, STAGE_TWO
     };
 
-    public static double revsPerInch(GearboxPosition pos){
-        return getGearboxRatio(pos) / WHEEL_CIRCUMFRENCE_INCHES;        
+    public static double ticksPerInch(GearboxPosition pos){
+        return getGearboxRatio(pos) / WHEEL_CIRCUMFRENCE_INCHES * 4096;       
     }
 
     public static ColorType shiftColors(ColorType clr){

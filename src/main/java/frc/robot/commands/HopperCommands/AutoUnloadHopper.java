@@ -15,25 +15,27 @@ public class AutoUnloadHopper extends CommandBase {
         hopper = hop;
         addRequirements(hop);
         timer.reset();
+        timer.start();
+
     }
 
     public void execute(){
-        timer.start();
-        
-        hopper.out();
-        if(timer.hasPeriodPassed(3)){
-            hopper.stop();
-            done = true;
-        }
-       
-        timer.stop();
+    
+    System.out.println(timer.get());
+    if(timer.hasPeriodPassed(3.9));
+            hopper.out();
     }
 
     public boolean isFinished(){
-        return done;
+        timer.start();
+        if(timer.hasPeriodPassed(1.5)){
+            hopper.stop();
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void end(){
-
     } 
 }

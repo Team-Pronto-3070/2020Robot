@@ -20,11 +20,12 @@ public class Drivetrain extends SubsystemBase {
     ADIS16448_IMU gyro;
     double initAngle, initDistance;
     boolean doneAngle = false; //Stores whether or not we're there yet
-    boolean doneDistance = false;
+    boolean doneDistance = true;
     boolean _firstCall = false;
 	boolean _state = false;
     private Gearbox gearbox;
     private RobotMap.PathDirection dtDirection = RobotMap.PathDirection.Direct;
+    private double initEncoderVal = 0;
 	
     public Drivetrain(Gearbox gb){
        // setDefaultCommand(TeleopDrive(this));
@@ -64,12 +65,19 @@ public class Drivetrain extends SubsystemBase {
     }
 
     public void leftDrive(double leftSpeed){
+    if(leftSpeed >= .75){
+        leftSpeed = .75;
+    }
         t_frontLeft.set(ControlMode.PercentOutput, leftSpeed);
         t_backLeft.set(ControlMode.Follower, RobotMap.FL_PORT);
+    
 
     }
 
     public void rightDrive(double rightSpeed){
+    if(rightSpeed >= .75){
+        rightSpeed = .75;
+    }
         t_frontRight.set(ControlMode.PercentOutput, -rightSpeed);
         t_backRight.set(ControlMode.Follower, RobotMap.FR_PORT);
     }
@@ -148,18 +156,19 @@ public class Drivetrain extends SubsystemBase {
     }    
 
     public boolean driveDistance(double distance) { //Distance in inches
-        double revs = distance * RobotMap.revsPerInch(gearbox.getGearboxPosition());
+        double ticks = distance * RobotMap.ticksPerInch(gearbox.getGearboxPosition());
         if(doneDistance) {
-			resetEncoderValues();
+            resetEncoderValues();
 			doneDistance = false;
 			return false;
         } else {
-			if(getLeftEncoderPosition() > Math.abs(revs)){
+			if(Math.abs(getLeftEncoderPosition()) > Math.abs(ticks)){
 				stop();
 				doneDistance = true;
 				return true;
 			} else {
-				tankDrive(RobotMap.AUTO_SPEED * RobotMap.getDirCoef(revs), RobotMap.AUTO_SPEED * RobotMap.getDirCoef(revs));
+                tankDrive(-RobotMap.AUTO_SPEED * RobotMap.getDirCoef(ticks), -RobotMap.AUTO_SPEED * RobotMap.getDirCoef(ticks));
+                System.out.println(getLeftEncoderPosition());
 				return false;
 			}
 

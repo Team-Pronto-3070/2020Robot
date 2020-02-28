@@ -25,17 +25,17 @@ public class StageOneSpin extends CommandBase {
 
     public void execute(){
         //needs to spin the thing 3-4 times
-
-        if(numRot > 0){   //If there is still rotations to go
-            wof.go(); //Start spinning
-            wof.setDashColor(); //Refresh booleans to SmartDashboard
-            if(!passed && wof.getClosestColor() != initColor) //if the color changes
-                passed = true; //Set passed to true so that next loop, it knows its a new segment
-            else if(passed && initColor == wof.getClosestColor()){ //If color has passed again
-                numRot--; //Increment down
-                passed = false; //Reset
-            }
-        }
+        wof.go();
+        // if(numRot > 0){   //If there is still rotations to go
+        //     wof.go(); //Start spinning
+        //     wof.setDashColor(); //Refresh booleans to SmartDashboard
+        //     if(!passed && wof.getClosestColor() != initColor) //if the color changes
+        //         passed = true; //Set passed to true so that next loop, it knows its a new segment
+        //     else if(passed && initColor == wof.getClosestColor()){ //If color has passed again
+        //         numRot--; //Increment down
+        //         passed = false; //Reset
+        //     }
+        // }
     }
 
     public boolean isFinished() {

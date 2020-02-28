@@ -9,6 +9,6 @@ import frc.robot.commands.WOFArmCommands.*;
 public class ControlPanelStageOne extends SequentialCommandGroup {
 
     public ControlPanelStageOne(WOF wof, RobotContainer rc){
-        addCommands(new RaiseArm(wof), new Wait(), new LowerArm(wof), new StageOneSpin(wof, rc),  new RaiseArm(wof));
+        addCommands(/*new RaiseArm(wof), new Wait(), new LowerArm(wof),*/ new StageOneSpin(wof, rc) /* new RaiseArm(wof)*/);
     }
 }

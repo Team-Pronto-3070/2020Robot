@@ -24,6 +24,7 @@ import frc.robot.commands.WOFArmCommands.*;
 import frc.robot.commands.WOFWheelCommands.*;
 import frc.robot.commands.DriveCommands.*;
 import frc.robot.commands.CommandGroups.*;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -81,6 +82,7 @@ public class RobotContainer {
     s_oi.hopButt.whenPressed(new UnloadHopper(s_hopper));
     s_oi.hopButt.whenReleased(new StopHopper(s_hopper));
     configWOFButton(wofStage);
+    
     s_oi.wofButt.whenReleased(new StopWOF(s_wof));
 
     s_oi.climbUpButt.whenHeld(new ClimberUp(s_climb));
@@ -113,6 +115,10 @@ public class RobotContainer {
     s_oi.winchBackwardButt.whenPressed(new WinchIn(s_winch));
     s_oi.winchBackwardButt.whenReleased(new StopWinch(s_winch));
 
+    
+    s_oi.climbWinchSyncButt.whenPressed( new CWSync(s_climb, s_winch));
+    s_oi.climbWinchSyncButt.whenReleased(new StopWinch(s_winch));
+  
     // s_oi.dtFlipButt.whenPressed(new FlipDriveControls(s_drive));
   }
 
@@ -125,18 +131,20 @@ public class RobotContainer {
   }
 
   public StartingPosition getStartingPosition(){
-    switch (initPos.getSelected()) {
-      case "R":
-        return StartingPosition.Right;
-      case "M":
-        return StartingPosition.Middle;
-      case "L":
-        return StartingPosition.Left;
-      case "P":
-        return StartingPosition.Preffered;
-      default:
-        return null;
-    }
+    // switch (initPos.getSelected()) {
+    //   case "R":
+    //     return StartingPosition.Right;
+    //   case "M":
+    //     return StartingPosition.Middle;
+    //   case "L":
+    //     return StartingPosition.Left;
+    //   case "P":
+    //     return StartingPosition.Preffered;
+    //   default:
+    //     return null;
+    // }
+
+    return StartingPosition.Preffered;
   }
 
   public boolean getBooleanBlue(){
@@ -160,7 +168,7 @@ public class RobotContainer {
   }
 
   public void scheduleAutoGroup(){
-    new AutoGroup(getStartingPosition(), s_drive, s_hopper).schedule();
+    new AutoGroup(getStartingPosition(), s_drive, s_hopper, s_gearbox).schedule();
   }
 
   public void scheduleTeleopDrive(){
